@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  background: #fff;
+  border-radius: 15px;
+}
+hr {
+  border: 1px solid #ccc;
+}
+form {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  border-radius: 15px;
+}
+.input-label-wrapper label {
+  display: inline-block;
+  width: 15%;
+  text-align: right;
+  margin: 10px;
+}
+.input-label-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 10px 5px;
+}
+input[type="text"],
+input[type="tel"],
+input[type="date"] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.header h2 {
+  font-weight: bold;
+  margin: 8px;
+  color: black;
+  margin: 10px 20px;
+  font-size: 35px;
+}
+.header {
+  display: flex;
+  align-items: center;
+}
+.gender {
+  display: flex;
+  align-items: center;
+}
+.gender-box {
+  border: 1px solid #ccc;
+  margin: 12px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+.male,
+.female {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75px;
+  padding: 5px 10px;
+}
+.male label,
+.female label {
+  margin-right: 10px;
+}
+.glabel {
+  display: inline-block;
+  width: 15%;
+  text-align: right;
+  margin: 10px;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+input[type="submit"] {
+  width: 20%;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  margin: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+.back:hover {
+  background-color: #5592f6;
+}
+.back {
+  background-color: #0e58df;
+}
+.add {
+  background-color: #4cd261;
+}
+.add:hover {
+  background-color: #63d274;
+}
+.clear {
+  background-color: #f73830;
+}
+.clear:hover {
+  background-color: #f75049;
+}
