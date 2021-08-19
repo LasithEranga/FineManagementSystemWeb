@@ -1,21 +1,24 @@
 * {
   font-family: sans-serif;
+  overflow: hidden;
 }
 .container {
   width: 700px;
-  height: 450px;
+  height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 .left-side {
   background: #373737;
   width: 350px;
-  height: 450px;
+  height: 500px;
 }
 .right-side {
   background: black;
   width: 350px;
-  height: 450px;
+  height: 500px;
   position: relative;
 }
 .header {
@@ -49,10 +52,12 @@ hr {
 .username-input {
   position: absolute;
   top: 60px;
-  margin: 5px;
-  padding: 5px;
-  width: 350px;
+  margin-left: 10px;
+  width: 95%;
   border-radius: 4px;
+}
+input{
+  width: 95%;
 }
 .password {
   position: absolute;
@@ -65,9 +70,8 @@ hr {
 .password-input {
   position: absolute;
   top: 160px;
-  margin: 5px;
-  padding: 5px;
-  width: 350px;
+  margin-left: 10px;
+  width: 95%;
   border-radius: 4px;
 }
 .inputs label {

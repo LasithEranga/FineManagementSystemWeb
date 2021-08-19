@@ -16,10 +16,45 @@
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
     <style>
-        .m-50{
+        .m-50 {
             margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BurgerBtn</a>
+            <a class="navbar-brand" href="#">user</a>
+        </div>
+    </nav>
+    <div class=" bg-dark vh-100 d-flex flex-column">
+        <div class=" bg-light m-3 mt-5 rounded" style="height: 10rem; ">  
+            <div class="d-flex flex-column">
+                <div class=" ms-3 mt-3 fs-1"> Today</div>
+                <div class=" ms-3 mt-3 fs-3"> 56 New Fine Receipts</div>
+            </div>
+        </div>
+        <div class=" bg-light m-3  rounded d-flex justify-content-center align-items-center" style="height: 6rem; ">
+            Search Driver
+        </div>
+        <div class=" bg-light m-3  rounded d-flex justify-content-center align-items-center" style="height: 6rem; ">
+            Add Driver
+        </div>
+        <div id="new_receipt" class=" bg-light m-3  rounded d-flex  justify-content-center align-items-center" style="height: 6rem; ">
+            New Fine Receipt
+        </div>
+    </div>
+    
+
+    <script>
+        document.getElementById("new_receipt").addEventListener('click',()=>{
+            location.href='finereceipt.html';
+        }
+        );
+    </script>
+</body>
+
+</html>
