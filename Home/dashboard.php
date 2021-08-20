@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <!--Stylesheets-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
-    <!-- Javascripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
-
-</head>
-<body>
      <!-- container div -->
      
-    <div class="d-flex flex-column  bg-dark  text-white col-lg-12 h-auto" style="min-height: 100vh;">
+    <div class="d-flex flex-column  bg-dark ps-2 text-white col-lg-11 h-auto " style="width: 95%;">
         <div class="d-flex  align-self-start">
-            <h1 class="p-3">Dashboard</h1>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand"><h1 class="pt-2 px-1">DASHBOARD</h1></a>
+              
+            </div>
+        </nav>
+
 
         </div>
-        <div class="d-flex flex-row col-md-12 ps-5 pe-3">
+        <div class="d-flex  flex-row  col-lg-12 ps-3 ">
             <!-- This year Cases -->
-            <div class="card col-md-4 mx-1 " >
+            <div class="card col-lg-4 mx-1 "  >
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -32,7 +22,7 @@
             </div>
 
             <!-- Today Cases -->
-            <div class="card col-md-4 mx-1 ms-2" >
+            <div class="card col-lg-4 me-1 ms-1" >
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -40,7 +30,7 @@
             </div>
 
             <!-- Today Income -->
-            <div class="card col-md-3 mx-1 ms-2" >
+            <div class="card col-lg-4 mx-1 ms-1" >
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -51,9 +41,9 @@
 
 
     <!-- Chart area 2 -->
-        <div class="d-flex flex-row col-md-12 ps-5  my-2 ">
+        <div class="d-flex flex-row col-md-12  my-2 ps-3">
             <!-- Weekly Cases -->
-            <div class="card col-md-8  mx-1 me-2" >
+            <div class="card col-md-8  mx-1 "  style="width: 67.4%;">
                 <div class="card-body">
                         <canvas id="myChart" width="300" height="100"></canvas>
                             <script>
@@ -99,7 +89,7 @@
 
         
             <!-- Pie chart-->
-            <div class="card col-md-3 ms-1" >
+            <div class="card col-md-4 ms-1" >
                 <div class="card-body">
                     <canvas id="pieChart" width="200" height="200"></canvas>
                             <script>
@@ -145,9 +135,9 @@
 
         </div>
 
-        <div class="d-flex flex-row col-md-12 ps-5 pe-3">
+        <div class="d-flex flex-row col-md-12 ps-3">
             <!-- Bar chart Monthly -->
-            <div class="card col-md-4 mx-1 me-2" >
+            <div class="card col-md-4 mx-1" >
                 <div class="card-body">
                     <canvas id="monthly" width="300" height="100"></canvas>
                     <script>
@@ -198,7 +188,7 @@
             </div>
 
             <!-- This Month Income -->
-            <div class="card col-md-3 mx-1 ms-2" >
+            <div class="card col-md-4 mx-1" >
                 <div class="card-body">
                     <canvas id="thisMonth" width="400" height="200"></canvas>
                     <script>
@@ -240,10 +230,9 @@
                     </script> 
                 </div>
             </div>
+           
 
         </div>
+        <div class="col-12" style="height: 300px;"></div>
     </div>
     <!--Scripts-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-</body>
-</html>
