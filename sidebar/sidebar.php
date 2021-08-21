@@ -1,4 +1,4 @@
-<div class="d-flex flex-column  col-2">
+
       <div class="d-flex flex-column vh-100  flex-shrink-0 p-3 text-white bg-dark font-merri">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <img src="./images/logo.ico" class="ms-3" width="25%" alt="">
@@ -38,7 +38,5 @@
           <span class="ms-2"><i class="fas fa-sign-out-alt mx-3"></i>Logout</span>
         </div>
       </div>
-
-    </div>
 
   

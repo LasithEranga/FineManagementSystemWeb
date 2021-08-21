@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         body {
-            overflow: hidden;
+            height: 100vh;
+            overflow-x: hidden;
+           
         }
 
         .font-merri {
@@ -32,10 +36,11 @@
 <body>
     <!-- container div -->
     <div class="d-flex flex-row ">
+    <div class="d-flex flex-column  col-2 fixed-top">
     <?php include("sidebar/sidebar.php");?>
-
-
-    <div class="d-flex flex-column bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
+    </div>
+    <div class="d-flex flex-column  col-2 "></div>
+    <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
 
         if (isset($_GET['dashboard'])) {
@@ -58,7 +63,7 @@
 
         if (isset($_GET['settings'])) {
 
-            include("settings/setting.php");
+            include("settings/settings.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
         }
         ?>

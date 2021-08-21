@@ -1,6 +1,6 @@
 
     <!--container div-->
-    <div class="d-flex flex-column bg-dark text-white col-lg-12 h-auto" >
+    <div class="d-flex flex-column bg-dark text-white col-lg-12 h-auto" style="min-height: 100vh;">
         <!--navigation bar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
