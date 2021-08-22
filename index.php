@@ -33,7 +33,7 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
     <!-- container div -->
     <div class="d-flex flex-row ">
     <div class="d-flex flex-column  col-2 fixed-top">
