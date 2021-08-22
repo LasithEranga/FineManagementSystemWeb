@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <!--Stylesheets-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Javascripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
-
-</head>
-<body>
-     <!-- container div -->
-     
     <div class="d-flex flex-column  bg-dark  text-white col-lg-12 h-auto" style="min-height: 100vh;">
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
@@ -26,7 +6,7 @@
             </div>
         </nav>
 
-        <div class="d-flex flex-row col-md-12 ms-4 mb-2">
+        <div class="d-flex flex-column flex-md-row  col-md-12 ms-4 mb-2">
             
             <!-- users -->
             <div class="card col-lg-2 mx-1 bg-dark border border-light" >
@@ -80,8 +60,3 @@
             </div>
         </div>
 
-
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-</body>
-</html>
