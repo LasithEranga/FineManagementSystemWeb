@@ -27,6 +27,7 @@
         .form-select {
             background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
         }
+
     </style>
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
@@ -51,7 +52,7 @@
 
         if (isset($_GET['statistics'])) {
 
-            include("statistics.php");
+            include("Statistics/statistics.php");
             echo "<script> document.getElementById('statistics').classList.add('active')</script>";
         }
 

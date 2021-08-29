@@ -52,7 +52,7 @@
         <div class="d-flex flex-row">
             <div class="col-5 d-flex flex-row">
                 <div class="px-4 ms-1">
-                    <label for="from">From:</label>
+                    <label for="from">to:</label>
                     <input type="date" id="from" name="from">
 
                     <!-- <i class='text-white fas fa-calendar-alt'></i> -->

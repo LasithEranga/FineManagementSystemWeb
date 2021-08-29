@@ -29,32 +29,26 @@
 
         <!-- Today Cases -->
         <div class="card col-lg-4 mx-1 my-lg-0 my-1">
-            <div class="card-body">
-                <div class="card-body d-flex flex-row">
-                    <div class="">
-                        <i class="fas fa-calendar-day me-3 " style="font-size: 50px;"></i>
-                    </div>
-                    <div class="">
-                        <h5 class="card-title">Today</h5>
-                        <p class="card-text">5546 Cases</p>
-                    </div>
-
+            <div class="card-body d-flex flex-row mt-3">
+                <div class="">
+                    <i class="fas fa-calendar-day me-3 " style="font-size: 50px;"></i>
+                </div>
+                <div class="">
+                    <h5 class="card-title">Today</h5>
+                    <p class="card-text">5546 Cases</p>
                 </div>
             </div>
         </div>
 
         <!-- Today Income -->
         <div class="card col-lg-4 mx-1 my-lg-0 my-1 ">
-            <div class="card-body">
-                <div class="card-body d-flex flex-row ">
-                    <div class="">
-                        <i class="fas fa-coins me-3 mt-1" style="font-size: 50px;"></i>
-                    </div>
-                    <div class="">
-                        <h5 class="card-title">Today Income</h5>
-                        <p class="card-text">Rs: 55464.09</p>
-                    </div>
-
+            <div class="card-body d-flex flex-row mt-3">
+                <div class="">
+                    <i class="fas fa-coins me-3 mt-1" style="font-size: 50px;"></i>
+                </div>
+                <div class="">
+                    <h5 class="card-title">Today Income</h5>
+                    <p class="card-text">Rs: 55464.09</p>
                 </div>
             </div>
         </div>
@@ -199,11 +193,15 @@
             <div class="card-body">
                 <div class="card-body d-flex flex-row">
                     <div class="">
-                        <i class="fas fa-calendar-day me-3 " style="font-size: 50px;"></i>
+                        <i class="fas d-none fa-calendar-day me-3 " style="font-size: 50px;"></i>
+
                     </div>
                     <div class="">
                         <h5 class="card-title">Today</h5>
-                        <p class="card-text">5546 Cases</p>
+                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
+                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
+                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
+                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
                     </div>
 
                 </div>
