@@ -64,7 +64,7 @@
 
         if (isset($_GET['settings'])) {
 
-            include("settings/settings.php");
+            include("Settings/settings.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
         }
         ?>
