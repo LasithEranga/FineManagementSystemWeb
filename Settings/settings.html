@@ -45,7 +45,7 @@
         <div class="  d-flex flex-column" >
             <div class=" bg-dark d-flex flex-column flex-md-row " >
                 <div class="card-body text-center col-12 col-md-4" style="color:#a4a5b8">
-                    <div class="  ">
+                    <div class="">
                         <i class="fa fa-user-circle " style="font-size:150px"></i>
                         <h2>Users</h2>
                     </div>
