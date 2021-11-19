@@ -1,4 +1,31 @@
 <!-- container div -->
+<?php
+    include ('./db.php');
+    $yearly_cases_query = "SELECT COUNT(Ref_No) As count FROM fine_receipt WHERE Date >= CURDATE() - INTERVAL 1 YEAR ";
+    $daily_cases_query =  "SELECT COUNT(Ref_No) As count FROM fine_receipt WHERE date = CURRENT_DATE";
+    $today_income_query =  "SELECT SUM(amount) AS sum FROM payment WHERE date = CURRENT_DATE";
+                        
+        
+    function getNumberOfCases($query , $conn){
+        $result = mysqli_query($conn,$query);
+        $result_array = mysqli_fetch_array($result);
+        $cases = $result_array['count'];
+        return $cases;
+    }
+    function getIncome($query , $conn){
+        $result = mysqli_query($conn,$query);
+        $result_array = mysqli_fetch_array($result);
+        $sum = $result_array['sum'];
+        if ($sum == NULL){
+            return '0.00';
+        }
+            
+        else{
+            return $sum;
+        }
+    }
+    
+?>
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
@@ -21,7 +48,7 @@
                 </div>
                 <div class="">
                     <h5 class="card-title">This Year</h5>
-                    <p class="card-text">5546 Cases</p>
+                    <p class="card-text"><?php echo getNumberOfCases($yearly_cases_query,$conn); ?> Cases</p>
                 </div>
 
             </div>
@@ -35,7 +62,7 @@
                 </div>
                 <div class="">
                     <h5 class="card-title">Today</h5>
-                    <p class="card-text">5546 Cases</p>
+                    <p class="card-text"><?php echo getNumberOfCases($daily_cases_query,$conn); ?> Cases</p>
                 </div>
             </div>
         </div>
@@ -48,7 +75,7 @@
                 </div>
                 <div class="">
                     <h5 class="card-title">Today Income</h5>
-                    <p class="card-text">Rs: 55464.09</p>
+                    <p class="card-text">Rs: <?php echo getIncome($today_income_query,$conn); ?></p>
                 </div>
             </div>
         </div>
@@ -65,7 +92,7 @@
                 <script>
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
-                        type: 'bar',
+                        type: 'line',
                         data: {
                             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                             datasets: [{
@@ -197,11 +224,15 @@
 
                     </div>
                     <div class="">
-                        <h5 class="card-title">Today</h5>
-                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
-                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
-                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
-                        <p>20/21 <span class=" ms-5"> 524 cases</span> </p>
+                        <h5 class="card-title">Cases by Date</h5></br>
+                        <?php
+                            for ($i=1; $i<5; $i++){
+                                $query = "SELECT DATE_FORMAT((DATE(NOW()) - INTERVAL " . $i . " Day),'%m-%d') as date ,COUNT(Ref_No) count FROM fine_receipt WHERE Date = DATE(NOW()) - INTERVAL " . $i . " Day;";
+                                $result = mysqli_query($conn,$query);
+                                $result_array = mysqli_fetch_array($result);
+                                echo '<p>'. $result_array['date']. '<span class=" ms-5"> '. $result_array['count'].' cases</span> </p>';
+                            }
+                        ?>
                     </div>
 
                 </div>
