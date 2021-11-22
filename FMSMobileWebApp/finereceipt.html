@@ -46,7 +46,7 @@
       <!-- nic input modal end-->
     <button type="button" id="nic_modal" class="btn btn-primary" hidden="true" data-bs-toggle="modal" data-bs-target="#nic_input">
     </button>
-    </div>
+    </div >
 
     <nav class="navbar navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
@@ -54,8 +54,8 @@
             <div class="input-group flex-nowrap">
                 <a class="navbar-brand ms-2" href="#"><i class="fas fa-bars"></i></a>
                 <span class="input-group-text ms-2" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                <input type="text" class="form-control col-2" placeholder="Search Rules..." aria-label="Username"
-                    aria-describedby="addon-wrapping" onkeyup="suggestRule(this.value)">
+                <input id="search_input" type="text" class="form-control col-2" placeholder="Search Rules..." aria-label="Username"
+                    aria-describedby="addon-wrapping" onkeypress="suggestRule(this.value)">
                 <a class="navbar-brand ms-4" href="#"><i class="fas fa-user"></i></a>
             </div>
         </div>
@@ -84,22 +84,20 @@
             <div class="">Issue Time: <span id="issue_time"></span></div>
             <div class="">Street:</div>
         </div>
+        <div id="rule_info">
+            <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
+                <div class="mb-3 fw-bold">Offence</div>
+                <div class="">Offence ID: <span id="rule_id"></span></div>
+                <div class="">Offence: <span id="rule"></span></div>
+            </div>
 
-        <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
-            <div class="mb-3 fw-bold">Offence</div>
-            <div class="">Offence ID: </div>
-            <div class="">Offence Date: </div>
-            <div class="">Offence Time:</div>
-        </div>
+            <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
+                <div class="mb-3 fw-bold">Description</div>
+                <div class=""> <span id="description"></span> <br><br>
+                    Penalty : <span id="penalty"></span><br><br>
+                    Due Date : <span id="due_date"></span></div>
 
-        <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
-            <div class="mb-3 fw-bold">Description</div>
-            <div class="">The driver has crossed two lines and 
-                violated the road safety act 23/12 at Kaluthara,
-                Kaluthara area.<br><br>
-                Penalty : Rs. 422.00<br><br>
-                Due Date : 23/12/2020</div>
-
+            </div>
         </div>
         <button type="button" class="btn btn-primary col-11 mx-3 mt-4 mb-5"> Save Receipt</button>
     </div>
@@ -108,9 +106,11 @@
     
     <script>
         var modalBtn = document.getElementById("nic_modal");
-        setTimeout(()=>{modalBtn.click()},200);
+        //setTimeout(()=>{modalBtn.click()},200);
 
+        var firstView = true;
 
+        //verifies NIC is available in database
         function verifyNIC(nic){
             if (nic.length > 0){
             const xmlhttp = new XMLHttpRequest();
@@ -129,8 +129,9 @@
             }
         }
 
+        //gets an id from database
         function setStatementID(){
-            //gets an id from database
+            
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function(){
                         document.getElementById('statement_id').innerHTML = this.responseText;
@@ -141,7 +142,11 @@
                 xmlhttp.open('GET', 'get_statementID.php');
                 xmlhttp.send();
         }
+        
+        //gain an fine receipt id from db on load
+        setStatementID();
 
+        //suggest available rules when typing
         function suggestRule(key){
             if (key.length > 0){
             const xmlhttp = new XMLHttpRequest();
@@ -152,8 +157,61 @@
                 xmlhttp.send();
             }
         }
+        
+        //get selected rule details
+        function setRuleDetails(key){
+            if (key.length > 0){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function(){
+                    result_array = this.responseText.split(',');
+                    //document.getElementById('rule_info').innerHTML = this.responseText;
+                    document.getElementById('search_result').innerHTML = "";
+                    if(firstView){
+                        document.getElementById('rule_info').innerHTML = `
+                        <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
+                            <div class="mb-3 fw-bold">Offence</div>
+                            <div class="">Offence ID: <span id="rule_id">`+result_array[0]+`</span></div>
+                            <div class="">Offence: <span id="rule">`+result_array[1]+`</span></div>
+                        </div>
 
-        setStatementID();
+                        <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
+                            <div class="mb-3 fw-bold">Description</div>
+                            <div class=""> <span id="description">`+result_array[2]+`</span> <br><br>
+                                Penalty : <span id="penalty">`+result_array[3]+`</span><br><br>
+                                Due Date : <span id="due_date"></span></div>
+
+                        </div>
+                        `
+                        firstView = false;
+                    }
+                    else{
+                        document.getElementById('rule_info').innerHTML += `
+                        <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
+                            <div class="mb-3 fw-bold">Offence</div>
+                            <div class="">Offence ID: <span id="rule_id">`+result_array[0]+`</span></div>
+                            <div class="">Offence: <span id="rule">`+result_array[1]+`</span></div>
+                        </div>
+
+                        <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
+                            <div class="mb-3 fw-bold">Description</div>
+                            <div class=""> <span id="description">`+result_array[2]+`</span> <br><br>
+                                Penalty : <span id="penalty">`+result_array[3]+`</span><br><br>
+                                Due Date : <span id="due_date"></span></div>
+
+                        </div>
+                        `
+                    }
+
+                    //reset the search box 
+                    document.getElementById('search_input').value = "";
+                }
+                xmlhttp.open('GET', 'get_rule_details.php?key='+key);
+                xmlhttp.send();
+            }
+        }
+
+
+       
 
         document.getElementById('btn_okay').addEventListener('click',()=>{
             verifyNIC(document.getElementById('nic_no').value);
