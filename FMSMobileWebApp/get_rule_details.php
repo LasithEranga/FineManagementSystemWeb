@@ -9,7 +9,6 @@ if ($search_key !== "") {
         $str .= $data['rule_id'].",".$data['rule_name'].",".$data['description'].",".$data['penalty_amount'];
         
     }
-
     echo $str;
 }
 
