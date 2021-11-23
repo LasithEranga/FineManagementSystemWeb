@@ -17,7 +17,4 @@
     }
     $run_query2 = mysqli_multi_query($conn, $query);  
     
-    if($run_query1 && $run_query2){
-        echo "<script> alert('Fine Receipt Saved!')</script>";
-        echo "<script> window.open('./home.html','_self')</script>";
-    }
+    echo $run_query2;
