@@ -65,7 +65,7 @@
     </div>
 
     <div class="ps-2 ms-1 mt-2 mt-lg-4">
-      <button type="button" class="btn btn-success px-5 py-1 ms-3">Go</button>
+      <button id="go" type="button" class="btn btn-success px-5 py-1 ms-3">Go</button>
     </div>
   </div>
 
@@ -75,100 +75,79 @@
   <div class="card text-white bg-light m-4 col-12 col-lg-11">
     <div class="card-body">
       <canvas id="chart" style="width: 300px; height: 130px;"></canvas>
-      <script>
-        var ctx = document.getElementById('chart').getContext('2d');
-        var chart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-              label: 'Revenue',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-
-
     </div>
   </div>
 
-  <!--line chart-->
-  <!-- <div class="card text-white bg-light m-4">
-    <div class="card-body">
-      <canvas id="thisMonth" width="300" height="100"></canvas>
-      <script>
-        var ctx = document.getElementById('thisMonth').getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-              label: 'Revenue',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-
-    </div>
-  </div> -->
-
 </div>
+<script>
+  var goBtn = document.getElementById('go');
+  var from = document.getElementById('from');
+  var to = document.getElementById('to');
+  var response = [];
+  var xaxis = [];
+  var yaxis = [];
 
 
+  goBtn.addEventListener('click', () => {
+    generateGraph();
+  });
 
+  //draws graph using xaxis and yaxis data arrays
+  function drawGraph() {
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: yaxis,
+        datasets: [{
+          label: 'Revenue',
+          data: xaxis,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 
-<!--Script-->
-<!-- JavaScript Bundle with Popper -->
+  //retrive data from database and generate the graph
+  function generateGraph() {
+    const http_req = new XMLHttpRequest();
+    http_req.onload = function() {
+      response = this.responseText.split('&');
+      xaxis = response[0].split(',');
+      yaxis = response[1].split(',');
+      drawGraph();
+    }
+    http_req.open('GET', "Statistics/get_data.php?from='" + from.value + "'&to='" + to.value + "'");
+    http_req.send();
+
+  }
+
+  
+
+</script>
 </body>
 
 </html>

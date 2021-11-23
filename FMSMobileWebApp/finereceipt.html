@@ -226,10 +226,15 @@
             }
         }
 
+        //saves fine receipt including its data
         function saveFineReceipt() {
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function () {
-                document.getElementById('search_result').innerHTML = this.responseText;
+                if(this.responseText){
+                    console.log(this.responseText == 1);
+                    alert('Fine receipt saved successfully ');
+                    window.open('./home.html','_self');
+                };
             }
             xmlhttp.open('GET', 'save_fine_receipt.php?officer_id='+35151+'&driver_nic='+driver_nic.innerHTML+'&date='+issue_date.innerHTML+'&amount='+totalAmount+'&time='+issue_time.innerHTML+'&offence_id_arr='+ruleList);
             xmlhttp.send();
