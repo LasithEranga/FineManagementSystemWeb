@@ -1,3 +1,22 @@
+<!-- Modal -->
+<div class="modal fade" id="messageBox" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border: none;">
+        <h4 class="modal-title" id="messageTitle"></h4>
+      </div>
+      <div id="messageBody" class="modal-body">
+      </div>
+      <div class="modal-footer" style="border: none;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button id="msgModal" type="button" hidden="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageBox">
+</button>
+
+
 <!--container div-->
 <div class="d-flex flex-column bg-dark text-white col-lg-12 h-auto" style="min-height: 100vh;">
 
@@ -73,7 +92,7 @@
 
   <!--bar chart-->
   <div class="card text-white bg-light m-4 col-12 col-lg-11">
-    <div class="card-body">
+    <div id="chart_area" class="card-body text-center text-dark">
       <canvas id="chart" style="width: 300px; height: 130px;"></canvas>
     </div>
   </div>
@@ -87,48 +106,52 @@
   var xaxis = [];
   var yaxis = [];
 
-
   goBtn.addEventListener('click', () => {
     generateGraph();
   });
 
   //draws graph using xaxis and yaxis data arrays
-  function drawGraph() {
-    var ctx = document.getElementById('chart').getContext('2d');
-    var chart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: yaxis,
-        datasets: [{
-          label: 'Revenue',
-          data: xaxis,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+  var ctx = document.getElementById('chart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: yaxis,
+      datasets: [{
+        label: 'Revenue',
+        data: xaxis,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
         }
       }
-    });
+    }
+  });
+
+  //shows the message as a modal view with passed arguments
+  function showMsg(title, body) {
+    document.getElementById('messageTitle').innerHTML = title;
+    document.getElementById('messageBody').innerHTML = body;
+    document.getElementById("msgModal").click();
   }
 
   //retrive data from database and generate the graph
@@ -138,15 +161,21 @@
       response = this.responseText.split('&');
       xaxis = response[0].split(',');
       yaxis = response[1].split(',');
-      drawGraph();
+      if (xaxis[0] == "") {
+        showMsg("Data not found!","Sorry! No data available in seleceted date range");
+      } else {
+        chart.data.labels.pop();
+        chart.data.datasets[0].data = xaxis
+        chart.data.labels = yaxis;
+        chart.update();
+      }
+
+
     }
     http_req.open('GET', "Statistics/get_data.php?from='" + from.value + "'&to='" + to.value + "'");
     http_req.send();
 
   }
-
-  
-
 </script>
 </body>
 
