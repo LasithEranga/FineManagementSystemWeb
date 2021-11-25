@@ -37,9 +37,9 @@
               View By
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Day</a></li>
-              <li><a class="dropdown-item" href="#">Month</a></li>
-              <li><a class="dropdown-item" href="#">Year</a></li>
+              <li><a class="dropdown-item" onclick="generateGraph('Date')">Day</a></li>
+              <li><a class="dropdown-item" onclick="generateGraph('Month')">Month</a></li>
+              <li><a class="dropdown-item" onclick="generateGraph('Year')">Year</a></li>
             </ul>
           </li>
 
@@ -48,8 +48,8 @@
               Category
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Revenue</a></li>
-              <li><a class="dropdown-item" href="#">Number of Cases</a></li>
+              <li><a class="dropdown-item" onclick="setCategory('Revenue')">Revenue</a></li>
+              <li><a class="dropdown-item" onclick="setCategory('Cases')">Number of Cases</a></li>
             </ul>
           </li>
 
@@ -58,8 +58,8 @@
               Chart
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Line Chart</a></li>
-              <li><a class="dropdown-item" href="#">Bar Chart</a></li>
+              <li><a class="dropdown-item" onclick="changeChartType('line')">Line Chart</a></li>
+              <li><a class="dropdown-item" onclick="changeChartType('bar')">Bar Chart</a></li>
             </ul>
           </li>
 
@@ -102,13 +102,28 @@
   var goBtn = document.getElementById('go');
   var from = document.getElementById('from');
   var to = document.getElementById('to');
+  var category = 'Revenue';
   var response = [];
   var xaxis = [];
   var yaxis = [];
 
   goBtn.addEventListener('click', () => {
-    generateGraph();
+    generateGraph('Date');
   });
+
+  //set category when category is selected
+  function setCategory(cat){
+    category = cat;
+    generateGraph("Date");
+    chart.data.datasets[0].label = cat;
+    chart.update();
+  }
+
+  //change chart type to the passed argument type
+  function changeChartType(type){
+    chart.config.type = type;
+    chart.update();
+  }
 
   //draws graph using xaxis and yaxis data arrays
   var ctx = document.getElementById('chart').getContext('2d');
@@ -155,9 +170,10 @@
   }
 
   //retrive data from database and generate the graph
-  function generateGraph() {
+  function generateGraph(groupBy) {
     const http_req = new XMLHttpRequest();
     http_req.onload = function() {
+     // console.log(this.responseText);
       response = this.responseText.split('&');
       xaxis = response[0].split(',');
       yaxis = response[1].split(',');
@@ -169,12 +185,9 @@
         chart.data.labels = yaxis;
         chart.update();
       }
-
-
     }
-    http_req.open('GET', "Statistics/get_data.php?from='" + from.value + "'&to='" + to.value + "'");
+    http_req.open('GET', "Statistics/get_data.php?from='" + from.value + "'&to='" + to.value + "'&groupBy="+groupBy+"&category="+category);
     http_req.send();
-
   }
 </script>
 </body>
