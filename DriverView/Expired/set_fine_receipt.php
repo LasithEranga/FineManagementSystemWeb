@@ -36,7 +36,7 @@ while($data = mysqli_fetch_array($result)){
                     ".$rule_list."
                     <div class=''> <span id='description'></span> <br>
                     Penalty : Rs.<span id='penalty'>".$data['Amount']."</span><br>
-                    Due Date : <span id='due_date'>".$data['due_date']."</span>
+                    Due Date : <span id='due_date' class='text-danger'>".$data['due_date']."</span>
                 </div>
                 </div>
                 </div>

@@ -49,7 +49,7 @@
             </div>
 
             <div class=" flex-row ms-3 ">
-                <button id="btn_go" onclick="fillTable()" type="button" class="btn btn-success px-4 ms-2  ">Go</button>
+                <button id="btn_go" onclick="fillTableRange()" type="button" class="btn btn-success px-4 ms-2  ">Go</button>
             </div>
 
         </div>
@@ -76,50 +76,49 @@
                     <th scope="col">Offence(s)</th>
                     <th scope="col">Due Date:</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td scope="col">2</td>
-                    <td scope="col">35151</td>
-                    <td scope="col">2021-11-20</td>
-                    <td scope="col">16:15:00</td>
-                    <td scope="col">2500.00</td>
-                    <td scope="col">Careless and dangerous driving</td>
-                    <td scope="col">2021-12-04</td>
-                </tr>
+                </thead>
+                <tbody id="table_contents">
 
-                <tr>
-                    <td scope="col">19</td>
-                    <td scope="col">45689</td>
-                    <td scope="col">2021-11-10</td>
-                    <td scope="col">18:20:00</td>
-                    <td scope="col">5620.50</td>
-                    <td scope="col">Failing to take an action to avoid an accident</td>
-                    <td scope="col">2021-11-24</td>
-                </tr>
-
-                <tr>
-                    <td scope="col">50</td>
-                    <td scope="col">85457</td>
-                    <td scope="col">2020-05-20</td>
-                    <td scope="col">20:50:00</td>
-                    <td scope="col">25000.00</td>
-                    <td scope="col">Driving without a valid license</td>
-                    <td scope="col">2020-06-04</td>
-                </tr>
-
-                <tr>
-                    <td scope="col">60</td>
-                    <td scope="col">23565</td>
-                    <td scope="col">2019-04-20</td>
-                    <td scope="col">09:05:00</td>
-                    <td scope="col">2500.00</td>
-                    <td scope="col">Double line crossed</td>
-                    <td scope="col">2019-05-04</td>
-                </tr>
-
-
-            </tbody>
+                </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    const table_contents = document.getElementById('table_contents');
+    const from = document.getElementById('from');
+    const to = document.getElementById('to');
+
+    //shows the message as a modal view with passed arguments
+    function showMsg(title, body) {
+        document.getElementById('messageTitle').innerHTML = title;
+        document.getElementById('messageBody').innerHTML = body;
+        document.getElementById("msgModal").click();
+    }
+    //fills table with data available in db selecting all available data for user
+    function fillTable() {
+        const http_req = new XMLHttpRequest();
+        http_req.onload = function() {
+            table_contents.innerHTML = this.responseText;
+            if (this.responseText == "") {
+                showMsg("Data not found!", "Sorry! There are no previous records");
+            }
+        }
+        http_req.open('GET', "Previous_Records/get_data.php?driver_nic='" + '990811130V');
+        http_req.send();
+    }
+    fillTable();
+
+    //fills table with data available in db for selected date range
+    function fillTableRange() {
+        const http_req = new XMLHttpRequest();
+        http_req.onload = function() {
+            table_contents.innerHTML = this.responseText;
+            if (this.responseText == "") {
+                showMsg("Data not found!", "Sorry! There are no previous records for selected date range");
+            }
+        }
+        http_req.open('GET', "Previous_Records/get_data.php?driver_nic='" + '990811130V' + "&from=" + from.value + "&to=" + to.value);
+        http_req.send();
+    }
+</script>
