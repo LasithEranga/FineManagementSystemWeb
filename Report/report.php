@@ -29,11 +29,11 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
-        <select class="d-flex flex-row form-select form-select-sm bg-dark text-white me-2" aria-label=".form-select-sm example">
+        <select id="list_type" class="d-flex flex-row form-select form-select-sm bg-dark text-white me-2" aria-label=".form-select-sm example">
           <option selected value="expired">Expired</option>
           <option value="suedList">Sued List</option>
           <option value="pending">Pending</option>
-          <option value="pending">Paid</option>
+          <option value="paid">Paid</option>
           <option value="allRecords">All Records</option>
         </select>
         <form class="d-flex col-8">
@@ -74,17 +74,19 @@
 
   <!--table-->
   <div class="card text-white bg-light m-4">
-    <div class="card-body table-responsive" style="height: 70vh;">">
+ 
+    <div class="card-body table-responsive" style="height: 70vh; padding-top: 0;">">
+
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th scope="col">Reference No</th>
+            <th scope="col">Receipt ID</th>
             <th scope="col">Name</th>
             <th scope="col">Address</th>
             <th scope="col">NIC</th>
             <th scope="col">Date</th>
             <th scope="col">Rules</th>
-            <th scope="col">Fine Amount</th>
+            <th scope="col">Penalty</th>
           </tr>
         </thead>
         <tbody id="table_contents">
@@ -99,6 +101,7 @@
   const btn_go = document.getElementById('btn_go');
   const from = document.getElementById('from');
   const to = document.getElementById('to');
+  const list_type = document.getElementById('list_type');
 
   //shows the message as a modal view with passed arguments
   function showMsg(title, body) {
@@ -109,6 +112,7 @@
 
   //fills table with data available in db for selected date range
   function fillTable() {
+    var selection = list_type.value;
     const http_req = new XMLHttpRequest();
     http_req.onload = function() {
      // console.log(this.responseText);
@@ -117,8 +121,10 @@
           showMsg("Data not found!","Sorry! No data available in seleceted date range");
         }
     }
-    http_req.open('GET', "Report/get_data.php?from='" + from.value + "'&to='" + to.value + "'");
+    http_req.open('GET', "Report/get_data.php?from='" + from.value + "'&to='" + to.value + "'&list="+selection);
     http_req.send();
   }
+
+
 
 </script>
