@@ -8,25 +8,25 @@
   <ul class="nav nav-pills flex-column mb-auto">
     
     <li>
-      <a id="statistics" href="?statistics" class="nav-link text-white my-2 p-3 p-sm-2">
+      <a id="statistics" href="?fine_receipts" class="nav-link text-white my-2 p-3 p-sm-2">
         <i class="fas fa-file-alt mx-2"></i>
         <span class=" d-none d-sm-inline ">Fine Receipts</span>
       </a>
     </li>
     <li>
-      <a id="report" href="?report" class="nav-link text-white my-2 p-3 p-sm-2">
+      <a id="report" href="?expired" class="nav-link text-white my-2 p-3 p-sm-2">
         <i class="fas fa-hourglass-end mx-2"></i>
         <span class=" d-none d-sm-inline ">Expired</span>
       </a>
     </li>
     <li>
-      <a id="settings" href="?settings" class="nav-link text-white my-2 p-3 p-sm-2">
+      <a id="settings" href="?previous_records" class="nav-link text-white my-2 p-3 p-sm-2">
         <i class="fas fa-backward mx-2"></i>
         <span class=" d-none d-sm-inline ">Previous Records</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="?dashboard" id="dashboard" class="nav-link text-white my-2 p-3 p-sm-2" aria-current="page">
+      <a href="?your_info" id="dashboard" class="nav-link text-white my-2 p-3 p-sm-2" aria-current="page">
         <i class="fas fa-info-circle mx-2"></i>
         <span class=" d-none d-sm-inline ">Your Info</span>
       </a>
