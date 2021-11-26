@@ -10,7 +10,7 @@
 </nav>
 
 <div class="d-flex container flex-column  bg-dark  text-white col-lg-11 h-auto " style="width: 95%;">
-  <div class=" d-flex  col-10 flex-column">
+  <!-- <div class=" d-flex  col-10 flex-column">
     <div id="search_result" class="bg-dark">
 
     </div>
@@ -46,6 +46,22 @@
     <div class="col-11 text-end">
       <img src="./images/expired.png" width="150px" alt="">
     </div>
+  </div> -->
+  <div id="fine_receipt">
+
   </div>
 </div>
-<!--Scripts-->
+<script>
+    const fine_receipt = document.getElementById('fine_receipt');
+
+  //sets the fine receipt view for the driver
+  function setFineReceipts() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+      fine_receipt.innerHTML = this.responseText;
+    }
+    xhttp.open('GET', "Expired/set_fine_receipt.php?receipt_id='" + '990811130V');
+    xhttp.send();
+  }
+  setFineReceipts();
+</script>
