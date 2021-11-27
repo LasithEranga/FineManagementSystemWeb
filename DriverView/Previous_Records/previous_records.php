@@ -29,7 +29,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2 border_date_input text-light bg-dark" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-success me-3" type="submit">Search</button>
 
             </div>
@@ -38,14 +38,14 @@
 
     <div class=" d-flex   flex-row mt-1">
         <div class=" bg-dark  d-flex flex-column flex-md-row">
-            <div class=" flex-row ms-4 mb-2">
-                <label for="from">From:</label>
-                <input type="date" class=" ms-1 me-2" id="from" name="from">
+            <div class=" flex-row ms-4 mb-2 ">
+                <label for="from" class="fs-5">From:</label>
+                <input type="date" class=" ms-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
             </div>
 
-            <div class=" flex-row ms-4 mb-2">
-                <label for="from">To:</label>
-                <input type="date" class=" ms-4 me-2" id="to" name="to">
+            <div class=" flex-row ms-4 mb-2 ">
+                <label for="from" class="fs-5">To:</label>
+                <input type="date" class=" ms-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
             </div>
 
             <div class=" flex-row ms-3 ">

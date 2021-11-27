@@ -95,7 +95,7 @@
             <div class="card col-lg-3 mx-1 my-lg-0 my-1 ">
                 <div class="card-body d-flex flex-row mt-3">
                     <div class="">
-                        <i class="fas fa-calendar-day me-3 " style="font-size: 50px;"></i>
+                        <i class="fas fa-calendar-day me-3 " style="font-size: 50px; color: #033ca8;"></i>
                     </div>
                     <div class="">
                         <h5 class="card-title">This Year</h5>
@@ -109,7 +109,7 @@
             <div class="card col-lg-4 mx-1 my-lg-0 my-1">
                 <div class="card-body d-flex flex-row mt-3">
                     <div class="">
-                        <i class="fas fa-calendar-day me-3 " style="font-size: 50px;"></i>
+                        <i class="fas fa-calendar-day me-3 " style="font-size: 50px; color: #ea8d2b;"></i>
                     </div>
                     <div class="">
                         <h5 class="card-title">Today</h5>
@@ -122,7 +122,7 @@
             <div class="card col-lg-4 mx-1 my-lg-0 my-1 ">
                 <div class="card-body d-flex flex-row mt-3">
                     <div class="">
-                        <i class="fas fa-coins me-3 mt-1" style="font-size: 50px;"></i>
+                        <i class="fas fa-coins me-3 mt-1" style="font-size: 50px;color: #0087ff;"></i>
                     </div>
                     <div class="">
                         <h5 class="card-title">Today Income</h5>
