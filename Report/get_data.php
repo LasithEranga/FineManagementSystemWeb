@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $query);
 $html_code = "";
 while ($data = mysqli_fetch_array($result)) {
     $html_code .= "<tr>
-                            <th scope='row'>" . $data['fine_receipt_id'] . "</th>
+                            <td>" . $data['fine_receipt_id'] . "</td>
                             <td>" . $data['full_name'] . "</td>
                             <td>" . $data['address'] . "</td>
                             <td>" . $data['nic'] . "</td>
