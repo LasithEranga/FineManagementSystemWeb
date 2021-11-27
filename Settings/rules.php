@@ -21,7 +21,7 @@
          </div>
      </div>
  </div>
- <button type="button" id="add_user_modal" hidden="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nic_input">
+ <button type="button" id="add_rule_modal" hidden="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nic_input">
  </button>
  <!-- add/update user rule end-->
 
@@ -30,14 +30,14 @@
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container-fluid">
              <a class="navbar-brand col-7">
-                 <h1 class="pt-2 px-3">Manage Rules <button id="btn_add" onclick="fillTableRange()" type="button" class="btn btn-success px-4 ms-2  ">Add Rule</button>
+                 <h1 class="pt-2 px-3">Manage Rules <button id="btn_add" onclick="showAddModal()" type="button" class="btn btn-success px-4 ms-2  ">Add Rule</button>
                  </h1>
              </a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
              </button>
              <div class="collapse navbar-collapse" id="navbarScroll">
-                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                 <input class="form-control me-2 bg-dark text-light border_date_input" type="search" placeholder="Search" aria-label="Search">
                  <button class="btn btn-success me-3" type="submit">Search</button>
 
              </div>
@@ -91,6 +91,8 @@
      </div>
  </div>
  <script>
+     const add_rule_modal = document.getElementById('add_rule_modal');
+
      //fills table with data available in db 
      function fillTable() {
          const http_req = new XMLHttpRequest();
@@ -107,22 +109,43 @@
      fillTable();
 
      //get data from database for update modal and show the modal
-     function showUpdateModal(user_id, user_type) {
+     function showUpdateModal(rule_id) {
          const http_req = new XMLHttpRequest();
          http_req.onload = function() {
              // console.log(this.responseText);
              modal_items.innerHTML = this.responseText;
-             if (selected_section == "officers") {
-                 add_update_heading.innerHTML = "Police Officer Details";
-
-             } else if (selected_section == "drivers") {
-                 add_update_heading.innerHTML = "Driver Details"
-             }
              add_update_heading.classList.add('col', 'text-center');
-             add_user_modal.click();
-
+             add_rule_modal.click();
          }
-         http_req.open('GET', "Settings/user_modal_details.php?user_id=" + user_id + "&user_type=" + user_type);
+         http_req.open('GET', "Settings/rule_modal_details.php?rule_id=" + rule_id);
          http_req.send();
+     }
+
+     function showAddModal() {
+         const http_req = new XMLHttpRequest();
+         modal_items.innerHTML = `<div class='mb-3'>
+                                            <label for='rule_id' class='form-label'>Rule ID</label>
+                                            <input type='text' class='form-control bg-dark bg-dark text-light' id='rule_id' name='rule_id' >
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='rule_name' class='form-label'>Rule Name</label>
+                                            <input type='text' class='form-control bg-dark text-light' id='rule_name' name='rule_name' >
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='description' class='form-label'>Description</label>
+                                            <input type='text' class='form-control bg-dark text-light' id='description' name='description' >
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='penalty_amount' class='form-label'>Penalty Amount</label>
+                                            <input type='text' class='form-control bg-dark text-light' id='penalty_amount' name='penalty_amount' >
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='tag' class='form-label'>Tag</label>
+                                            <input type='text' class='form-control bg-dark text-light' id='tag' name='tag'>
+                                        </div>
+                                        <input id='submit' type='submit' hidden='true'>`;
+
+         add_update_heading.classList.add('col', 'text-center');
+         add_rule_modal.click();
      }
  </script>

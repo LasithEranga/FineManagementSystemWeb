@@ -37,6 +37,14 @@
         .cursor_change{
             cursor: pointer;
         }
+        .rm_decoration{
+            text-decoration: none;
+            color: #a4a5b8;
+
+        }
+        .rm_decoration:hover{
+            color: #ccccd0;
+        }
 
     </style>
     <!-- Javascripts -->

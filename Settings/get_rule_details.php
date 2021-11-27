@@ -15,5 +15,4 @@ $html_code .= "<tr>
                 </tr>";
 }
 
-
 echo $html_code;
