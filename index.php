@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fine Payment Management System</title>
+    <link rel="icon" type="image/x-icon" href="./logo.ico">
 
     <!--Stylesheets-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -26,6 +27,15 @@
 
         .form-select {
             background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+        }
+        .border_date_input{
+            border: 1px solid #a4c5e1;
+        }
+        .bottom-green{
+            border-bottom: 4px solid #03df03;
+        }
+        .cursor_change{
+            cursor: pointer;
         }
 
     </style>
@@ -65,6 +75,16 @@
         if (isset($_GET['settings'])) {
 
             include("Settings/settings.php");
+            echo "<script> document.getElementById('settings').classList.add('active')</script>";
+        }
+        if (isset($_GET['users'])) {
+
+            include("Settings/users.php");
+            echo "<script> document.getElementById('settings').classList.add('active')</script>";
+        }
+        if (isset($_GET['rules'])) {
+
+            include("Settings/rules.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
         }
         ?>
