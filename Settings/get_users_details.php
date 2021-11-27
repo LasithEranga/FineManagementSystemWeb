@@ -74,7 +74,7 @@ if(isset($_REQUEST['selected_section'])){
                                 <td>" . $data['email'] . "</td>
                                 <td >" . $data['contact_no'] . "</td>
                                 <td>" . $data['address'] . "</td>
-                                <td><i class='fas fa-user-edit'></i></td>
+                                <td onclick=showUpdateModal('".$data['nic']."','driver')><i class='fas fa-user-edit'></i></td>
                             </tr>";
         }
         $html_code .= "</tbody>";
@@ -109,7 +109,7 @@ if(isset($_REQUEST['selected_section'])){
                                 <td>" . $data['contact_no'] . "</td>
                                 <td>" . $data['post'] . "</td>
                                 <td>" . $data['address'] . "</td>
-                                <td><i class='fas fa-user-edit'></i></td>
+                                <td onclick=showUpdateModal('".$data['police_id']."','officer')><i class='fas fa-user-edit'></i></td>
                             </tr>";
         }
         $html_code .= "</tbody>";
