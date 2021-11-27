@@ -28,23 +28,6 @@
         .form-select {
             background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
         }
-        .border_date_input{
-            border: 1px solid #a4c5e1;
-        }
-        .bottom-green{
-            border-bottom: 4px solid #03df03;
-        }
-        .cursor_change{
-            cursor: pointer;
-        }
-        .rm_decoration{
-            text-decoration: none;
-            color: #a4a5b8;
-
-        }
-        .rm_decoration:hover{
-            color: #ccccd0;
-        }
 
     </style>
     <!-- Javascripts -->
@@ -62,37 +45,27 @@
     <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
 
-        if (isset($_GET['dashboard'])) {
+        if (isset($_GET['your_info'])) {
 
-            include("Home/dashboard.php");
+            include("Your_Info/your_info.php");
             echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
         }
 
-        if (isset($_GET['statistics'])) {
+        if (isset($_GET['fine_receipts'])) {
 
-            include("Statistics/statistics.php");
+            include("Fine_receipts/fine_receipts.php");
             echo "<script> document.getElementById('statistics').classList.add('active')</script>";
         }
 
-        if (isset($_GET['report'])) {
+        if (isset($_GET['expired'])) {
 
-            include("Report/report.php");
+            include("Expired/expired.php");
             echo "<script> document.getElementById('report').classList.add('active')</script>";
         }
 
-        if (isset($_GET['settings'])) {
+        if (isset($_GET['previous_records'])) {
 
-            include("Settings/settings.php");
-            echo "<script> document.getElementById('settings').classList.add('active')</script>";
-        }
-        if (isset($_GET['users'])) {
-
-            include("Settings/users.php");
-            echo "<script> document.getElementById('settings').classList.add('active')</script>";
-        }
-        if (isset($_GET['rules'])) {
-
-            include("Settings/rules.php");
+            include("Previous_Records/previous_records.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
         }
         ?>

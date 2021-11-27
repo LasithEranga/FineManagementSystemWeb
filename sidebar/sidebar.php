@@ -1,8 +1,8 @@
 
       <div class="d-flex flex-column vh-100  flex-shrink-0 p-sm-3 text-white bg-dark font-merri">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <!-- <img src="images/logo 3.png" class="ms-3" width="25%" alt=""> -->
-          <img class="ps-3 pt-3 ps-sm-0 pt-sm-0 " src="images/logo.png">
+          <!-- <img src="logo.ico" class="ms-3" width="25%" alt=""> -->
+          <img class="ps-3 pt-3 ps-sm-0 pt-sm-0 " src="./sidebar/logo.png" />
           <span class="fs-4 ms-2 d-none d-sm-block">FineX</span>
         </a>
         <hr>

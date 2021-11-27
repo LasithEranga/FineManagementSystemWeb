@@ -9,7 +9,6 @@ if ($search_key !== "") {
         $str .= "<div class=' bg-light'  style='border-bottom: 1px solid white;'><p class='pt-3 ms-3' id='".$data['rule_id']."' onclick='setRuleDetails(this.id)'>".$data['tag']."</p></div>";
         
     }
-
     echo $str;
 }
 

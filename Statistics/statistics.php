@@ -1,3 +1,22 @@
+<!-- Modal -->
+<div class="modal fade" id="messageBox" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border: none;">
+        <h4 class="modal-title" id="messageTitle"></h4>
+      </div>
+      <div id="messageBody" class="modal-body">
+      </div>
+      <div class="modal-footer" style="border: none;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button id="msgModal" type="button" hidden="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageBox">
+</button>
+
+
 <!--container div-->
 <div class="d-flex flex-column bg-dark text-white col-lg-12 h-auto" style="min-height: 100vh;">
 
@@ -18,9 +37,9 @@
               View By
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Day</a></li>
-              <li><a class="dropdown-item" href="#">Month</a></li>
-              <li><a class="dropdown-item" href="#">Year</a></li>
+              <li><a class="dropdown-item" onclick="generateGraph('Date')">Day</a></li>
+              <li><a class="dropdown-item" onclick="generateGraph('Month')">Month</a></li>
+              <li><a class="dropdown-item" onclick="generateGraph('Year')">Year</a></li>
             </ul>
           </li>
 
@@ -29,8 +48,8 @@
               Category
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Revenue</a></li>
-              <li><a class="dropdown-item" href="#">Number of Cases</a></li>
+              <li><a class="dropdown-item" onclick="setCategory('Revenue')">Revenue</a></li>
+              <li><a class="dropdown-item" onclick="setCategory('Cases')">Number of Cases</a></li>
             </ul>
           </li>
 
@@ -39,8 +58,8 @@
               Chart
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Line Chart</a></li>
-              <li><a class="dropdown-item" href="#">Bar Chart</a></li>
+              <li><a class="dropdown-item" onclick="changeChartType('line')">Line Chart</a></li>
+              <li><a class="dropdown-item" onclick="changeChartType('bar')">Bar Chart</a></li>
             </ul>
           </li>
 
@@ -65,7 +84,7 @@
     </div>
 
     <div class="ps-2 ms-1 mt-2 mt-lg-4">
-      <button type="button" class="btn btn-success px-5 py-1 ms-3">Go</button>
+      <button id="go" type="button" class="btn btn-success px-5 py-1 ms-3">Go</button>
     </div>
   </div>
 
@@ -73,102 +92,104 @@
 
   <!--bar chart-->
   <div class="card text-white bg-light m-4 col-12 col-lg-11">
-    <div class="card-body">
+    <div id="chart_area" class="card-body text-center text-dark">
       <canvas id="chart" style="width: 300px; height: 130px;"></canvas>
-      <script>
-        var ctx = document.getElementById('chart').getContext('2d');
-        var chart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-              label: 'Revenue',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-
-
     </div>
   </div>
 
-  <!--line chart-->
-  <!-- <div class="card text-white bg-light m-4">
-    <div class="card-body">
-      <canvas id="thisMonth" width="300" height="100"></canvas>
-      <script>
-        var ctx = document.getElementById('thisMonth').getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-              label: 'Revenue',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-
-    </div>
-  </div> -->
-
 </div>
+<script>
+  var goBtn = document.getElementById('go');
+  var from = document.getElementById('from');
+  var to = document.getElementById('to');
+  var category = 'Revenue';
+  var response = [];
+  var xaxis = [];
+  var yaxis = [];
 
+  goBtn.addEventListener('click', () => {
+    generateGraph('Date');
+  });
 
+  //set category when category is selected
+  function setCategory(cat){
+    category = cat;
+    generateGraph("Date");
+    chart.data.datasets[0].label = cat;
+    chart.update();
+  }
 
+  //change chart type to the passed argument type
+  function changeChartType(type){
+    chart.config.type = type;
+    chart.update();
+  }
 
-<!--Script-->
-<!-- JavaScript Bundle with Popper -->
+  //draws graph using xaxis and yaxis data arrays
+  var ctx = document.getElementById('chart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: yaxis,
+      datasets: [{
+        label: 'Revenue',
+        data: xaxis,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  //shows the message as a modal view with passed arguments
+  function showMsg(title, body) {
+    document.getElementById('messageTitle').innerHTML = title;
+    document.getElementById('messageBody').innerHTML = body;
+    document.getElementById("msgModal").click();
+  }
+
+  //retrive data from database and generate the graph
+  function generateGraph(groupBy) {
+    const http_req = new XMLHttpRequest();
+    http_req.onload = function() {
+     // console.log(this.responseText);
+      response = this.responseText.split('&');
+      xaxis = response[0].split(',');
+      yaxis = response[1].split(',');
+      if (xaxis[0] == "") {
+        showMsg("Data not found!","Sorry! No data available in seleceted date range");
+      } else {
+        chart.data.labels.pop();
+        chart.data.datasets[0].data = xaxis
+        chart.data.labels = yaxis;
+        chart.update();
+      }
+    }
+    http_req.open('GET', "Statistics/get_data.php?from='" + from.value + "'&to='" + to.value + "'&groupBy="+groupBy+"&category="+category);
+    http_req.send();
+  }
+</script>
 </body>
 
 </html>
