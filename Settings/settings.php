@@ -43,46 +43,57 @@
             </div>
         </nav>
         <div class="  d-flex flex-column" >
-            <div class=" bg-dark d-flex flex-column flex-md-row " >
-                <div class="card-body text-center col-12 col-md-4" style="color:#a4a5b8">
-                    <div class="">
-                        <i class="fa fa-user-circle " style="font-size:150px"></i>
+            <div class=" bg-dark d-flex flex-column flex-md-row mt-3" >
+                
+                <div class="card-body text-center col-2 ms-5" style="color:#a4a5b8;border: 1px solid;">
+                    <a href="?users"> <div class="">
+                        <i class="fa fa-user-circle " style="font-size:120px"></i>
                         <h2>Users</h2>
                     </div>
+                    </a>
                     
                 </div>
 
-                <div class="card-body text-center col-12 col-md-4" style="color:#a4a5b8">
+                <div class="card-body text-center col-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
                     <div class="  ">
-                        <i class="fa fa-language " style="font-size:150px" ></i>
+                        <i class="fa fa-language " style="font-size:120px" ></i>
                         <h2 class="text-center">Languages</h2>
                     </div>
                 </div>
 
-                <div class="card-body text-center col-12 col-md-4" style="color:#a4a5b8">
+                <div class="card-body text-center col-2" style="color:#a4a5b8;border: 1px solid;">
                     <div class="  ">
-                        <i class="fa fa-bell " style="font-size:150px"></i>
+                        <i class="fa fa-bell " style="font-size:120px"></i>
                     <h2 class="text-center">Notifications</h2></div>
+                </div>
+                <div class="card-body text-center col-1">
+                </div>
+                <div class="card-body text-center col-1" >
                 </div>
             </div>
 
-            <div class=" bg-dark d-flex flex-column flex-md-row">
-                <div class="card-body text-center  col-12 col-md-4" style="color:#a4a5b8">
-                    <div class="  ">
-                        <i class="fa fa-balance-scale " style="font-size:150px" ></i>
+            <div class=" bg-dark d-flex flex-column flex-md-row mt-5">
+                <div class="card-body text-center  col-2 ms-5" style="color:#a4a5b8;border: 1px solid;">
+                    <a href="?rules"><div class="  ">
+                        <i class="fa fa-balance-scale " style="font-size:120px" ></i>
                     <h2 class="text-center">Rules</h2></div>
+                    </a>
                 </div>
 
-                <div class="card-body text-center col-12 col-md-4" style="color:#a4a5b8">
+                <div class="card-body text-center col-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
                     <div class=" ">
-                        <i class="fa fa-question-circle " style="font-size:150px"></i>
+                        <i class="fa fa-question-circle " style="font-size:120px"></i>
                     <h2 class="text-center">Help</h2></div>
                 </div>
 
-                <div class="card-body text-center col-12 col-md-4" style="color:#a4a5b8">
+                <div class="card-body text-center col-2" style="color:#a4a5b8;border: 1px solid;">
                     <div class=" ">
-                        <i class="fa fa-exclamation-circle " style="font-size:150px"></i>
+                        <i class="fa fa-exclamation-circle " style="font-size:120px"></i>
                     <h2 class="text-center ">About</h2></div>
+                </div>
+                <div class="card-body text-center col-1">
+                </div>
+                <div class="card-body text-center col-1" >
                 </div>
             </div>
         </div>

@@ -30,11 +30,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
         <select id="list_type" class="d-flex flex-row form-select form-select-sm bg-dark text-white me-2" aria-label=".form-select-sm example">
-          <option selected value="expired">Expired</option>
-          <option value="suedList">Sued List</option>
-          <option value="pending">Pending</option>
-          <option value="paid">Paid</option>
-          <option value="allRecords">All Records</option>
+          <option selected value="expired" onclick="fillTable()">Expired</option>
+          <option value="suedList" onclick="fillTable()">Sued List</option>
+          <option value="pending" onclick="fillTable()">Pending</option>
+          <option value="paid" onclick="fillTable()">Paid</option>
+          <option value="allRecords" onclick="fillTable()">All Records</option>
         </select>
         <form class="d-flex col-8">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
