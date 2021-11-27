@@ -9,14 +9,14 @@
                  <!-- <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button> -->
              </div>
              <div class="modal-body ">
-                 <form id="modal_items" action="add_driver.php" method="post">
+                 <form id="modal_items" action="Settings/save_update_rule.php" method="GET">
 
                  </form>
              </div>
              <div class="modal-footer " style="justify-content:space-around">
                  <button type="button" class="btn btn-danger col-3" data-bs-dismiss="modal">Cancel</button>
                  <button type="button" class="btn btn-primary col-3 mx-3">Clear All</button>
-                 <button id="save" type="button" class="btn btn-success col-3 ">Save</button>
+                 <button id="save" type="button" class="btn btn-success col-3 " onclick="saveDetails()">Save</button>
              </div>
          </div>
      </div>
@@ -24,6 +24,24 @@
  <button type="button" id="add_rule_modal" hidden="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nic_input">
  </button>
  <!-- add/update user rule end-->
+
+  <!--messagebox Modal -->
+  <div class="modal fade" id="messageBox" tabindex="-1">
+     <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+             <div class="modal-header" style="border: none;">
+                 <h4 class="modal-title" id="messageTitle"></h4>
+             </div>
+             <div id="messageBody" class="modal-body">
+             </div>
+             <div class="modal-footer" style="border: none;">
+                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+             </div>
+         </div>
+     </div>
+ </div>
+ <button id="msgModal" type="button" hidden="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageBox">
+ </button>
 
  <div class="d-flex flex-column bg-dark text-white col-lg-12 h-auto" style="min-height: 100vh;">
      <!--navigation bar-->
@@ -147,5 +165,18 @@
 
          add_update_heading.classList.add('col', 'text-center');
          add_rule_modal.click();
+     }
+
+     function showMsg(title, body) {
+         document.getElementById('messageTitle').innerHTML = title;
+         document.getElementById('messageBody').innerHTML = body;
+         document.getElementById("msgModal").click();
+     }
+
+    
+     function saveDetails(){
+         //validate details 
+         //submit the form 
+         document.getElementById('submit').click();
      }
  </script>

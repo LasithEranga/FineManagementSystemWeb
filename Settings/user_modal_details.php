@@ -8,7 +8,9 @@ if($user_type == "driver"){
     $query = "SELECT * FROM `driver` WHERE nic = '" .$user_id. "';";
     $result_array = mysqli_query($conn, $query);
     $result = mysqli_fetch_array($result_array);
-    $html_code .= "
+    $html_code .= " 
+                    <input type='hidden' name='drivers'>
+                    <input type='hidden' name='previous_nic' value ='".$result['nic']."'>
                     <div class='mb-3'>
                         <label for='nic' class='form-label'> NIC Number</label>
                         <input type='text' class='form-control bg-dark bg-dark text-light' id='nic' name='nic' value ='".$result['nic']."'>
@@ -22,8 +24,8 @@ if($user_type == "driver"){
                         <input type='text' class='form-control bg-dark text-light' id='lname' name='lname' value ='".$result['lname']."'>
                     </div>
                     <div class='mb-3'>
-                        <label for='fullname' class='form-label'>Full Name</label>
-                        <input type='text' class='form-control bg-dark text-light' id='fullname' name='fullname' value ='".$result['full_name']."'>
+                        <label for='full_name' class='form-label'>Full Name</label>
+                        <input type='text' class='form-control bg-dark text-light' id='full_name' name='full_name' value ='".$result['full_name']."'>
                     </div>
                     <div class='mb-3'>
                         <label for='address' class='form-label'>Address</label>
@@ -46,6 +48,8 @@ if($user_type == "officer"){
     $result_array = mysqli_query($conn, $query);
     $result = mysqli_fetch_array($result_array);
     $html_code .= "
+                    <input type='hidden' name='officers'>
+                    <input type='hidden' name='previous_id' value ='".$result['police_id']."'>
                     <div class='mb-3'>
                         <label for='police_id' class='form-label'> Police ID </label>
                         <input type='text' class='form-control bg-dark text-light' id='police_id' name='police_id' value ='".$result['police_id']."'>
@@ -59,8 +63,8 @@ if($user_type == "officer"){
                         <input type='text' class='form-control bg-dark text-light' id='lname' name='lname' value ='".$result['lname']."'>
                     </div>
                     <div class='mb-3'>
-                        <label for='fullname' class='form-label'>Full Name</label>
-                        <input type='text' class='form-control bg-dark text-light' id='fullname' name='fullname' value ='".$result['full_name']."'>
+                        <label for='full_name' class='form-label'>Full Name</label>
+                        <input type='text' class='form-control bg-dark text-light' id='full_name' name='full_name' value ='".$result['full_name']."'>
                     </div>
                     <div class='mb-3'>
                         <label for='address' class='form-label'>Address</label>
