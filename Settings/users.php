@@ -1,67 +1,3 @@
- <!-- add driver modal -->
- <div class="modal fade" id="nic_input" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-     <div class="modal-dialog  modal-dialog-centered">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="staticBackdropLabel">Insert Driver Details</h5>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-             </div>
-             <div class="modal-body">
-                 <form action="add_driver.php" method="post">
-                     <div class="mb-3">
-                         <label for="fname" class="form-label">First Name</label>
-                         <input type="text" class="form-control" id="fname" name="fname" placeholder="Jhon">
-                     </div>
-                     <div class="mb-3">
-                         <label for="lname" class="form-label">Last Name</label>
-                         <input type="text" class="form-control" id="lname" name="lname" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="fullname" class="form-label">Full Name</label>
-                         <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="address" class="form-label">Address</label>
-                         <input type="text" class="form-control" id="address" name="address" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="text" class="form-label">Email Address</label>
-                         <input type="text" class="form-control" id="email" name="email" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="nic" class="form-label">Owner NIC</label>
-                         <input type="text" class="form-control" id="nic" name="nic" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="phone" class="form-label">Contact No</label>
-                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="licenseNo" class="form-label">License No</label>
-                         <input type="text" class="form-control" id="licenseNo" name="licenseNo" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="vehicleNo" class="form-label">Vehicle No</label>
-                         <input type="text" class="form-control" id="vehicleNo" name="vehicleNo" placeholder="Doily">
-                     </div>
-                     <input id="submit" type="submit" hidden="true">
-                 </form>
-             </div>
-             <div class="modal-footer ">
-                 <div class="text-center">
-                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                     <button type="button" class="btn btn-primary">Clear All</button>
-                     <button id="save" type="button" class="btn btn-primary">Okay</button>
-
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
- <button type="button" id="add_driver_modal" class="btn btn-primary" hidden=true data-bs-toggle="modal" data-bs-target="#nic_input">
- </button>
- <!-- add driver modal end-->
-
  <!-- add police officer modal -->
  <div class="modal fade" id="nic_input" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
      <div class="modal-dialog  modal-dialog-centered">
@@ -71,58 +7,19 @@
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
              <div class="modal-body">
-                 <form action="add_driver.php" method="post">
-                     <div class="mb-3">
-                         <label for="fname" class="form-label">First Name</label>
-                         <input type="text" class="form-control" id="fname" name="fname" placeholder="Jhon">
-                     </div>
-                     <div class="mb-3">
-                         <label for="lname" class="form-label">Last Name</label>
-                         <input type="text" class="form-control" id="lname" name="lname" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="fullname" class="form-label">Full Name</label>
-                         <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="address" class="form-label">Address</label>
-                         <input type="text" class="form-control" id="address" name="address" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="text" class="form-label">Email Address</label>
-                         <input type="text" class="form-control" id="email" name="email" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="nic" class="form-label">Owner NIC</label>
-                         <input type="text" class="form-control" id="nic" name="nic" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="phone" class="form-label">Contact No</label>
-                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="licenseNo" class="form-label">License No</label>
-                         <input type="text" class="form-control" id="licenseNo" name="licenseNo" placeholder="Doily">
-                     </div>
-                     <div class="mb-3">
-                         <label for="vehicleNo" class="form-label">Vehicle No</label>
-                         <input type="text" class="form-control" id="vehicleNo" name="vehicleNo" placeholder="Doily">
-                     </div>
-                     <input id="submit" type="submit" hidden="true">
+                 <form id="modal_items" action="add_driver.php" method="post">
+                     
                  </form>
              </div>
-             <div class="modal-footer ">
-                 <div class="text-center">
-                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                     <button type="button" class="btn btn-primary">Clear All</button>
-                     <button id="save" type="button" class="btn btn-primary">Okay</button>
-
-                 </div>
+             <div class="modal-footer " style="justify-content:space-around">
+                     <button type="button" class="btn btn-primary col-3" data-bs-dismiss="modal">Cancel</button>
+                     <button type="button" class="btn btn-primary col-3 mx-3">Clear All</button>
+                     <button id="save" type="button" class="btn btn-primary col-3 ">Okay</button>
              </div>
          </div>
      </div>
  </div>
- <button type="button" id="add_driver_modal" class="btn btn-primary" hidden=true data-bs-toggle="modal" data-bs-target="#nic_input">
+ <button type="button" id="add_driver_modal" hidden="true" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#nic_input">
  </button>
  <!-- add police Officer modal end-->
 
@@ -207,6 +104,9 @@
      const officers = document.getElementById('officers');
      const drivers = document.getElementById('drivers');
      const table_contents = document.getElementById('table_contents');
+     const modal_items = document.getElementById('modal_items');
+     const add_driver_modal = document.getElementById('add_driver_modal');
+     
      var selected_section = "all_users"
 
      function removeLine() {
@@ -264,13 +164,16 @@
      }
      fillTable();
 
-     function editDriver(driver_nic) {
+     //get data from database for update modal and show the modal
+     function showUpdateModal(user_id, user_type) {
          const http_req = new XMLHttpRequest();
          http_req.onload = function() {
-             // console.log(this.responseText);
-             table_contents.innerHTML = this.responseText;
+            // console.log(this.responseText);
+            modal_items.innerHTML = this.responseText;
+            add_driver_modal.click();
+             
          }
-         http_req.open('GET', "Settings/show_driver_details.php?driver_nic=" + driver_nic);
+         http_req.open('GET', "Settings/user_modal_details.php?user_id=" + user_id +"&user_type="+user_type);
          http_req.send();
      }
  </script>
