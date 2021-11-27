@@ -3,20 +3,20 @@
      <div class="modal-dialog  modal-dialog-centered">
          <div class="modal-content bg-dark text-light">
              <div class="modal-header">
-                 <h5 class="modal-title" id="add_update_heading">Insert Driver Details</h5>
+                 <h5 class="modal-title" id="add_update_heading"></h5>
                  <button type="button" class="btn text-light" data-bs-dismiss="modal"> <i class="fas fa-times fs-5"></i></button>
 
                  <!-- <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button> -->
              </div>
              <div class="modal-body ">
-                 <form id="modal_items" action="add_driver.php" method="post">
+                 <form id="modal_items" action="./Settings/save_update_user.php" method="post">
 
                  </form>
              </div>
              <div class="modal-footer " style="justify-content:space-around">
                  <button type="button" class="btn btn-danger col-3" data-bs-dismiss="modal">Cancel</button>
                  <button type="button" class="btn btn-primary col-3 mx-3">Clear All</button>
-                 <button id="save" type="button" class="btn btn-success col-3 ">Save</button>
+                 <button id="save" type="button" onclick="saveDetails()" class="btn btn-success col-3 ">Save</button>
              </div>
          </div>
      </div>
@@ -183,7 +183,6 @@
              modal_items.innerHTML = this.responseText;
              if(selected_section == "officers"){
                 add_update_heading.innerHTML = "Police Officer Details";
-             
              }
              else if(selected_section == "drivers"){
                 add_update_heading.innerHTML = "Driver Details"
@@ -201,7 +200,9 @@
          if (selected_section == "drivers") {
              add_update_heading.innerHTML = "Driver Details";
              add_update_heading.classList.add('col', 'text-center');
-             modal_items.innerHTML = `<div class='mb-3'>
+             modal_items.innerHTML = `
+                                    <input type='hidden' name='drivers'>
+                                    <div class='mb-3'>
                                         <label for='nic' class='form-label'> NIC Number</label>
                                         <input type='text' class='form-control bg-dark text-light' id='nic' name='nic' >
                                     </div>
@@ -214,8 +215,8 @@
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='lname' name='lname' >
                                     </div>
                                     <div class='mb-3'>
-                                        <label for='fullname' class='form-label'>Full Name</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='fullname' name='fullname' >
+                                        <label for='full_name' class='form-label'>Full Name</label>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='full_name' name='full_name' >
                                     </div>
                                     <div class='mb-3'>
                                         <label for='address' class='form-label'>Address</label>
@@ -236,7 +237,9 @@
          if (selected_section == "officers") {
              add_update_heading.innerHTML = "Police Officer Details"
              add_update_heading.classList.add('col', 'text-center');
-             modal_items.innerHTML = `<div class='mb-3'>
+             modal_items.innerHTML = `
+                                    <input type='hidden' name='officers'>
+                                    <div class='mb-3'>
                                         <label for='police_id' class='form-label'> Police ID </label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='police_id' name='police_id' >
                                     </div>
@@ -249,8 +252,8 @@
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='lname' name='lname' >
                                     </div>
                                     <div class='mb-3'>
-                                        <label for='fullname' class='form-label'>Full Name</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='fullname' name='fullname' >
+                                        <label for='full_name' class='form-label'>Full Name</label>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='full_name' name='full_name' >
                                     </div>
                                     <div class='mb-3'>
                                         <label for='address' class='form-label'>Address</label>
@@ -276,4 +279,10 @@
              add_user_modal.click();
          }
      }
+
+     //perform update and insert operations
+     function saveDetails(){
+        document.getElementById('submit').click();
+     }
+
  </script>
