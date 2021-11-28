@@ -69,21 +69,21 @@
   </nav>
 
   <!--date picker-->
-  <div class="d-flex flex-column flex-lg-row col-5">
-    <div class="d-flex flex-row">
-      <div class="px-4 ms-1">
-        <label for="from">From:</label>
-        <input type="date" id="from" name="from">
+  <div class="d-flex flex-column flex-lg-row col-8">
+    <div class="d-flex flex-row col-7">
+      <div class="ps-4 ms-1 col">
+        <label for="from" class="fs-5">From:</label>
+        <input type="date" class="py-1 border_date_input bg-dark text-light ms-1" id="from" name="from">
         <!-- <i class='text-white fas fa-calendar-alt'></i> -->
       </div>
 
-      <div class="ps-4 ms-1">
-        <label for="to">To:</label>
-        <input type="date" id="to" name="to">
+      <div class="ps-4  col">
+        <label for="to" class="fs-5">To:</label>
+        <input type="date" class="py-1 border_date_input bg-dark text-light ms-1" id="to" name="to">
       </div>
     </div>
 
-    <div class="ps-2 ms-1 mt-2 mt-lg-4">
+    <div class="ps-2 ms-1">
       <button id="go" type="button" class="btn btn-success px-5 py-1 ms-3">Go</button>
     </div>
   </div>

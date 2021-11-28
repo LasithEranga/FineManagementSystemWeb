@@ -8,6 +8,7 @@ $query = "SELECT * FROM `rule` WHERE rule_id = " .$rule_id. ";";
 $result_array = mysqli_query($conn, $query);
 $result = mysqli_fetch_array($result_array);
 $html_code .= "
+            <input type='hidden' class='form-control bg-dark bg-dark text-light' name='previous_id' value ='". $result['rule_id'] ."'>
             <div class='mb-3'>
                 <label for='rule_id' class='form-label'>Rule ID</label>
                 <input type='text' class='form-control bg-dark bg-dark text-light' id='rule_id' name='rule_id' value ='". $result['rule_id'] ."'>
