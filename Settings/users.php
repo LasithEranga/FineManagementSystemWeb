@@ -242,6 +242,7 @@
                                     <div class='mb-3'>
                                         <label for='police_id' class='form-label'> Police ID </label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='police_id' name='police_id' >
+                                        <span id='police_id_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='fname' class='form-label'>First Name</label>
@@ -277,12 +278,29 @@
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
              add_user_modal.click();
+             
          }
      }
 
+     
      //perform update and insert operations
      function saveDetails(){
-        document.getElementById('submit').click();
+        var allvalid = true;
+        const police_id_error = document.getElementById('police_id_error');
+        const police_id = document.getElementById('police_id');
+        if(isNaN(police_id.value) ){
+            police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
+            if(allvalid){
+                allvalid = false;
+            }
+        }else{
+            police_id_error.innerHTML = "";
+        }
+
+        if(allvalid){
+            document.getElementById('submit').click();
+        }
+        
      }
 
  </script>

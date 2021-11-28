@@ -46,7 +46,7 @@
         <div class="  d-flex flex-column">
             <div class=" bg-dark d-flex flex-column flex-md-row mt-3">
 
-                <div class="card-body text-center col-2 ms-5" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 ms-5" style="color:#a4a5b8;border: 1px solid;">
                     <a href="?users" class="rm_decoration">
                         <div class="">
                             <i class="fa fa-user-circle " style="font-size:120px"></i>
@@ -56,7 +56,7 @@
 
                 </div>
 
-                <div class="card-body text-center col-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class="  ">
                             <i class="fa fa-language " style="font-size:120px"></i>
@@ -65,7 +65,7 @@
                     </a>
                 </div>
 
-                <div class="card-body text-center col-2" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class="  ">
                             <i class="fa fa-bell " style="font-size:120px"></i>
@@ -80,7 +80,7 @@
             </div>
 
             <div class=" bg-dark d-flex flex-column flex-md-row mt-5">
-                <div class="card-body text-center  col-2 ms-5" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center  col-8 col-lg-2 ms-5" style="color:#a4a5b8;border: 1px solid;">
                     <a href="?rules" class="rm_decoration">
                         <div class="  ">
                             <i class="fa fa-balance-scale " style="font-size:120px"></i>
@@ -89,7 +89,7 @@
                     </a>
                 </div>
 
-                <div class="card-body text-center col-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class=" ">
                             <i class="fa fa-question-circle " style="font-size:120px"></i>
@@ -98,7 +98,7 @@
                     </a>
                 </div>
 
-                <div class="card-body text-center col-2" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class=" ">
                             <i class="fa fa-exclamation-circle " style="font-size:120px"></i>
