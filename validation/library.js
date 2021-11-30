@@ -28,7 +28,7 @@ function inputEmail(e) {
 const user = document.querySelector('.user');
 user.addEventListener('input', inputuser);
 
-function inputuser(e){
+function inputuser(){
     const input = e.target.value;
     
     const minNumberChar = 6;
@@ -44,4 +44,5 @@ function inputuser(e){
         user.classList.add('failure');
     }  
 }
+
 

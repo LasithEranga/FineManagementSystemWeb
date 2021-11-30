@@ -1,3 +1,16 @@
+<!-- navigates to the payment portral after setting necessary details -->
+<?php
+include ("../db.php");
+$statement_id = $_POST['statement_id'];
+$full_name = $_POST['full_name'];
+$nic = $_POST['nic'];
+$email = $_POST['email'];
+$address = $_POST['address'];
+$contact_no = $_POST['contact_no'];
+$query = "SELECT * FROM `fine_receipt` WHERE Ref_No =". $statement_id .";";
+$result = mysqli_query($conn, $query);
+$result_array = mysqli_fetch_array($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,18 +30,18 @@
         <input type='hidden' name='cancel_url' value=''>
         <input type='hidden' name='notify_url' value='localhost/fms/notify.php'>
       <div style='display: none;'>
-        <input hidden='text' name='order_id' value='34'>
+        <input hidden='text' name='order_id' value='".$result_array['Ref_No']."'>
         <input type='text' name='items' value='Fine Payments'><br>
         <input type='text' name='currency' value='LKR'>
-        <input type='text' name='amount' value='5685.23'>
+        <input type='text' name='amount' value='".$result_array['Amount']."'>
 
-        <input type='hidden' id='first_name' name='first_name' value='Saman'>
-        <input type='hidden' id='last_name' name='last_name' value='Perera'><br>
-        <input type='hidden' id='email' name='email' value='samanp@gmail.com'>
-        <input type='hidden' id='phone' name='phone' value='0771234567'><br>
-        <input type='hidden' id='address' name='address' value='No.1, Galle Road'>
+        <input type='hidden' id='first_name' name='first_name' value='".$full_name."'>
+        <input type='hidden' id='last_name' name='last_name' value=''><br>
+        <input type='hidden' id='email' name='email' value='".$email."'>
+        <input type='hidden' id='phone' name='phone' value='".$contact_no."'><br>
+        <input type='hidden' id='address' name='address' value='".$address."'>
         <input type='hidden' name='city' value=''>
-        <input type='hidden' name='country' value=''><br><br>
+        <input type='hidden' name='country' value='Sri Lanka'><br><br>
         </div>
     </form>";
     ?>
