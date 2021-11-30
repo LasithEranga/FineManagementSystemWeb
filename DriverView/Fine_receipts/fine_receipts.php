@@ -4,12 +4,17 @@ $driver_nic = '990811130V'; //replace with login details
 $query = "SELECT * FROM driver WHERE nic='" . $driver_nic . "';";
 $result = mysqli_query($conn, $query);
 $result_array = mysqli_fetch_array($result);
-echo "<script> var payment_status = undefined</script>";
-if (isset($_SESSION['payment_status'])) {
-  if ($_SESSION['payment_status'] == "success") {
-    echo "<script> payment_status = true</script>";
-  } else {
-    echo "<script> payment_status = false</script>";
+echo "<script> payment_status = undefined </script>";
+if (isset($_GET['order_id'])) {
+  $sql = "SELECT `State` FROM `fine_receipt` WHERE Ref_No = " . $_GET['order_id'] . ";";
+  $payment_result = mysqli_query($conn, $sql);
+  $payment_result_array = mysqli_fetch_array($payment_result);
+  echo "<script> console.log(".$payment_result_array['State'].") </script>";
+  if($payment_result_array['State'] == 1){
+    echo "<script> payment_status = true </script>";
+  }
+  else{
+    echo "<script> payment_status = false </script>";
   }
 }
 ?>
