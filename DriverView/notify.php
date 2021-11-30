@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "id18013583_root";
-$password = "tV#^?5Kwx(}wcm6b";
+$password = "";
 $dbname = "id18013583_fmsdb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
