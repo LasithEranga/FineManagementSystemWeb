@@ -428,47 +428,23 @@
          }
 
          //validate phone no
-         const regXpC = /^[\+]?[(]?[0-9]{0,2}[)]?[-\s\.]?[0-9]{2,3}[-\s\.]?[0-9]{3,4}?[0-9]{3,4}$/;
-         const regXpNew = /^\d+(\.\d*)?$|^\.\d+$/;
+         const regXpC = /^\d{10}$/;
 
-         if (phone.value == "") {
-             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             if(regXpC.test(phone.value) || regXpNew.test(phone.value)){
-                phone_error.innerHTML = "";
-             }
-             else{
-                phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
-             }
-             
-         }
+            if (phone.value == "") {
+                phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
+                if (allvalid) {
+                    allvalid = false;
+                }
+            } else {
+                if (regXpC.test(phone.value)) {
+                    phone_error.innerHTML = "";
+                } else {
+                    phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
+                }
 
-        //  if (isNaN(phone.value)) {
-        //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Phone Number should be Numeric";
-        //      if (allvalid) {
-        //          allvalid = false;
-        //      }
-        //  } else {
-        //      phone_error.innerHTML = "";
-        //  }
+            }
 
-
-        //  if (phone.value.length < 10) {
-        //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number must have 10 digits!";
-        //      if (allvalid) {
-        //          allvalid = false;
-        //      }
-        //  } else if (phone.value.length > 10) {
-        //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
-        //      if (allvalid) {
-        //          allvalid = false;
-        //      }
-        //  } else {
-        //      phone_error.innerHTML = "";
-        //  }
+        
 
          //validate email
 
@@ -498,23 +474,5 @@
 
      }
 
-     //perform update and insert operations
-     //  function saveDetails(){
-     //     var allvalid = true;
-     //     const police_id_error = document.getElementById('police_id_error');
-     //     const police_id = document.getElementById('police_id');
-     //     if(isNaN(police_id.value) ){
-     //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
-     //         if(allvalid){
-     //             allvalid = false;
-     //         }
-     //     }else{
-     //         police_id_error.innerHTML = "";
-     //     }
-
-     //     if(allvalid){
-     //         document.getElementById('submit').click();
-     //     }
-
-     //  }
+     
  </script>
