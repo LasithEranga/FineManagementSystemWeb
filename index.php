@@ -1,12 +1,12 @@
 <?php
 
-session_start();
+// session_start();
 
-if(!isset($_SESSION['username'])){
+// if(!isset($_SESSION['username'])){
 
-echo "<script>window.open('login.php','_self')</script>";
+// echo "<script>window.open('login.php','_self')</script>";
 
-}
+//}
 
 ?>
 
