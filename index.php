@@ -76,38 +76,51 @@ echo "<script>window.open('login.php','_self')</script>";
     <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
 
+        $view = false;
+
         if (isset($_GET['dashboard'])) {
 
             include("Home/dashboard.php");
             echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['statistics'])) {
 
             include("Statistics/statistics.php");
             echo "<script> document.getElementById('statistics').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['report'])) {
 
             include("Report/report.php");
             echo "<script> document.getElementById('report').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['settings'])) {
 
             include("Settings/settings.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
         }
         if (isset($_GET['users'])) {
 
             include("Settings/users.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
         }
         if (isset($_GET['rules'])) {
 
             include("Settings/rules.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
+        }
+
+        if(!$view){
+            include("Home/dashboard.php");
+            echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
         }
         ?>
 
