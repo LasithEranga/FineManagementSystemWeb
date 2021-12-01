@@ -1,5 +1,5 @@
 <?php
-include ('../FMS/db.php');
+include ('./db.php');
 session_start();
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
@@ -15,6 +15,5 @@ else {
   echo "failed";
 
 }
-
 
 ?>
