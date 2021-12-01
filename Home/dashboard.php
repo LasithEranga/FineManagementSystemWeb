@@ -1,4 +1,4 @@
-<!-- container div -->
+
 <?php
     include ('./db.php');
     $yearly_cases_query = "SELECT COUNT(Ref_No) As count FROM fine_receipt WHERE Date >= CURDATE() - INTERVAL 1 YEAR ";

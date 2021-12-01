@@ -1,4 +1,3 @@
-
 <!-- Modal -->
 <div class="modal fade" id="messageBox" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -21,8 +20,8 @@
 <!-- container div -->
 <?php
 include('../db.php');
-//$driver_nic = $_SESSION['driver_nic'];
-$driver_nic = '990811130V';
+$driver_nic = $_SESSION['driver_nic'];
+//$driver_nic = '990811130V';
 $qury = "SELECT `nic`, `fname`, `lname`, `full_name`, `email`, `contact_no`, `address` FROM `driver` WHERE nic = '". $driver_nic ."'";
 $result = mysqli_query($conn, $qury);
 $result_array = mysqli_fetch_array($result);

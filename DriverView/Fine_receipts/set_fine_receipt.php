@@ -1,6 +1,7 @@
 <?php
 include('../db.php');
-$driver_id = '990811130V';//should be passed before calling session variable of login
+session_start();
+$driver_id = $_SESSION['driver_nic'];//should be passed before calling session variable of login
 $query = "SELECT rules_receipt.Ref_no as id, rules_receipt.Date,DATE_ADD(rules_receipt.Date,INTERVAL 14 DAY) as due_date,rules_receipt.officer_id, rules_receipt.time, CAST(rules_receipt.Amount AS DECIMAL(10,2)) AS Amount ,GROUP_CONCAT(rule.description) as rules FROM (SELECT * FROM `fine_receipt` AS fr INNER JOIN rules_broken rb on rb.fine_receipt_id = fr.Ref_No WHERE fr.driver_nic = '".$driver_id."' AND fr.State = 0) as rules_receipt INNER JOIN rule ON rule.rule_id = rules_receipt.rule_id GROUP BY (rules_receipt.Ref_no)";
 $html = "";
 $rule_list = "";

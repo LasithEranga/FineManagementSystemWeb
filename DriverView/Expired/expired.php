@@ -1,5 +1,7 @@
 <!-- container div -->
-
+<?php
+include('../db.php');
+?>
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand">

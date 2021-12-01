@@ -201,34 +201,41 @@
              add_update_heading.innerHTML = "Driver Details";
              add_update_heading.classList.add('col', 'text-center');
              modal_items.innerHTML = `
-                                    <input type='hidden' name='drivers'>
-                                    <div class='mb-3'>
-                                        <label for='nic' class='form-label'> NIC Number</label>
-                                        <input type='text' class='form-control bg-dark text-light' id='nic' name='nic' >
-                                    </div>
+                                 <input type='hidden' name='drivers'>
                                     <div class='mb-3'>
                                         <label for='fname' class='form-label'>First Name</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='fname' name='fname'>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='fname' name='fname' >
+                                        <span id='fname_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='lname' class='form-label'>Last Name</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='lname' name='lname' >
+                                        <span id='lname_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='full_name' class='form-label'>Full Name</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='full_name' name='full_name' >
+                                        <span id='full_name_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='address' class='form-label'>Address</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='address' name='address' >
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='address' name='address'>
+                                        <span id='address_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='text' class='form-label'>Email Address</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='email' name='email'  >
+                                        <span id='email_error' class="text-danger"></span>
+                                    </div>
+                                    <div class='mb-3'>
+                                        <label for='nic' class='form-label'> NIC Number</label>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='nic' name='nic' >
+                                        <span id='nic_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='phone' class='form-label'>Contact No</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' name='phone' >
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' name='phone'>
+                                        <span id='phone_error' class="text-danger"></span>
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
              add_user_modal.click();
@@ -238,7 +245,7 @@
              add_update_heading.innerHTML = "Police Officer Details"
              add_update_heading.classList.add('col', 'text-center');
              modal_items.innerHTML = `
-                                    <input type='hidden' name='officers'>
+             <input type='hidden' name='officers'>
                                     <div class='mb-3'>
                                         <label for='police_id' class='form-label'> Police ID </label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='police_id' name='police_id' >
@@ -247,60 +254,271 @@
                                     <div class='mb-3'>
                                         <label for='fname' class='form-label'>First Name</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='fname' name='fname' >
+                                        <span id='fname_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='lname' class='form-label'>Last Name</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='lname' name='lname' >
+                                        <span id='lname_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='full_name' class='form-label'>Full Name</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='full_name' name='full_name' >
+                                        <span id='full_name_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='address' class='form-label'>Address</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='address' name='address'>
+                                        <span id='address_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='text' class='form-label'>Email Address</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='email' name='email'  >
+                                        <span id='email_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='nic' class='form-label'> NIC Number</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='nic' name='nic' >
+                                        <span id='nic_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='post' class='form-label'> Post</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='post' name='post' >
+                                        <span id='post_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
                                         <label for='phone' class='form-label'>Contact No</label>
                                         <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' name='phone'>
+                                        <span id='phone_error' class="text-danger"></span>
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
              add_user_modal.click();
              
          }
      }
-
-     
-     //perform update and insert operations
      function saveDetails(){
-        var allvalid = true;
-        const police_id_error = document.getElementById('police_id_error');
-        const police_id = document.getElementById('police_id');
-        if(isNaN(police_id.value) ){
-            police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
+         var allvalid = true;
+         const police_id_error = document.getElementById('police_id_error');
+         const police_id = document.getElementById('police_id');
+         
+         const post_error = document.getElementById('post_error');
+         const post = document.getElementById('post');
+         
+         const nic_error = document.getElementById('nic_error');
+         const nic = document.getElementById('nic');
+         
+         const fname_error = document.getElementById('fname_error');
+         const fname = document.getElementById('fname');
+         
+         const lname_error = document.getElementById('lname_error');
+         const lname = document.getElementById('lname');
+         
+         const full_name_error = document.getElementById('full_name_error');
+         const full_name = document.getElementById('full_name');
+         
+         const address_error = document.getElementById('address_error');
+         const address = document.getElementById('address');
+         
+         const email_error = document.getElementById('email_error');
+         const email = document.getElementById('email');
+         
+         const phone_error = document.getElementById('phone_error');
+         const phone = document.getElementById('phone');
+         
+         var emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+         
+         //check whether officer was selected
+         if(selected_section == "officers"){
+             
+             //validate police id
+             if(isNaN(police_id.value)){
+                police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
+                if(allvalid){
+                    allvalid = false;
+                }
+             }else{
+                police_id_error.innerHTML = "";
+             }
+             
+             if(police_id.value == null){
+                police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+             }else{
+                police_id_error.innerHTML = "";
+             }
+             
+             
+             //validate post
+             if(post.value == null){
+                post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+             }else{
+                post_error.innerHTML = "";
+             }     
+         }
+         
+         
+         //validate nic
+         if(nic.value == null){
+                nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+         }
+         else{
+            nic_error.innerHTML = "";
+         }
+     
+         if(nic.value.length < 10){
+            nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
             if(allvalid){
                 allvalid = false;
             }
-        }else{
-            police_id_error.innerHTML = "";
+         }
+         else if(nic.value.length > 10){
+            nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
+            if(allvalid){
+                allvalid = false;
+            }
+         }
+         else{
+            nic_error.innerHTML = "";
+         }
+         
+         
+         //validate first name
+         if(fname.value == null){
+                fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+         }
+         else{
+            fname_error.innerHTML = "";
+         }
+         
+         //validate last name
+         if(lname.value == null){
+                lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+         }
+         else{
+            lname_error.innerHTML = "";
+         }
+         
+         //validate full name
+         if(full_name.value == null){
+                full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+         }
+         else{
+            full_name_error.innerHTML = "";
+         }
+         
+         //validate address
+         if(address.value == null){
+                address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is required!";
+                if(allvalid){
+                    allvalid = false;
+                }
+         }
+         else{
+            address_error.innerHTML = "";
+         }
+         
+         //validate phone no
+         if (phone.value == null) {
+             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
+             if(allvalid){
+                allvalid = false;
+             }
+         }
+         else{
+            phone_error.innerHTML = "";
+         }
+     
+         if(isNaN(phone.value)){
+            phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Phone Number should be Numeric";
+            if(allvalid){
+                allvalid = false;
+            }
+         }
+         else{
+             phone_error.innerHTML = "";
+         }
+    
+         
+         if(phone.value.length < 10){
+            phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
+            if(allvalid){
+                allvalid = false;
+            }
+         }
+         else if(phone.value.length > 10){
+            phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
+            if(allvalid){
+                allvalid = false;
+            }
+         }
+         else{
+            phone_error.innerHTML = "";
+         }
+         
+         //validate email
+        if (email.value == null){
+            email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
+            if(allvalid){
+                allvalid = false;
+            }
         }
-
-        if(allvalid){
+         else{
+            email_error.innerHTML = "";
+         }
+     
+     
+        if (!emailCheck.test(email.value)){
+            email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
+            if(allvalid){
+                allvalid = false;
+            }
+        }
+         else{
+            email_error.innerHTML = "";
+         } 
+         
+         
+         if(allvalid){
             document.getElementById('submit').click();
-        }
-        
+         }
+       
      }
+     
+     //perform update and insert operations
+    //  function saveDetails(){
+    //     var allvalid = true;
+    //     const police_id_error = document.getElementById('police_id_error');
+    //     const police_id = document.getElementById('police_id');
+    //     if(isNaN(police_id.value) ){
+    //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
+    //         if(allvalid){
+    //             allvalid = false;
+    //         }
+    //     }else{
+    //         police_id_error.innerHTML = "";
+    //     }
+
+    //     if(allvalid){
+    //         document.getElementById('submit').click();
+    //     }
+        
+    //  }
 
  </script>

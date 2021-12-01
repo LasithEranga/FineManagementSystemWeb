@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 27, 2021 at 07:54 PM
+-- Generation Time: Nov 30, 2021 at 07:55 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   PRIMARY KEY (`id`),
   KEY `driver_nic` (`driver_nic`),
   KEY `fine_receipt` (`fince_receipt_Ref`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment`
@@ -172,7 +172,8 @@ INSERT INTO `payment` (`id`, `date`, `amount`, `driver_nic`, `fince_receipt_Ref`
 (2, '2021-08-05', 327, '990811130V', 7),
 (3, '2021-11-01', 2564, '990856530V', 10),
 (4, '2021-11-02', 5685, '998896530V', 57),
-(5, '2021-11-03', 568, '990856530V', 3);
+(5, '2021-11-03', 568, '990856530V', 3),
+(6, '2021-12-01', 2367.23, '990811130V', 56);
 
 -- --------------------------------------------------------
 
@@ -210,7 +211,8 @@ CREATE TABLE IF NOT EXISTS `rule` (
 
 INSERT INTO `rule` (`rule_id`, `rule_name`, `penalty_amount`, `description`, `tag`) VALUES
 (1, 'Double line crossed', 1232.23, 'The driver crossed double lines', 'double line'),
-(2, 'Drunk and Drive', 32112.2, 'Driver is drunk and caugth while driving the vehicle', 'drunk drive');
+(2, 'Drunk and Drive', 32112.2, 'Driver is drunk and caugth while driving the vehicle', 'drunk drive'),
+(32, 'kjdnjk', 2132.23, 'jkdnfjk', 'kjndj');
 
 -- --------------------------------------------------------
 
