@@ -2,14 +2,13 @@
 
 session_start();
 
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['driver_nic'])){
 
 echo "<script>window.open('login.php','_self')</script>";
 
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,26 +42,10 @@ echo "<script>window.open('login.php','_self')</script>";
         .border_date_input{
             border: 1px solid #a4c5e1;
         }
-        .bottom-green{
-            border-bottom: 4px solid #03df03;
-        }
-        .cursor_change{
-            cursor: pointer;
-        }
-        .rm_decoration{
-            text-decoration: none;
-            color: #a4a5b8;
-
-        }
-        .rm_decoration:hover{
-            color: #ccccd0;
-        }
 
     </style>
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
-    <script src="xepOnline.jqPlugin.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -76,37 +59,27 @@ echo "<script>window.open('login.php','_self')</script>";
     <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
 
-        if (isset($_GET['dashboard'])) {
+        if (isset($_GET['your_info'])) {
 
-            include("Home/dashboard.php");
+            include("Your_Info/your_info.php");
             echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
         }
 
-        if (isset($_GET['statistics'])) {
+        if (isset($_GET['fine_receipts'])) {
 
-            include("Statistics/statistics.php");
+            include("Fine_receipts/fine_receipts.php");
             echo "<script> document.getElementById('statistics').classList.add('active')</script>";
         }
 
-        if (isset($_GET['report'])) {
+        if (isset($_GET['expired'])) {
 
-            include("Report/report.php");
+            include("Expired/expired.php");
             echo "<script> document.getElementById('report').classList.add('active')</script>";
         }
 
-        if (isset($_GET['settings'])) {
+        if (isset($_GET['previous_records'])) {
 
-            include("Settings/settings.php");
-            echo "<script> document.getElementById('settings').classList.add('active')</script>";
-        }
-        if (isset($_GET['users'])) {
-
-            include("Settings/users.php");
-            echo "<script> document.getElementById('settings').classList.add('active')</script>";
-        }
-        if (isset($_GET['rules'])) {
-
-            include("Settings/rules.php");
+            include("Previous_Records/previous_records.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
         }
         ?>

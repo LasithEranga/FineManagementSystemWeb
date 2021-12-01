@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fine Payment Management System</title>
+    <link rel="icon" type="image/x-icon" href="./logo.ico">
 
     <!--Stylesheets-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
@@ -25,7 +26,7 @@
                 FINE PAYMENT MANAGEMENT SYSTEM
             </div>
             <img src="./images/logo.png" class="mt-150" width="70%" alt="">
-            <div class="mt-150 col-8"> <button type="button" onclick="location.href='./login.html';" class="btn btn-primary col-12 rounded-pill">Login</button> </div>
+            <div class="mt-150 col-8"> <button type="button" onclick="location.href='./login.php';" class="btn btn-primary col-12 rounded-pill">Login</button> </div>
         </div>
 
     </div>
