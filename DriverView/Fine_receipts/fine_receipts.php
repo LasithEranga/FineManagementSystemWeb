@@ -1,10 +1,11 @@
 <?php
 include('../db.php');
-$driver_nic = '990811130V'; //replace with login details
+$driver_nic = $_SESSION['driver_nic']; //replace with login details
 $query = "SELECT * FROM driver WHERE nic='" . $driver_nic . "';";
 $result = mysqli_query($conn, $query);
 $result_array = mysqli_fetch_array($result);
-echo "<script> payment_status = undefined </script>";
+
+echo "<script> payment_status = undefined; </script>";
 if (isset($_GET['order_id'])) {
   $sql = "SELECT `State` FROM `fine_receipt` WHERE Ref_No = " . $_GET['order_id'] . ";";
   $payment_result = mysqli_query($conn, $sql);
@@ -18,6 +19,7 @@ if (isset($_GET['order_id'])) {
   }
 }
 ?>
+
 <!-- Modal -->
 <div class="modal fade" id="messageBox" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
@@ -116,7 +118,7 @@ if (isset($_GET['order_id'])) {
       //
       fine_receipt.innerHTML = this.responseText;
     }
-    xhttp.open('GET', "Fine_receipts/set_fine_receipt.php?receipt_id='" + '990811130V');
+    xhttp.open('GET', "Fine_receipts/set_fine_receipt.php");
     xhttp.send();
   }
 

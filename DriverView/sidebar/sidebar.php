@@ -6,7 +6,7 @@
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
-    
+
     <li>
       <a id="statistics" href="?fine_receipts" class="nav-link text-white my-2 p-3 p-sm-2">
         <i class="fas fa-file-alt mx-2"></i>
@@ -36,6 +36,8 @@
   <hr>
   <div class="">
 
-    <span class="ms-2"><i class="fas fa-sign-out-alt mx-3"></i><span class=" d-none d-sm-inline ">Logout</span></span>
+    <a href="../DriverView/logout.php" class="nav-link text-white my-2 p-3 p-sm-2">
+      <span class="ms-2"><i class="fas fa-sign-out-alt mx-3"></i><span class=" d-none d-sm-inline ">Logout</span>
+    </a>
   </div>
 </div>

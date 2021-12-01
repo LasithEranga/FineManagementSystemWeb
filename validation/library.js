@@ -28,9 +28,8 @@ function inputEmail(e) {
 const user = document.querySelector('.user');
 user.addEventListener('input', inputuser);
 
-function inputuser(){
+function inputuser(input,error){
     const input = e.target.value;
-    
     const minNumberChar = 6;
     const maxNumberChar = 16;
     const regXp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;

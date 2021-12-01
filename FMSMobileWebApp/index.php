@@ -26,7 +26,7 @@
                 FINE PAYMENT MANAGEMENT SYSTEM
             </div>
             <img src="./images/logo.png" class="mt-150" width="70%" alt="">
-            <div class="mt-150 col-8"> <button type="button" onclick="location.href='./login.html';" class="btn btn-primary col-12 rounded-pill">Login</button> </div>
+            <div class="mt-150 col-8"> <button type="button" onclick="location.href='./login.php';" class="btn btn-primary col-12 rounded-pill">Login</button> </div>
         </div>
 
     </div>
