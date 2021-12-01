@@ -181,11 +181,10 @@
          http_req.onload = function() {
              // console.log(this.responseText);
              modal_items.innerHTML = this.responseText;
-             if(selected_section == "officers"){
-                add_update_heading.innerHTML = "Police Officer Details";
-             }
-             else if(selected_section == "drivers"){
-                add_update_heading.innerHTML = "Driver Details"
+             if (selected_section == "officers") {
+                 add_update_heading.innerHTML = "Police Officer Details";
+             } else if (selected_section == "drivers") {
+                 add_update_heading.innerHTML = "Driver Details"
              }
              add_update_heading.classList.add('col', 'text-center');
              add_user_modal.click();
@@ -204,7 +203,7 @@
                                  <input type='hidden' name='drivers'>
                                     <div class='mb-3'>
                                         <label for='fname' class='form-label'>First Name</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='fname' name='fname' >
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='fname' name='fname' placeholder='Lasith' >
                                         <span id='fname_error' class="text-danger"></span>
                                     </div>
                                     <div class='mb-3'>
@@ -234,7 +233,7 @@
                                     </div>
                                     <div class='mb-3'>
                                         <label for='phone' class='form-label'>Contact No</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' name='phone'>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' placeholder="+(94) 770543422/0770543422" name='phone'>
                                         <span id='phone_error' class="text-danger"></span>
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
@@ -293,232 +292,229 @@
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
              add_user_modal.click();
-             
+
          }
      }
-     function saveDetails(){
+
+     function saveDetails() {
          var allvalid = true;
          const police_id_error = document.getElementById('police_id_error');
          const police_id = document.getElementById('police_id');
-         
+
          const post_error = document.getElementById('post_error');
          const post = document.getElementById('post');
-         
+
          const nic_error = document.getElementById('nic_error');
          const nic = document.getElementById('nic');
-         
+
          const fname_error = document.getElementById('fname_error');
          const fname = document.getElementById('fname');
-         
+
          const lname_error = document.getElementById('lname_error');
          const lname = document.getElementById('lname');
-         
+
          const full_name_error = document.getElementById('full_name_error');
          const full_name = document.getElementById('full_name');
-         
+
          const address_error = document.getElementById('address_error');
          const address = document.getElementById('address');
-         
+
          const email_error = document.getElementById('email_error');
          const email = document.getElementById('email');
-         
+
          const phone_error = document.getElementById('phone_error');
          const phone = document.getElementById('phone');
-         
+
          var emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-         
+
          //check whether officer was selected
-         if(selected_section == "officers"){
-             
+         if (selected_section == "officers") {
+
              //validate police id
-             if(isNaN(police_id.value)){
-                police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
-                if(allvalid){
-                    allvalid = false;
-                }
-             }else{
-                police_id_error.innerHTML = "";
+             if (isNaN(police_id.value)) {
+                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else {
+                 police_id_error.innerHTML = "";
              }
-             
-             if(police_id.value == null){
-                police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-             }else{
-                police_id_error.innerHTML = "";
+
+             if (police_id.value == "") {
+                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else {
+                 police_id_error.innerHTML = "";
              }
-             
-             
+
+
              //validate post
-             if(post.value == null){
-                post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-             }else{
-                post_error.innerHTML = "";
-             }     
-         }
-         
-         
-         //validate nic
-         if(nic.value == null){
-                nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-         }
-         else{
-            nic_error.innerHTML = "";
-         }
-     
-         if(nic.value.length < 10){
-            nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-            if(allvalid){
-                allvalid = false;
-            }
-         }
-         else if(nic.value.length > 10){
-            nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-            if(allvalid){
-                allvalid = false;
-            }
-         }
-         else{
-            nic_error.innerHTML = "";
-         }
-         
-         
-         //validate first name
-         if(fname.value == null){
-                fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-         }
-         else{
-            fname_error.innerHTML = "";
-         }
-         
-         //validate last name
-         if(lname.value == null){
-                lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-         }
-         else{
-            lname_error.innerHTML = "";
-         }
-         
-         //validate full name
-         if(full_name.value == null){
-                full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-         }
-         else{
-            full_name_error.innerHTML = "";
-         }
-         
-         //validate address
-         if(address.value == null){
-                address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is required!";
-                if(allvalid){
-                    allvalid = false;
-                }
-         }
-         else{
-            address_error.innerHTML = "";
-         }
-         
-         //validate phone no
-         if (phone.value == null) {
-             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
-             if(allvalid){
-                allvalid = false;
+             if (post.value == "") {
+                 post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else {
+                 post_error.innerHTML = "";
              }
          }
-         else{
-            phone_error.innerHTML = "";
+
+
+         //validate nic
+         if (nic.value == "") {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             nic_error.innerHTML = "";
          }
-     
-         if(isNaN(phone.value)){
-            phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Phone Number should be Numeric";
-            if(allvalid){
-                allvalid = false;
-            }
+
+         if (nic.value.length < 10) {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (nic.value.length > 10) {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             nic_error.innerHTML = "";
          }
-         else{
-             phone_error.innerHTML = "";
+
+
+         //validate first name
+         if (fname.value == "") {
+             fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             fname_error.innerHTML = "";
          }
-    
-         
-         if(phone.value.length < 10){
-            phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
-            if(allvalid){
-                allvalid = false;
-            }
+
+         //validate last name
+         if (lname.value == "") {
+             lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             lname_error.innerHTML = "";
          }
-         else if(phone.value.length > 10){
-            phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
-            if(allvalid){
-                allvalid = false;
-            }
+
+         //validate full name
+         if (full_name.value == "") {
+             full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             full_name_error.innerHTML = "";
          }
-         else{
-            phone_error.innerHTML = "";
+
+         //validate address
+         if (address.value == "") {
+             address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             address_error.innerHTML = "";
          }
-         
+
+         //validate phone no
+         const regXpC = /^[\+]?[(]?[0-9]{0,2}[)]?[-\s\.]?[0-9]{2,3}[-\s\.]?[0-9]{3,4}?[0-9]{3,4}$/;
+         const regXpNew = /^\d+(\.\d*)?$|^\.\d+$/;
+
+         if (phone.value == "") {
+             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             if(regXpC.test(phone.value) || regXpNew.test(phone.value)){
+                phone_error.innerHTML = "";
+             }
+             else{
+                phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
+             }
+             
+         }
+
+        //  if (isNaN(phone.value)) {
+        //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Phone Number should be Numeric";
+        //      if (allvalid) {
+        //          allvalid = false;
+        //      }
+        //  } else {
+        //      phone_error.innerHTML = "";
+        //  }
+
+
+        //  if (phone.value.length < 10) {
+        //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number must have 10 digits!";
+        //      if (allvalid) {
+        //          allvalid = false;
+        //      }
+        //  } else if (phone.value.length > 10) {
+        //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
+        //      if (allvalid) {
+        //          allvalid = false;
+        //      }
+        //  } else {
+        //      phone_error.innerHTML = "";
+        //  }
+
          //validate email
-        if (email.value == null){
-            email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
-            if(allvalid){
-                allvalid = false;
-            }
-        }
-         else{
-            email_error.innerHTML = "";
+
+         if (email.value == "") {
+             email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             if (!emailCheck.test(email.value)) {
+                 email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else {
+                 email_error.innerHTML = "";
+             }
          }
-     
-     
-        if (!emailCheck.test(email.value)){
-            email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
-            if(allvalid){
-                allvalid = false;
-            }
-        }
-         else{
-            email_error.innerHTML = "";
-         } 
-         
-         
-         if(allvalid){
-            document.getElementById('submit').click();
+
+
+
+
+
+         if (allvalid) {
+             document.getElementById('submit').click();
          }
-       
+
      }
-     
+
      //perform update and insert operations
-    //  function saveDetails(){
-    //     var allvalid = true;
-    //     const police_id_error = document.getElementById('police_id_error');
-    //     const police_id = document.getElementById('police_id');
-    //     if(isNaN(police_id.value) ){
-    //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
-    //         if(allvalid){
-    //             allvalid = false;
-    //         }
-    //     }else{
-    //         police_id_error.innerHTML = "";
-    //     }
+     //  function saveDetails(){
+     //     var allvalid = true;
+     //     const police_id_error = document.getElementById('police_id_error');
+     //     const police_id = document.getElementById('police_id');
+     //     if(isNaN(police_id.value) ){
+     //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
+     //         if(allvalid){
+     //             allvalid = false;
+     //         }
+     //     }else{
+     //         police_id_error.innerHTML = "";
+     //     }
 
-    //     if(allvalid){
-    //         document.getElementById('submit').click();
-    //     }
-        
-    //  }
+     //     if(allvalid){
+     //         document.getElementById('submit').click();
+     //     }
 
+     //  }
  </script>
