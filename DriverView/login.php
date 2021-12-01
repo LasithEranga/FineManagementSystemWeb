@@ -1,3 +1,8 @@
+<?php
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,23 +33,21 @@
         <div class="col p-2 ps-4 pe-5 p-3 pt-5" style="background-color: #000000;">
           <span class="fs-2 ">Login</span>
           <hr>
-          <form id="form" class="pb-5" method="POST">
             <div class="mb-3">
               <label for="name" class="form-label pt-4">Username</label>
-              <input type="text" class="form-control bg-dark pt-3 text-light" id="name" name="name" style="background-color: #1d1d1d; border: none; border-radius: 0;">
+              <input type="text" class="form-control bg-dark pt-3 text-light" value="990856530V" id="name" name="name" style="background-color: #1d1d1d; border: none; border-radius: 0;">
             </div>
             <div class="mb-4">
               <label for="password" class="form-label pt-4">Password</label>
-              <input type="password" class="form-control bg-dark pt-3 text-light" id="password" name="pass" style="background-color: #1d1d1d; border: none; border-radius: 0;">
-              <div class="d-flex flex-row pt-1">
+              <input type="password" class="form-control bg-dark pt-3 text-light" value="abhiru@gmail.com" id="password" name="pass" style="background-color: #1d1d1d; border: none; border-radius: 0;">
+              <div id="login_failed_alert" class=" flex-row pt-1" style="display: none;">
                 <div class="col text-danger">Login Failed ! </div> 
                 <div class="col text-end"><a href="#" >Forgot password?</a></div>
               </div>
             </div>
             <div class="text-end pt-4">
-              <button type="submit " class="btn mt-4 col-5 text-light" name="login" style="background-color: #1d1d1d; border: none; border-radius: 0;">Login</button>
+              <button type="submit" onclick="verifyUser()" class="btn mt-4 col-5 text-light" name="login" style="background-color: #1d1d1d; border: none; border-radius: 0;">Login</button>
             </div>
-          </form>
 
         </div>
       </div>
@@ -55,15 +58,21 @@
       document.getElementById("form").submit();
     }
 
-    function allLetter(inputtxt) {
-      var letters = /^[A-Za-z]+$/;
-      if (inputtxt.value.match(letters)) {
-        return true;
+    function verifyUser() {
+      username = document.getElementById('name').value;
+      password = document.getElementById('password').value;
+      const http_req = new XMLHttpRequest();
+      http_req.onload = function() {
+        if (this.responseText == "logged") {
+          window.open('index.php?fine_receipts', '_self')
+        }
+        else{
+          document.getElementById('login_failed_alert').classList.add('d-flex');
+        }
+
       }
-      else {
-        alert("message");
-        return false;
-      }
+      http_req.open('GET', "login_verify.php?nic=" + username + "&password=" + password);
+      http_req.send();
     }
   </script>
 </body>

@@ -35,8 +35,9 @@
         </ul>
         <hr>
         <div class="">
-
-          <span class="ms-2"><i class="fas fa-sign-out-alt mx-3"></i><span class=" d-none d-sm-inline ">Logout</span></span>
+          <a href="../FMS/logout.php" class="nav-link text-white my-2 p-3 p-sm-2">
+          <span class="ms-2"><i class="fas fa-sign-out-alt mx-3"></i><span class=" d-none d-sm-inline ">Logout</span>
+          </a>
         </div>
       </div>
 

@@ -1,3 +1,16 @@
+<?php
+include('./db.php');
+session_start();
+if(!isset($_SESSION['police_id'])){
+
+echo "<script>window.open('index.php','_self')</script>";
+
+}
+$query = "SELECT COUNT(Ref_No) as fine_receipts FROM fine_receipt WHERE officer_id='".$_SESSION['police_id']."'";
+$result = mysqli_query($conn, $query);
+$data = mysqli_fetch_array($result);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +107,7 @@
     <nav class="navbar navbar-dark bg-dark sticky-top" style="border-bottom: 1px solid rgb(104, 104, 104);">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><i class="fa fa-bars me-3" aria-hidden="true"></i>FineX Mobile</a>
-            <a class="navbar-brand" href="#">Lasith</a>
+            <a class="navbar-brand" href="logout.php"><?php echo $_SESSION['name']?></a>
         </div>
     </nav>
     <div class=" bg-dark vh-100 d-flex flex-column">
@@ -103,7 +116,7 @@
            
             <div class="d-flex flex-column">
                 <div class=" ms-3 mt-3 fs-1"> Today</div>
-                <div class=" ms-3 mt-3 fs-3"> 56 New Fine Receipts</div>
+                <div class=" ms-3 mt-3 fs-3"> <?php echo $data['fine_receipts'];?> New Fine Receipt(s)</div>
             </div>
         </div>
         <div id="search_driver" class=" bg-light m-3  rounded d-flex justify-content-center align-items-center" style="height: 6rem; ">
@@ -122,7 +135,7 @@
 
     <script>
         document.getElementById("new_receipt").addEventListener('click',()=>{
-            location.href='finereceipt.html';
+            location.href='finereceipt.php';
         }
         );
         document.getElementById("search_driver").addEventListener('click',()=>{

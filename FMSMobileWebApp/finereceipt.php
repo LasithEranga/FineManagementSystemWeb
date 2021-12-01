@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['police_id'])){
+
+echo "<script>window.open('index.php','_self')</script>";
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,13 +91,11 @@
 
         <div class="d-flex flex-row col-9  flex-column ms-3 mt-3">
             <div class="mb-3 fw-bold ">Fine Statement</div>
-
-            <div class="">Statement No: <span id="statement_id"></span></div>
-            <div class="">Officer ID: </div>
+            <div class="">Statement No: <span id="statement_id"></div>
+            <div class="">Officer ID:  <span id="officer_id"><?php echo $_SESSION['police_id']?></span></div>
             <div class="">Driver NIC: <span id="driver_nic" class="text-success"></span></div>
             <div class="">Issue Date: <span id="issue_date"></span></div>
             <div class="">Issue Time: <span id="issue_time"></span></div>
-            <div class="">Street:</div>
         </div>
         <div id="rule_info">
             <div class="d-flex flex-row col-9 flex-column ms-3 mt-3">
@@ -112,6 +120,7 @@
     <script>
         var ruleList = [];//rule ids included in fine receipt
         var totalAmount = 0;
+        var officer_id = document.getElementById('officer_id');
         var driver_nic = document.getElementById('driver_nic');
         var issue_date = document.getElementById('issue_date');
         var issue_time = document.getElementById('issue_time')
@@ -234,10 +243,10 @@
                 if(this.responseText){
                     console.log(this.responseText == 1);
                     alert('Fine receipt saved successfully ');
-                    window.open('./home.html','_self');
+                    window.open('./home.php','_self');
                 };
             }
-            xmlhttp.open('GET', 'save_fine_receipt.php?officer_id='+35151+'&driver_nic='+driver_nic.innerHTML+'&date='+issue_date.innerHTML+'&amount='+totalAmount+'&time='+issue_time.innerHTML+'&offence_id_arr='+ruleList);
+            xmlhttp.open('GET', 'save_fine_receipt.php?officer_id='+officer_id.innerHTML+'&driver_nic='+driver_nic.innerHTML+'&date='+issue_date.innerHTML+'&amount='+totalAmount+'&time='+issue_time.innerHTML+'&offence_id_arr='+ruleList);
             xmlhttp.send();
         }
 

@@ -36,9 +36,9 @@
           <option value="paid" onclick="fillTable()">Paid</option>
           <option value="allRecords" onclick="fillTable()">All Records</option>
         </select>
-        <form class="d-flex col-8">
+        <form class="d-flex col-lg-8 mt-2 mt-lg-0">
           <input class="form-control me-2 border_date_input bg-dark text-light" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success me-3" type="submit">Search</button>
+          <button class="btn btn-success me-lg-3" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -48,12 +48,12 @@
     <div class=" bg-dark  d-flex flex-column flex-md-row">
       <div class=" flex-row ms-4 mb-2">
         <label for="from" class="fs-5">From:</label>
-        <input type="date" class=" ms-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
+        <input type="date" class=" ms-lg-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
       </div>
 
       <div class=" flex-row ms-4 mb-2">
         <label for="from" class="fs-5">To:</label>
-        <input type="date" class=" ms-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
+        <input type="date" class=" ms-lg-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
       </div>
 
       <div class=" flex-row ms-3 ">
@@ -63,7 +63,7 @@
     </div>
     <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
+      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-2 mt-lg-0">Share</button>
       <button type="button" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF</button>
 
     </div>

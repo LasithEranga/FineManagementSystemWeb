@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['driver_nic'])){
+
+echo "<script>window.open('login.php','_self')</script>";
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

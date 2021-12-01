@@ -1,7 +1,8 @@
 <?php
 include('../db.php');
-$driver_id = '990811130V';//should be passed before calling session variable of login
-$query = "SELECT rules_receipt.Ref_no as id, rules_receipt.Date,DATE_ADD(rules_receipt.Date,INTERVAL 14 DAY) as due_date,rules_receipt.officer_id, rules_receipt.time,rules_receipt.Amount,GROUP_CONCAT(rule.description) as rules FROM (SELECT * FROM `fine_receipt` AS fr INNER JOIN rules_broken rb on rb.fine_receipt_id = fr.Ref_No WHERE fr.driver_nic = '".$driver_id."' AND fr.State = 0) as rules_receipt INNER JOIN rule ON rule.rule_id = rules_receipt.rule_id GROUP BY (rules_receipt.Ref_no)";
+session_start();
+$driver_id = $_SESSION['driver_nic'];//should be passed before calling session variable of login
+$query = "SELECT rules_receipt.Ref_no as id, rules_receipt.Date,DATE_ADD(rules_receipt.Date,INTERVAL 14 DAY) as due_date,rules_receipt.officer_id, rules_receipt.time, CAST(rules_receipt.Amount AS DECIMAL(10,2)) AS Amount ,GROUP_CONCAT(rule.description) as rules FROM (SELECT * FROM `fine_receipt` AS fr INNER JOIN rules_broken rb on rb.fine_receipt_id = fr.Ref_No WHERE fr.driver_nic = '".$driver_id."' AND fr.State = 0) as rules_receipt INNER JOIN rule ON rule.rule_id = rules_receipt.rule_id GROUP BY (rules_receipt.Ref_no)";
 $html = "";
 $rule_list = "";
 $count = 1; //counter for rules
@@ -35,13 +36,13 @@ while($data = mysqli_fetch_array($result)){
                     <div class='mb-3 fw-bold'>Offence(s)</div>
                     ".$rule_list."
                     <div class=''> <span id='description'></span> <br>
-                    Penalty : Rs.<span id='penalty'>".$data['Amount']."</span><br>
+                    Penalty : Rs.<span id='penalty".$data['id']."'>".$data['Amount']."</span><br>
                     Due Date : <span id='due_date'>".$data['due_date']."</span>
                 </div>
                 </div>
                 </div>
                 <div class='col-11 text-end'>
-                <button type='button' class='btn btn-primary col-3 mx-3 mt-4 mb-5' onclick='getData(".$data['id'].")'> Settle Fine Amount</button>
+                <button type='button' class='btn btn-primary col-3 mx-3 mt-4 mb-5' onclick='openPaymentModal(".$data['id'].")'> Settle Fine Amount</button>
                 </div>
             </div>";
             $rule_list = "";

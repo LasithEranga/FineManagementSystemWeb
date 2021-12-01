@@ -62,32 +62,6 @@
          </div>
      </nav>
 
-     <!-- <div class=" d-flex   flex-row mt-1">
-        <div class=" bg-dark  d-flex flex-column flex-md-row">
-            <div class=" flex-row ms-4 mb-2">
-                <label for="from">From:</label>
-                <input type="date" class=" ms-1 me-2" id="from" name="from">
-            </div>
-
-            <div class=" flex-row ms-4 mb-2">
-                <label for="from">To:</label>
-                <input type="date" class=" ms-4 me-2" id="to" name="to">
-            </div>
-
-            <div class=" flex-row ms-3 ">
-                <button id="btn_go" onclick="fillTableRange()" type="button" class="btn btn-success px-4 ms-2  ">Go</button>
-            </div>
-
-        </div>
-        <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
-
-            <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
-            <button type="button" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF</button>
-
-        </div>
-
-
-    </div> -->
 
      <!--table-->
      <div class="card text-white bg-dark m-4">
@@ -167,6 +141,7 @@
          add_rule_modal.click();
      }
 
+     //shows the msg modal
      function showMsg(title, body) {
          document.getElementById('messageTitle').innerHTML = title;
          document.getElementById('messageBody').innerHTML = body;

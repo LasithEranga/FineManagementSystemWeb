@@ -104,7 +104,7 @@
                 showMsg("Data not found!", "Sorry! There are no previous records");
             }
         }
-        http_req.open('GET', "Previous_Records/get_data.php?driver_nic='" + '990811130V');
+        http_req.open('GET', "Previous_Records/get_data.php");
         http_req.send();
     }
     fillTable();
@@ -118,7 +118,7 @@
                 showMsg("Data not found!", "Sorry! There are no previous records for selected date range");
             }
         }
-        http_req.open('GET', "Previous_Records/get_data.php?driver_nic='" + '990811130V' + "&from=" + from.value + "&to=" + to.value);
+        http_req.open('GET', "Previous_Records/get_data.php?&from=" + from.value + "&to=" + to.value);
         http_req.send();
     }
 </script>
