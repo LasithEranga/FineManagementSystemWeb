@@ -468,17 +468,16 @@
              }
          }
 
-
-
-
-
          if (allvalid) {
              document.getElementById('submit').click();
          }
 
      }
 
+     //end of save details function
 
+
+     //export as pdf
      document.getElementById("printBtn").addEventListener("click", () => {
         const table_body = document.getElementById('table_body');
          spaning_circle.classList.remove('visually-hidden');
