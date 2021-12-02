@@ -86,7 +86,10 @@
          <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
              <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
-             <button type="button" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF</button>
+             <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
+             <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
+        
+             </button>
              <button id="btn_add_user" type="button" class="btn  btn-block btn-success px-4 me-md-2" onclick="showAddUserModal()">Add User</button>
 
          </div>
@@ -109,6 +112,7 @@
      const add_user_modal = document.getElementById('add_user_modal');
      const btn_add_user = document.getElementById('btn_add_user');
      const add_update_heading = document.getElementById('add_update_heading');
+     
 
      var selected_section = "all_users"
      //initially loads to all user, therefore add user button is hidden
@@ -233,7 +237,7 @@
                                     </div>
                                     <div class='mb-3'>
                                         <label for='phone' class='form-label'>Contact No</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' placeholder="+(94) 770543422/0770543422" name='phone'  placeholder='0772563145'>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' placeholder="0770543422" name='phone'  placeholder='0772563145'>
                                         <span id='phone_error' class="text-danger"></span>
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
@@ -430,6 +434,7 @@
          //validate phone no
          const regXpC = /^\d{10}$/;
 
+
             if (phone.value == "") {
                 phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
                 if (allvalid) {
@@ -444,7 +449,6 @@
 
             }
 
-        
 
          //validate email
 
@@ -464,15 +468,112 @@
              }
          }
 
-
-
-
-
          if (allvalid) {
              document.getElementById('submit').click();
          }
 
      }
 
-     
+     //end of save details function
+
+
+     //export as pdf
+     document.getElementById("printBtn").addEventListener("click", () => {
+        const table_body = document.getElementById('table_body');
+         spaning_circle.classList.remove('visually-hidden');
+         let tableHeading =""; //need to change table heading acording because we have three types
+         let listName = "";
+         if (selected_section == "all_users") {
+             listName = "User Details - All Users";
+             tableHeading = `<th scope='col'>NIC NO</th>
+                                <th scope='col'>First Name</th>
+                                <th scope='col'>Last Name</th>
+                                <th scope='col'>Full Name</th>
+                                <th scope='col'>Email</th>
+                                <th scope='col'>Contact No</td>
+                                <th scope='col'>Address</th>`;
+         } else if (selected_section == "officers") {
+            listName = "User Details - Police Officers";
+            tableHeading = `<th scope='col'>Police ID</th>
+                                <th scope='col'>First Name</th>
+                                <th scope='col'>Last Name</th>
+                                <th scope='col'>Full Name</th>
+                                <th scope='col'>Email</th>
+                                <th scope='col'>NIC</th>
+                                <th scope='col'>Contact No</td>
+                                <th scope='col'>Post</td>
+                                <th scope='col'>Address</td>`;
+         } else if (selected_section == "drivers") {
+            listName = "User Details - Drivers";
+            tableHeading = `<th scope='col'>NIC NO</th>
+                                <th scope='col'>First Name</th>
+                                <th scope='col'>Last Name</th>
+                                <th scope='col'>Full Name</th>
+                                <th scope='col'>Email</th>
+                                <th scope='col'>Contact No</td>
+                                <th scope='col'>Address</th>`;
+         }
+         let printTemplate = `<div id='print' class='m-1'>
+                          <div class='d-flex flex-row  col-12'>
+                            <div class='col-1 '></div>
+                            <div class='col-1 mt-3 pt-1'> <img src='https://finemanagementsystem.000webhostapp.com/images/glogo.png' alt=''height='75px'></div>
+                            <div class='col-8 text-center mt-4 '>
+                              <span class='fw-bold fs-2 '>  SRI LANKA POLICE </span><br> ` + listName + `<p></p>
+                            </div>
+                            <div class='col-1  mt-3'><img src='https://finemanagementsystem.000webhostapp.com/images/policeLogo.png' alt=''></div>
+                          </div>
+                          <div class="table-responsive mx-4">
+                            <table class="table table-striped table-light table-hover">
+                              <thead>
+                                <tr>
+                                  `+ tableHeading +`
+                                </tr>
+                              </thead>
+                              <tbody id="table_contents">`;
+
+         //const element = document.getElementById("print");
+         const element = printTemplate + table_body.innerHTML + `</tbody></table></div></div>`;
+         html2pdf(element, {
+             margin: 1,
+             filename: listName + '.pdf',
+             image: {
+                 type: 'png',
+                 quality: 0.99
+             },
+             html2canvas: {
+                 dpi: 192,
+                 letterRendering: true,
+                 useCORS: true
+             },
+             jsPDF: {
+                 unit: 'pt',
+                 format: 'a3',
+                 orientation: 'portrait'
+             }
+         });
+         setTimeout(() => {
+             spaning_circle.classList.add('visually-hidden')
+         }, 1000);
+
+     });
+
+     //perform update and insert operations
+     //  function saveDetails(){
+     //     var allvalid = true;
+     //     const police_id_error = document.getElementById('police_id_error');
+     //     const police_id = document.getElementById('police_id');
+     //     if(isNaN(police_id.value) ){
+     //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
+     //         if(allvalid){
+     //             allvalid = false;
+     //         }
+     //     }else{
+     //         police_id_error.innerHTML = "";
+     //     }
+
+     //     if(allvalid){
+     //         document.getElementById('submit').click();
+     //     }
+
+     //  }
  </script>

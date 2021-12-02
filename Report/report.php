@@ -63,8 +63,11 @@
     </div>
     <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-2 mt-lg-0">Share</button>
-      <button type="button" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF</button>
+      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-4 mt-lg-0">Share</button>
+      <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF 
+        
+          <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
+        
 
     </div>
 
@@ -72,26 +75,27 @@
   </div>
 
   <!--table-->
-  <div class=" bg-dark text-white bg-light m-4">
- 
-    <div class=" table-responsive" style="height: 70vh; padding-top: 0;">
+  <div>
+    <!--wrapper for printing  -->
+    <div id='printArea' class=" bg-dark text-white bg-light m-4">
+      <div class=" table-responsive" style="height: 70vh; padding-top: 0;">
+        <table class="table table-striped table-dark table-hover">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">NIC</th>
+              <th scope="col">Date</th>
+              <th scope="col">Rules</th>
+              <th scope="col">Penalty</th>
+            </tr>
+          </thead>
+          <tbody id="table_contents">
 
-      <table class="table table-striped table-dark table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Receipt ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">NIC</th>
-            <th scope="col">Date</th>
-            <th scope="col">Rules</th>
-            <th scope="col">Penalty</th>
-          </tr>
-        </thead>
-        <tbody id="table_contents">
-          
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -100,7 +104,9 @@
   const btn_go = document.getElementById('btn_go');
   const from = document.getElementById('from');
   const to = document.getElementById('to');
+  const printArea = document.getElementById('printArea');
   const list_type = document.getElementById('list_type');
+  const spaning_circle = document.getElementById('spaning_circle');
 
   //shows the message as a modal view with passed arguments
   function showMsg(title, body) {
@@ -109,21 +115,81 @@
     document.getElementById("msgModal").click();
   }
 
+  //exports the table as a pdf
+  document.getElementById("printBtn").addEventListener("click", () => {
+    spaning_circle.classList.remove('visually-hidden');
+    let listName = "";
+    if (list_type.value == "expired") {
+      listName = "Expired Fine receipt List from " + from.value + " to " + to.value;
+    } else if (list_type.value == "suedList") {
+      listName = "Sued Fine receipt List from " + from.value + " to " + to.value;
+    } else if (list_type.value == "pending") {
+      listName = "Payment pending Fine receipt List from " + from.value + " to " + to.value;
+    } else if (list_type.value == "paid") {
+      listName = "Settled Fine receipt List from " + from.value + " to " + to.value;
+    } else if (list_type.value == "allRecords") {
+      listName = "All Fine Receipts from " + from.value + " to " + to.value;
+    }
+    let printTemplate = `<div id='print' class='m-1'>
+                          <div class='d-flex flex-row  col-12'>
+                            <div class='col-1 '></div>
+                            <div class='col-1 mt-3 pt-1'> <img src='https://finemanagementsystem.000webhostapp.com/images/glogo.png' alt=''height='75px'></div>
+                            <div class='col-8 text-center mt-4 '>
+                              <span class='fw-bold fs-2 '>  SRI LANKA POLICE </span><br> ` + listName + `<p></p>
+                            </div>
+                            <div class='col-1  mt-3'><img src='https://finemanagementsystem.000webhostapp.com/images/policeLogo.png' alt=''></div>
+                          </div>
+                          <div class="table-responsive mx-4">
+                            <table class="table table-striped table-light table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">ID</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Address</th>
+                                  <th scope="col">NIC</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Rules</th>
+                                  <th scope="col">Penalty</th>
+                                </tr>
+                              </thead>
+                              <tbody id="table_contents">`;
+
+    //const element = document.getElementById("print");
+    const element = printTemplate + table_contents.innerHTML + `</tbody></table></div></div>`;
+    html2pdf(element, {
+      margin: 1,
+      filename: list_type.value + '.pdf',
+      image: {
+        type: 'png',
+        quality: 0.99
+      },
+      html2canvas: {
+        dpi: 192,
+        letterRendering: true,
+        useCORS: true
+      },
+      jsPDF: {
+        unit: 'pt',
+        format: 'letter',
+        orientation: 'portrait'
+      }
+    });
+    setTimeout(()=>{spaning_circle.classList.add('visually-hidden')},1000);
+    
+  });
+
   //fills table with data available in db for selected date range
   function fillTable() {
     var selection = list_type.value;
     const http_req = new XMLHttpRequest();
     http_req.onload = function() {
-     // console.log(this.responseText);
-        table_contents.innerHTML = this.responseText;
-        if(this.responseText == ""){
-          showMsg("Data not found!","Sorry! No data available in seleceted date range");
-        }
+      // console.log(this.responseText);
+      table_contents.innerHTML = this.responseText;
+      if (this.responseText == "") {
+        showMsg("Data not found!", "Sorry! No data available in seleceted date range");
+      }
     }
-    http_req.open('GET', "Report/get_data.php?from='" + from.value + "'&to='" + to.value + "'&list="+selection);
+    http_req.open('GET', "Report/get_data.php?from='" + from.value + "'&to='" + to.value + "'&list=" + selection);
     http_req.send();
   }
-
-
-
 </script>

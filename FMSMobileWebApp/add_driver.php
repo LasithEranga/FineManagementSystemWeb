@@ -8,14 +8,12 @@
     $email = $_POST['email'];
     $nic = $_POST['nic'];
     $phone = $_POST['phone'];
-    $licenseNo = $_POST['licenseNo'];
-    $vehicleNo = $_POST['vehicleNo'];
     
-    $query = "INSERT INTO `driver`(`nic`, `fname`, `lname`, `full_name`, `email`, `contact_no`, `address`,`license_no`, `vehicle_no`) VALUES('".$nic."','".$fname."','".$lname."','".$fullname."','".$email."','".$phone."','".$address."','".$licenseNo."','".$vehicleNo."')";
+    $query = "INSERT INTO `driver`(`nic`, `fname`, `lname`, `full_name`, `email`, `contact_no`, `address`) VALUES('".$nic."','".$fname."','".$lname."','".$fullname."','".$email."','".$phone."','".$address."')";
     $run_query = mysqli_query($conn, $query);     
     if ($run_query) {
         echo "<script> alert('Driver Added successfully ')</script>";
-        echo "<script> window.open('./home.html','_self')</script>";
+        echo "<script> window.open('./home.php','_self')</script>";
     }    
 
 ?>

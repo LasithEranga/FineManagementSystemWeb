@@ -26,9 +26,9 @@ session_start();
   </style>
 </head>
 
-<body class="bg-dark">
-  <div class="d-flex flex-column bg-dark text-white col-12">
-    <div class="m-50 ms-3 fs-3 text-center">
+<body class="bg-dark d-flex justify-content-center">
+  <div class="d-flex flex-column bg-dark text-white col-12 col-md-5">
+    <div class="m-50 ms-3 fs-3 text-md-center">
       <img src="./images/logo.png" width="120px" alt="" />
     </div>
     <div class="m-50 ms-3 fs-3">LOGIN</div>

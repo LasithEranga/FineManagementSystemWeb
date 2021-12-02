@@ -56,7 +56,7 @@
 
                 </div>
 
-                <div class="card-body text-center col-8 col-lg-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 mx-5 my-2 my-md-0" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class="  ">
                             <i class="fa fa-language " style="font-size:120px"></i>
@@ -65,7 +65,7 @@
                     </a>
                 </div>
 
-                <div class="card-body text-center col-8 col-lg-2" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 mx-5 mx-md-0" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class="  ">
                             <i class="fa fa-bell " style="font-size:120px"></i>
@@ -73,9 +73,9 @@
                         </div>
                     </a>
                 </div>
-                <div class="card-body text-center col-1">
+                <div class="card-body text-center d-none  d-md-flex col-1">
                 </div>
-                <div class="card-body text-center col-1">
+                <div class="card-body text-center d-none d-md-flex col-1">
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
                     </a>
                 </div>
 
-                <div class="card-body text-center col-8 col-lg-2 mx-5" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 mx-5 my-2 my-md-0 " style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class=" ">
                             <i class="fa fa-question-circle " style="font-size:120px"></i>
@@ -98,7 +98,7 @@
                     </a>
                 </div>
 
-                <div class="card-body text-center col-8 col-lg-2" style="color:#a4a5b8;border: 1px solid;">
+                <div class="card-body text-center col-8 col-lg-2 mx-5 mx-md-0" style="color:#a4a5b8;border: 1px solid;">
                     <a href="" class="rm_decoration">
                         <div class=" ">
                             <i class="fa fa-exclamation-circle " style="font-size:120px"></i>

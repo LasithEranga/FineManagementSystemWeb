@@ -156,7 +156,7 @@ echo "<script>window.open('index.php','_self')</script>";
             xmlhttp.onload = function () {
                 document.getElementById('statement_id').innerHTML = this.responseText;
                 var currentdate = new Date();
-                issue_date.innerHTML = currentdate.getFullYear()+ "-" + currentdate.getMonth() + "-" + currentdate.getDate();
+                issue_date.innerHTML = currentdate.getFullYear()+ "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate();
                 issue_time.innerHTML = currentdate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false });
             }
             xmlhttp.open('GET', 'get_statementID.php');
@@ -245,7 +245,7 @@ echo "<script>window.open('index.php','_self')</script>";
                     alert('Fine receipt saved successfully ');
                     window.open('./home.php','_self');
                 };
-            }
+            } 
             xmlhttp.open('GET', 'save_fine_receipt.php?officer_id='+officer_id.innerHTML+'&driver_nic='+driver_nic.innerHTML+'&date='+issue_date.innerHTML+'&amount='+totalAmount+'&time='+issue_time.innerHTML+'&offence_id_arr='+ruleList);
             xmlhttp.send();
         }
