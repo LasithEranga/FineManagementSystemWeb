@@ -5,7 +5,7 @@ if (!isset($_SESSION['police_id'])) {
 
     echo "<script>window.open('index.php','_self')</script>";
 }
-$query = "SELECT COUNT(Ref_No) as fine_receipts FROM fine_receipt WHERE officer_id='" . $_SESSION['police_id'] . "'";
+$query = "SELECT COUNT(Ref_No) as fine_receipts FROM fine_receipt WHERE officer_id='" . $_SESSION['police_id'] . "' AND Date = CURRENT_DATE";
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_array($result);
 ?>
@@ -48,50 +48,41 @@ $data = mysqli_fetch_array($result);
                     <form action="add_driver.php" method="post">
                         <div class="mb-3">
                             <label for="fname" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="fname" name="fname" placeholder="Jhon">
+                            <input type="text" class="form-control" id="fname" name="fname" placeholder="Nimal">
                             <span id='fname_error' class="text-danger"></span>
 
                         </div>
                         <div class="mb-3">
                             <label for="lname" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lname" name="lname" placeholder="Doily">
+                            <input type="text" class="form-control" id="lname" name="lname" placeholder="Silva">
                             <span id='lname_error' class="text-danger"></span>
 
                         </div>
                         <div class="mb-3">
                             <label for="fullname" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="full_name" name="fullname" placeholder="Doily">
+                            <input type="text" class="form-control" id="full_name" name="fullname" placeholder="Nimal Silva">
                             <span id='full_name_error' class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Doily">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="KandyRd Kadawatha">
                             <span id='address_error' class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="text" class="form-label">Email Address</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Doily">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="nimal@gmail.com">
                             <span id='email_error' class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="nic" class="form-label">Owner NIC</label>
-                            <input type="text" class="form-control" id="nic" name="nic" placeholder="Doily">
+                            <input type="text" class="form-control" id="nic" name="nic" placeholder="990811130V">
                             <span id='nic_error' class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Contact No</label>
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Doily">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="0770543422">
                             <span id='phone_error' class="text-danger"></span>
                         </div>
-
-                        <!-- <div class="mb-3">
-                    <label for="licenseNo" class="form-label">License No</label>
-                    <input type="text" class="form-control" id="licenseNo" name="licenseNo" placeholder="Doily">
-                </div>
-                <div class="mb-3">
-                    <label for="vehicleNo" class="form-label">Vehicle No</label>
-                    <input type="text" class="form-control" id="vehicleNo" name="vehicleNo" placeholder="Doily">
-                </div>  -->
 
                         <input id="submit" type="submit" hidden="true">
                     </form>
@@ -118,24 +109,25 @@ $data = mysqli_fetch_array($result);
             <a class="navbar-brand" href="logout.php"><?php echo $_SESSION['name'] ?></a>
         </div>
     </nav>
-    <div class=" bg-dark vh-100 d-flex flex-column">
+    <div class=" bg-dark vh-100 d-flex flex-column flex-md-row">
 
-        <div class=" bg-light m-3 mt-5 rounded" style="height: 10rem; ">
+        <div class=" bg-light col-md-4 m-3 mt-5 rounded" style="height: 10rem; ">
 
             <div class="d-flex flex-column">
                 <div class=" ms-3 mt-3 fs-1"> Today</div>
-                <div class=" ms-3 mt-3 fs-3"> <?php echo $data['fine_receipts']; ?> New Fine Receipt(s)</div>
+                <div class=" ms-3 mx-md-3 mt-3 fs-3"> <?php echo $data['fine_receipts']; ?> New Fine Receipt(s)</div>
             </div>
+            
         </div>
-        <div id="search_driver" class=" bg-light m-3  rounded d-flex justify-content-center align-items-center" style="height: 6rem; ">
+        <div id="search_driver" class=" bg-light m-3 mt-md-5 col-md-2 fs-3  rounded d-flex justify-content-center align-items-center" style="height: 10rem; ">
             Search Driver
         </div>
 
-        <div id="add_driver" class=" bg-light m-3  rounded d-flex justify-content-center align-items-center" style="height: 6rem; ">
+        <div id="add_driver" class=" bg-light m-3 mt-md-5 col-md-2 fs-3 rounded d-flex justify-content-center align-items-center" style="height: 10rem; ">
             Add Driver
         </div>
 
-        <div id="new_receipt" class=" bg-light m-3  rounded d-flex  justify-content-center align-items-center" style="height: 6rem; ">
+        <div id="new_receipt" class=" bg-light m-3 mt-md-5 col-md-2 fs-3 rounded d-flex  justify-content-center align-items-center" style="height: 10rem; ">
             New Fine Receipt
         </div>
     </div>

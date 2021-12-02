@@ -237,7 +237,7 @@
                                     </div>
                                     <div class='mb-3'>
                                         <label for='phone' class='form-label'>Contact No</label>
-                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' placeholder="+(94) 770543422/0770543422" name='phone'  placeholder='0772563145'>
+                                        <input type='text' class='form-control bg-dark bg-dark text-light' id='phone' placeholder="0770543422" name='phone'  placeholder='0772563145'>
                                         <span id='phone_error' class="text-danger"></span>
                                     </div>
                                     <input id='submit' type='submit' hidden='true'>`;
