@@ -387,6 +387,8 @@
          } else {
              nic_error.innerHTML = "";
          }
+
+
          //validate post
          if (post.value == "") {
              post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
@@ -416,7 +418,7 @@
          } else {
              fname_error.innerHTML = "";
 
-     }
+         }
 
 
          //validate last name
@@ -432,7 +434,7 @@
              }
          } else {
              lname_error.innerHTML = "";
-     }
+         }
 
 
          //validate full name
@@ -448,7 +450,7 @@
              }
          } else {
              full_name_error.innerHTML = "";
-     }
+         }
 
 
          //validate address
@@ -467,47 +469,47 @@
          }
 
 
-     //validate phone no
-     const regXpC = /^\d{10}$/;
+         //validate phone no
+         const regXpC = /^\d{10}$/;
 
 
-     if (phone.value == "") {
-         phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         if (regXpC.test(phone.value)) {
-             phone_error.innerHTML = "";
-         } else {
-             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
-         }
-
-     }
-
-
-     //validate email
-
-     if (email.value == "") {
-         email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         if (!emailCheck.test(email.value)) {
-             email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
+         if (phone.value == "") {
+             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
              if (allvalid) {
                  allvalid = false;
              }
          } else {
-             email_error.innerHTML = "";
+             if (regXpC.test(phone.value)) {
+                 phone_error.innerHTML = "";
+             } else {
+                 phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
+             }
+
+         }
+
+
+         //validate email
+
+         if (email.value == "") {
+             email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             if (!emailCheck.test(email.value)) {
+                 email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else {
+                 email_error.innerHTML = "";
+             }
+         }
+
+         if (allvalid) {
+             document.getElementById('submit').click();
          }
      }
-
-     if (allvalid) {
-         document.getElementById('submit').click();
-     }
-
      //end of save details function
 
 
@@ -590,8 +592,6 @@
          }, 1000);
 
      });
-
-
  </script>
  <script type="text/javascript">
      function sendEmail() {
