@@ -187,9 +187,15 @@
              if (allvalid) {
                  allvalid = false;
              }
+         } else if (!rule_id_check.test(rule_id.value)) {
+             rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID should be Numeric";
+             if (allvalid) {
+                 allvalid = false;
+             }
          } else {
              rule_id_error.innerHTML = "";
          }
+
 
 
          //validate rule name

@@ -85,7 +85,7 @@
          </div>
          <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-             <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
+             <button type="button" id="btn_share" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
              <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
                  <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
 
@@ -300,6 +300,7 @@
          }
      }
 
+     //start of save details function
      function saveDetails() {
          var allvalid = true;
          const police_id_error = document.getElementById('police_id_error');
@@ -330,20 +331,30 @@
          const phone = document.getElementById('phone');
 
          var emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+         var nameCheck = /^[a-zA-Z\s]+$/;
+         var addressCheck = /^[a-zA-Z0-9\/\s,]+$/;
 
          //check whether officer was selected
          if (selected_section == "officers") {
-
              //validate police id
              const police_id_check = /^\d{5}$/;
-
              if (police_id.value == "") {
                  police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
                  if (allvalid) {
                      allvalid = false;
                  }
              } else if (!police_id_check.test(police_id.value)) {
+                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be 5 digits";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else if (!police_id_check.test(police_id.value)) {
                  police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
+             } else if (!nameCheck.test(post.value)) {
+                 post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is invalid!";
                  if (allvalid) {
                      allvalid = false;
                  }
@@ -354,6 +365,28 @@
          }
 
 
+
+         //validate nic
+         var checkNICType1 = /^\d{9}[vxVX]{1}$/;
+         var checkNICType2 = /^\d{12}$/
+         if (nic.value == "") {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!checkNICType1.test(nic.value) && (nic.value.length <= 10)) {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is invalid!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!checkNICType2.test(nic.value) && (nic.value.length == 12)) {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is invalid!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             nic_error.innerHTML = "";
+         }
          //validate post
          if (post.value == "") {
              post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
@@ -363,73 +396,76 @@
          } else {
              post_error.innerHTML = "";
          }
+
+
+
+
+
+
+         //validate first name
+         if (fname.value == "") {
+             fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!nameCheck.test(fname.value)) {
+             fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Name should not include numbers or special characters!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             fname_error.innerHTML = "";
+
      }
 
 
-     //validate nic
-     if (nic.value == "") {
-         nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         nic_error.innerHTML = "";
-     }
-
-     if (nic.value.length < 10) {
-         nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else if (nic.value.length > 10) {
-         nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         nic_error.innerHTML = "";
+         //validate last name
+         if (lname.value == "") {
+             lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!nameCheck.test(lname.value)) {
+             lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name should not include numbers or special characters!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             lname_error.innerHTML = "";
      }
 
 
-     //validate first name
-     if (fname.value == "") {
-         fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         fname_error.innerHTML = "";
+         //validate full name
+         if (full_name.value == "") {
+             full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!nameCheck.test(full_name.value)) {
+             full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i>  Full name should not include numbers or special characters!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             full_name_error.innerHTML = "";
      }
 
-     //validate last name
-     if (lname.value == "") {
-         lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         lname_error.innerHTML = "";
-     }
 
-     //validate full name
-     if (full_name.value == "") {
-         full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
-         if (allvalid) {
-             allvalid = false;
+         //validate address
+         if (address.value == "") {
+             address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!addressCheck.test(address.value)) {
+             address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is invalid!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             address_error.innerHTML = "";
          }
-     } else {
-         full_name_error.innerHTML = "";
-     }
 
-     //validate address
-     if (address.value == "") {
-         address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is required!";
-         if (allvalid) {
-             allvalid = false;
-         }
-     } else {
-         address_error.innerHTML = "";
-     }
 
      //validate phone no
      const regXpC = /^\d{10}$/;
@@ -471,8 +507,6 @@
      if (allvalid) {
          document.getElementById('submit').click();
      }
-
-     
 
      //end of save details function
 
@@ -557,23 +591,32 @@
 
      });
 
-     //perform update and insert operations
-     //  function saveDetails(){
-     //     var allvalid = true;
-     //     const police_id_error = document.getElementById('police_id_error');
-     //     const police_id = document.getElementById('police_id');
-     //     if(isNaN(police_id.value) ){
-     //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
-     //         if(allvalid){
-     //             allvalid = false;
-     //         }
-     //     }else{
-     //         police_id_error.innerHTML = "";
-     //     }
 
-     //     if(allvalid){
-     //         document.getElementById('submit').click();
-     //     }
+ </script>
+ <script type="text/javascript">
+     function sendEmail() {
+         Email.send({
+                 Host: "smtp.gmail.com",
+                 Username: "finexpayment@gmail.com",
+                 Password: "cxbmyrkpzqunokzk",
+                 To: 'lasitheranga1@gmail.com',
+                 From: "finexpayment@gmail.com",
+                 Subject: "Sending Email using javascript",
+                 Body: `<th scope='col'>NIC NO</th>
+                                <th scope='col'>First Name</th>
+                                <th scope='col'>Last Name</th>
+                                <th scope='col'>Full Name</th>
+                                <th scope='col'>Email</th>
+                                <th scope='col'>Contact No</td>
+                                <th scope='col'>Address</th>` + table_body.innerHTML + `</tbody></table></div></div>`,
+                 html: "",
+             })
+             .then(function(message) {
+                 alert("mail sent successfully")
+             });
+     }
 
-     //  }
+     document.getElementById('btn_share').addEventListener('click', () => {
+         sendEmail();
+     });
  </script>
