@@ -192,4 +192,6 @@
     http_req.open('GET', "Report/get_data.php?from='" + from.value + "'&to='" + to.value + "'&list=" + selection);
     http_req.send();
   }
+
+  
 </script>

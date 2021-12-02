@@ -87,8 +87,8 @@
 
              <button type="button" id="btn_share" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
              <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
-             <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
-        
+                 <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
+
              </button>
              <button id="btn_add_user" type="button" class="btn  btn-block btn-success px-4 me-md-2" onclick="showAddUserModal()">Add User</button>
 
@@ -112,7 +112,7 @@
      const add_user_modal = document.getElementById('add_user_modal');
      const btn_add_user = document.getElementById('btn_add_user');
      const add_update_heading = document.getElementById('add_update_heading');
-     
+
 
      var selected_section = "all_users"
      //initially loads to all user, therefore add user button is hidden
@@ -300,6 +300,7 @@
          }
      }
 
+     //start of save details function
      function saveDetails() {
          var allvalid = true;
          const police_id_error = document.getElementById('police_id_error');
@@ -330,10 +331,11 @@
          const phone = document.getElementById('phone');
 
          var emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+         var nameCheck = /^[a-zA-Z\s]+$/;
+         var addressCheck = /^[a-zA-Z0-9\/\s,]+$/;
 
          //check whether officer was selected
          if (selected_section == "officers") {
-
              //validate police id
              const police_id_check = /^\d{5}$/;
              if (police_id.value == "") {
@@ -341,7 +343,7 @@
                  if (allvalid) {
                      allvalid = false;
                  }
-             }else if (!police_id_check.test(police_id.value)) {
+             } else if (!police_id_check.test(police_id.value)) {
                  police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be 5 digits";
                  if (allvalid) {
                      allvalid = false;
@@ -357,6 +359,11 @@
                  if (allvalid) {
                      allvalid = false;
                  }
+             } else if (!nameCheck.test(post.value)) {
+                 post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is invalid!";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
              } else {
                  post_error.innerHTML = "";
              }
@@ -364,33 +371,37 @@
 
 
          //validate nic
+         var checkNICType1 = /^\d{9}[vxVX]{1}$/;
+         var checkNICType2 = /^\d{12}$/
          if (nic.value == "") {
              nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
              if (allvalid) {
                  allvalid = false;
              }
+         } else if (!checkNICType1.test(nic.value) && (nic.value.length <= 10)) {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is invalid!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!checkNICType2.test(nic.value) && (nic.value.length == 12)) {
+             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is invalid!";
+             if (allvalid) {
+                 allvalid = false;
+             }
          } else {
              nic_error.innerHTML = "";
          }
 
-         if (nic.value.length < 10) {
-             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else if (nic.value.length > 10) {
-             nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             nic_error.innerHTML = "";
-         }
 
 
          //validate first name
          if (fname.value == "") {
              fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!nameCheck.test(fname.value)) {
+             fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Name should not include numbers or special characters!";
              if (allvalid) {
                  allvalid = false;
              }
@@ -404,6 +415,11 @@
              if (allvalid) {
                  allvalid = false;
              }
+         } else if (!nameCheck.test(lname.value)) {
+             lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name should not include numbers or special characters!";
+             if (allvalid) {
+                 allvalid = false;
+             }
          } else {
              lname_error.innerHTML = "";
          }
@@ -411,6 +427,11 @@
          //validate full name
          if (full_name.value == "") {
              full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!nameCheck.test(full_name.value)) {
+             full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i>  Full name should not include numbers or special characters!";
              if (allvalid) {
                  allvalid = false;
              }
@@ -424,45 +445,46 @@
              if (allvalid) {
                  allvalid = false;
              }
+         } else if (!addressCheck.test(address.value)) {
+             address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is invalid!";
+             if (allvalid) {
+                 allvalid = false;
+             }
          } else {
              address_error.innerHTML = "";
          }
 
          //validate phone no
-         const regXpC = /^\d{10}$/;
+         const checkContactNo = /^\d{10}$/;
+         if (phone.value == "") {
+             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             if (checkContactNo.test(phone.value)) {
+                 phone_error.innerHTML = "";
+             } else {
+                 phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number shoud be 10 digits!";
+             }
 
-
-            if (phone.value == "") {
-                phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
-                if (allvalid) {
-                    allvalid = false;
-                }
-            } else {
-                if (regXpC.test(phone.value)) {
-                    phone_error.innerHTML = "";
-                } else {
-                    phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
-                }
-
-            }
+         }
 
 
          //validate email
-
+         var checkEmail = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
          if (email.value == "") {
              email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
              if (allvalid) {
                  allvalid = false;
              }
-         } else {
-             if (!emailCheck.test(email.value)) {
-                 email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
-                 if (allvalid) {
-                     allvalid = false;
-                 }
-             } else {
-                 email_error.innerHTML = "";
+         } else if (!emailCheck.test(email.value)) {
+             email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
+             if (allvalid) {
+                 allvalid = false;
              }
+         } else {
+             email_error.innerHTML = "";
          }
 
          if (allvalid) {
@@ -470,15 +492,14 @@
          }
 
      }
-
      //end of save details function
 
 
      //export as pdf
      document.getElementById("printBtn").addEventListener("click", () => {
-        const table_body = document.getElementById('table_body');
+         const table_body = document.getElementById('table_body');
          spaning_circle.classList.remove('visually-hidden');
-         let tableHeading =""; //need to change table heading acording because we have three types
+         let tableHeading = ""; //need to change table heading acording because we have three types
          let listName = "";
          if (selected_section == "all_users") {
              listName = "User Details - All Users";
@@ -490,8 +511,8 @@
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Address</th>`;
          } else if (selected_section == "officers") {
-            listName = "User Details - Police Officers";
-            tableHeading = `<th scope='col'>Police ID</th>
+             listName = "User Details - Police Officers";
+             tableHeading = `<th scope='col'>Police ID</th>
                                 <th scope='col'>First Name</th>
                                 <th scope='col'>Last Name</th>
                                 <th scope='col'>Full Name</th>
@@ -501,8 +522,8 @@
                                 <th scope='col'>Post</td>
                                 <th scope='col'>Address</td>`;
          } else if (selected_section == "drivers") {
-            listName = "User Details - Drivers";
-            tableHeading = `<th scope='col'>NIC NO</th>
+             listName = "User Details - Drivers";
+             tableHeading = `<th scope='col'>NIC NO</th>
                                 <th scope='col'>First Name</th>
                                 <th scope='col'>Last Name</th>
                                 <th scope='col'>Full Name</th>
@@ -523,7 +544,7 @@
                             <table class="table table-striped table-light table-hover">
                               <thead>
                                 <tr>
-                                  `+ tableHeading +`
+                                  ` + tableHeading + `
                                 </tr>
                               </thead>
                               <tbody id="table_contents">`;
@@ -554,51 +575,32 @@
 
      });
 
-     //perform update and insert operations
-     //  function saveDetails(){
-     //     var allvalid = true;
-     //     const police_id_error = document.getElementById('police_id_error');
-     //     const police_id = document.getElementById('police_id');
-     //     if(isNaN(police_id.value) ){
-     //         police_id_error.innerHTML = "<i class='fas fa-exclamation-circle'></i> Police ID should be Numeric";
-     //         if(allvalid){
-     //             allvalid = false;
-     //         }
-     //     }else{
-     //         police_id_error.innerHTML = "";
-     //     }
-
-     //     if(allvalid){
-     //         document.getElementById('submit').click();
-     //     }
-
-     //  }
-     
 
  </script>
  <script type="text/javascript">
-    function sendEmail() {
-      Email.send({
-        Host: "smtp.gmail.com",
-        Username: "finexpayment@gmail.com",
-        Password: "Abhirupramuditha199722",
-        To: 'lasitheranga1@gmail.com',
-        From: "finexpayment@gmail.com",
-        Subject: "Sending Email using javascript",
-        Body: "Well that was easy!!",
-        Attachments: [
-          {
-            name: "File_Name_with_Extension",
-            path: "Full Path of the file"
-          }]
-      })
-        .then(function (message) {
-          alert("Mail has been sent successfully")
-        });
-    }
+     function sendEmail() {
+         Email.send({
+                 Host: "smtp.gmail.com",
+                 Username: "finexpayment@gmail.com",
+                 Password: "cxbmyrkpzqunokzk",
+                 To: 'lasitheranga1@gmail.com',
+                 From: "finexpayment@gmail.com",
+                 Subject: "Sending Email using javascript",
+                 Body: `<th scope='col'>NIC NO</th>
+                                <th scope='col'>First Name</th>
+                                <th scope='col'>Last Name</th>
+                                <th scope='col'>Full Name</th>
+                                <th scope='col'>Email</th>
+                                <th scope='col'>Contact No</td>
+                                <th scope='col'>Address</th>` + table_body.innerHTML + `</tbody></table></div></div>`,
+                 html: "",
+             })
+             .then(function(message) {
+                 alert("mail sent successfully")
+             });
+     }
 
-    document.getElementById('btn_share').addEventListener('click',() =>{
-        sendEmail();
-    });
-
-  </script>
+     document.getElementById('btn_share').addEventListener('click', () => {
+         sendEmail();
+     });
+ </script>

@@ -117,7 +117,7 @@ $data = mysqli_fetch_array($result);
                 <div class=" ms-3 mt-3 fs-1"> Today</div>
                 <div class=" ms-3 mx-md-3 mt-3 fs-3"> <?php echo $data['fine_receipts']; ?> New Fine Receipt(s)</div>
             </div>
-            
+
         </div>
         <div id="search_driver" class=" bg-light m-3 mt-md-5 col-md-2 fs-3  rounded d-flex justify-content-center align-items-center" style="height: 10rem; ">
             Search Driver
@@ -169,36 +169,40 @@ $data = mysqli_fetch_array($result);
             const phone = document.getElementById('phone');
 
             var emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var nameCheck = /^[a-zA-Z\s]+$/;
+            var addressCheck = /^[a-zA-Z0-9\/\s,]+$/;
 
-
-            //validate nic
+            var checkNICType1 = /^\d{9}[vxVX]{1}$/;
+            var checkNICType2 = /^\d{12}$/
             if (nic.value == "") {
                 nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is required!";
                 if (allvalid) {
                     allvalid = false;
                 }
+            } else if (!checkNICType1.test(nic.value) && (nic.value.length <= 10)) {
+                nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is invalid!";
+                if (allvalid) {
+                    allvalid = false;
+                }
+            } else if (!checkNICType2.test(nic.value) && (nic.value.length == 12)) {
+                nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> NIC is invalid!";
+                if (allvalid) {
+                    allvalid = false;
+                }
             } else {
                 nic_error.innerHTML = "";
             }
 
-            if (nic.value.length < 10) {
-                nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-                if (allvalid) {
-                    allvalid = false;
-                }
-            } else if (nic.value.length > 10) {
-                nic_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid NIC Number is required!";
-                if (allvalid) {
-                    allvalid = false;
-                }
-            } else {
-                nic_error.innerHTML = "";
-            }
 
 
             //validate first name
             if (fname.value == "") {
                 fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
+                if (allvalid) {
+                    allvalid = false;
+                }
+            } else if (!nameCheck.test(fname.value)) {
+                fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Name should not include numbers or special characters!";
                 if (allvalid) {
                     allvalid = false;
                 }
@@ -212,6 +216,11 @@ $data = mysqli_fetch_array($result);
                 if (allvalid) {
                     allvalid = false;
                 }
+            } else if (!nameCheck.test(lname.value)) {
+                lname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Last name should not include numbers or special characters!";
+                if (allvalid) {
+                    allvalid = false;
+                }
             } else {
                 lname_error.innerHTML = "";
             }
@@ -219,6 +228,11 @@ $data = mysqli_fetch_array($result);
             //validate full name
             if (full_name.value == "") {
                 full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Full name is required!";
+                if (allvalid) {
+                    allvalid = false;
+                }
+            } else if (!nameCheck.test(full_name.value)) {
+                full_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i>  Full name should not include numbers or special characters!";
                 if (allvalid) {
                     allvalid = false;
                 }
@@ -232,52 +246,53 @@ $data = mysqli_fetch_array($result);
                 if (allvalid) {
                     allvalid = false;
                 }
+            } else if (!addressCheck.test(address.value)) {
+                address_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Address is invalid!";
+                if (allvalid) {
+                    allvalid = false;
+                }
             } else {
                 address_error.innerHTML = "";
             }
 
             //validate phone no
-            const regXpC = /^\d{10}$/;
-
+            const checkContactNo = /^\d{10}$/;
             if (phone.value == "") {
                 phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
                 if (allvalid) {
                     allvalid = false;
                 }
             } else {
-                if (regXpC.test(phone.value)) {
+                if (checkContactNo.test(phone.value)) {
                     phone_error.innerHTML = "";
                 } else {
-                    phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
+                    phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number shoud be 10 digits!";
                 }
 
             }
 
 
             //validate email
+            var checkEmail = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (email.value == "") {
                 email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
                 if (allvalid) {
                     allvalid = false;
                 }
-            } else {
-                if (!emailCheck.test(email.value)) {
-                    email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
-                    if (allvalid) {
-                        allvalid = false;
-                    }
-                } else {
-                    email_error.innerHTML = "";
+            } else if (!emailCheck.test(email.value)) {
+                email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
+                if (allvalid) {
+                    allvalid = false;
                 }
+            } else {
+                email_error.innerHTML = "";
             }
-            
+
             if (allvalid) {
                 document.getElementById('submit').click();
             }
 
-        }
-        );
-
+        });
     </script>
 </body>
 

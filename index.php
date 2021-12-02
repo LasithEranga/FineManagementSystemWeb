@@ -64,6 +64,7 @@ echo "<script>window.open('login.php','_self')</script>";
     <script src="xepOnline.jqPlugin.js"></script>
     <script src="html2pdf.bundle.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="md5.min.js"></script>
 
 </head>
 
