@@ -25,8 +25,8 @@
  </button>
  <!-- add/update user rule end-->
 
-  <!--messagebox Modal -->
-  <div class="modal fade" id="messageBox" tabindex="-1">
+ <!--messagebox Modal -->
+ <div class="modal fade" id="messageBox" tabindex="-1">
      <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content">
              <div class="modal-header" style="border: none;">
@@ -117,23 +117,28 @@
          const http_req = new XMLHttpRequest();
          modal_items.innerHTML = `<div class='mb-3'>
                                             <label for='rule_id' class='form-label'>Rule ID</label>
-                                            <input type='text' class='form-control bg-dark bg-dark text-light' id='rule_id' name='rule_id' >
+                                            <input type='text' class='form-control bg-dark bg-dark text-light' id='rule_id' name='rule_id' placeholder='001' >
+                                            <span id='rule_id_error' class="text-danger"></span>
                                         </div>
                                         <div class='mb-3'>
                                             <label for='rule_name' class='form-label'>Rule Name</label>
-                                            <input type='text' class='form-control bg-dark text-light' id='rule_name' name='rule_name' >
+                                            <input type='text' class='form-control bg-dark text-light' id='rule_name' name='rule_name' placeholder='Double line crossed' >
+                                            <span id='rule_name_error' class="text-danger"></span>
                                         </div>
                                         <div class='mb-3'>
                                             <label for='description' class='form-label'>Description</label>
-                                            <input type='text' class='form-control bg-dark text-light' id='description' name='description' >
+                                            <input type='text' class='form-control bg-dark text-light' id='description' name='description' placeholder='The driver crossed double lines' >
+                                            <span id='description_error' class="text-danger"></span>
                                         </div>
                                         <div class='mb-3'>
                                             <label for='penalty_amount' class='form-label'>Penalty Amount</label>
-                                            <input type='text' class='form-control bg-dark text-light' id='penalty_amount' name='penalty_amount' >
+                                            <input type='text' class='form-control bg-dark text-light' id='penalty_amount' name='penalty_amount' placeholder='5000.00' >
+                                            <span id='penalty_amount_error' class="text-danger"></span>
                                         </div>
                                         <div class='mb-3'>
                                             <label for='tag' class='form-label'>Tag</label>
-                                            <input type='text' class='form-control bg-dark text-light' id='tag' name='tag'>
+                                            <input type='text' class='form-control bg-dark text-light' id='tag' name='tag' placeholder='double line'>
+                                            <span id='tag_error' class="text-danger"></span>
                                         </div>
                                         <input id='submit' type='submit' hidden='true'>`;
 
@@ -148,10 +153,104 @@
          document.getElementById("msgModal").click();
      }
 
-    
-     function saveDetails(){
+
+     function saveDetails() {
          //validate details 
          //submit the form 
-         document.getElementById('submit').click();
+
+         var allvalid = true;
+         const rule_id_error = document.getElementById('rule_id_error');
+         const rule_id = document.getElementById('rule_id');
+
+         const rule_name_error = document.getElementById('rule_name_error');
+         const rule_name = document.getElementById('rule_name');
+
+         const description_error = document.getElementById('description_error');
+         const description = document.getElementById('description');
+
+         const penalty_amount_error = document.getElementById('penalty_amount_error');
+         const penalty_amount = document.getElementById('penalty_amount');
+
+         const tag_error = document.getElementById('tag_error');
+         const tag = document.getElementById('tag');
+
+         //validate rule id
+         if (isNaN(rule_id.value)) {
+             rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID should be Numeric";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             rule_id_error.innerHTML = "";
+         }
+
+         if (rule_id.value == "") {
+             rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             rule_id_error.innerHTML = "";
+         }
+
+
+         //validate rule name
+         if (rule_name.value == "") {
+             rule_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             rule_name_error.innerHTML = "";
+         }
+
+
+         //validate description
+         if (description.value == "") {
+             description_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Description is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             description_error.innerHTML = "";
+         }
+
+
+         //validate penalty amount
+         if (isNaN(penalty_amount.value)) {
+             penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount should be Numeric";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             penalty_amount_error.innerHTML = "";
+         }
+
+         if (penalty_amount.value == "") {
+             penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             penalty_amount_error.innerHTML = "";
+         }
+
+
+         //validate tag
+         if (tag.value == "") {
+             tag_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Tag is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             tag_error.innerHTML = "";
+         }
+
+
+
+         if (allvalid) {
+             document.getElementById('submit').click();
+         }
+
      }
  </script>
