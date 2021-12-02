@@ -63,7 +63,7 @@
     </div>
     <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-2 mt-lg-0">Share</button>
+      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-4 mt-lg-0">Share</button>
       <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF 
         
           <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>

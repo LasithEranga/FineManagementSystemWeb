@@ -58,7 +58,7 @@ echo "<script>window.open('login.php','_self')</script>";
     <?php include("sidebar/sidebar.php");?>
     </div>
     <div class="d-flex flex-column  col-2 "></div>
-    <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
+    <div class="d-flex flex-column  bg-dark pe-md-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
         $view = false;
 

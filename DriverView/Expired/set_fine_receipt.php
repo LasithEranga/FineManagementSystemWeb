@@ -13,16 +13,16 @@ while($data = mysqli_fetch_array($result)){
         $rule_list .=  "<div class=''>Offence(".$count."): <span id='rule'>".$rule."</span></div>";
         $count++;
     }
-    $html .= " <div class=' d-flex  col-10 flex-column' style='border:1px solid white; margin-bottom:10px;'>
+    $html .= " <div class=' d-flex  col-12 col-md-10 flex-column' style='border:1px solid white; margin-bottom:10px;'>
                 <div class='d-flex flex-row col-12'>
-                <div class='col-1 ms-3 mt-3'> <img src='./images/glogo.png' height='75px' alt=''></div>
-                <div class='col-8 text-center mt-4 ps-4'>
+                <div class='col-1 ms-md-3 mt-3'> <img src='./images/glogo.png' height='75px' alt=''></div>
+                <div class='col-8 text-center mt-4 ps-4 ms-1 ms-md-0'>
                     <span class='fw-bold '> SPOT FINE STATEMENT </span><br> Road Safety Act 1985</p>
                 </div>
                 <div class='col-1 me-2 mt-3 '><img src='./images/policeLogo.png' alt=''></div>
                 </div>
 
-                <div class='d-flex flex-col  col-10   ms-3 mt-3'>
+                <div class='d-flex flex-column flex-md-row  col-10   ms-3 mt-3'>
                 <div class='flex-row col'>
                     <div class='mb-3 fw-bold '>Fine Statement</div>
 
@@ -42,7 +42,7 @@ while($data = mysqli_fetch_array($result)){
                 </div>
                 </div>
                 </div>
-                <div class='col-11 text-end'>
+                <div class='col-12 col-md-11 text-end'>
                 <img class='mb-3' src='./images/expired.png' width='150px' alt=''>
                 </div>
                 </div>";
