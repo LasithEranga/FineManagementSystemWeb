@@ -38,9 +38,9 @@ $result_array = mysqli_fetch_array($result);
 </nav>
 
 <div class="d-flex container flex-column  bg-dark  text-white col-lg-11 h-auto " style="width: 95%;">
-    <div class=" col-10">
-        <div class="d-flex">
-            <div class="flex-row col-5">
+    <div class=" col-12 col-md-10">
+        <div class="d-flex flex-column flex-md-row">
+            <div class="flex-row ms-2 ms-md-0 col-11 col-md-5">
                 <div class="form-group mb-2">
                     <label for="nic" class="mb-2">NIC</label>
                     <input type="text" class="form-control bg-dark text-light" id="nic" placeholder="Enter email" value="<?php echo $result_array['nic']; ?>">
@@ -63,7 +63,7 @@ $result_array = mysqli_fetch_array($result);
                 </div>
 
             </div>
-            <div class="flex-row col-5 ms-3">
+            <div class="flex-row col-11 col-md-5 ms-2 ms-md-3">
                 <div class="form-group mb-2">
                     <label for="contactNo" class="mb-2">Contact No</label>
                     <input type="text" class="form-control bg-dark text-light" id="contactNo" value="<?php echo $result_array['contact_no']; ?>">

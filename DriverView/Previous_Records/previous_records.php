@@ -40,12 +40,12 @@
         <div class=" bg-dark  d-flex flex-column flex-md-row">
             <div class=" flex-row ms-4 mb-2 ">
                 <label for="from" class="fs-5">From:</label>
-                <input type="date" class=" ms-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
+                <input type="date" class=" ms-lg-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
             </div>
 
             <div class=" flex-row ms-4 mb-2 ">
                 <label for="from" class="fs-5">To:</label>
-                <input type="date" class=" ms-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
+                <input type="date" class=" ms-lg-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
             </div>
 
             <div class=" flex-row ms-3 ">
@@ -55,7 +55,7 @@
         </div>
         <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-            <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
+            <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-4 mt-lg-0">Share</button>
             <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
                 <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
             </button>
@@ -67,7 +67,7 @@
 
     <!--table-->
     <div class="card text-white bg-dark m-4">
-        <table class="table table-dark table-hover">
+        <table class="table table-responsive table-dark table-hover">
             <tdead>
                 <tr>
                     <th scope="col">Reference No</th>
