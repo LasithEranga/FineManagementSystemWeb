@@ -348,14 +348,8 @@
                  if (allvalid) {
                      allvalid = false;
                  }
-             } else {
-                 police_id_error.innerHTML = "";
-             }
-
-
-             //validate post
-             if (post.value == "") {
-                 post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
+             } else if (!police_id_check.test(police_id.value)) {
+                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
                  if (allvalid) {
                      allvalid = false;
                  }
@@ -365,9 +359,11 @@
                      allvalid = false;
                  }
              } else {
-                 post_error.innerHTML = "";
+                 police_id_error.innerHTML = "";
              }
+
          }
+
 
 
          //validate nic
@@ -391,6 +387,18 @@
          } else {
              nic_error.innerHTML = "";
          }
+         //validate post
+         if (post.value == "") {
+             post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else {
+             post_error.innerHTML = "";
+         }
+
+
+
 
 
 
@@ -407,7 +415,9 @@
              }
          } else {
              fname_error.innerHTML = "";
-         }
+
+     }
+
 
          //validate last name
          if (lname.value == "") {
@@ -422,7 +432,8 @@
              }
          } else {
              lname_error.innerHTML = "";
-         }
+     }
+
 
          //validate full name
          if (full_name.value == "") {
@@ -437,7 +448,8 @@
              }
          } else {
              full_name_error.innerHTML = "";
-         }
+     }
+
 
          //validate address
          if (address.value == "") {
@@ -454,31 +466,35 @@
              address_error.innerHTML = "";
          }
 
-         //validate phone no
-         const checkContactNo = /^\d{10}$/;
-         if (phone.value == "") {
-             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             if (checkContactNo.test(phone.value)) {
-                 phone_error.innerHTML = "";
-             } else {
-                 phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number shoud be 10 digits!";
-             }
 
+     //validate phone no
+     const regXpC = /^\d{10}$/;
+
+
+     if (phone.value == "") {
+         phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
+         if (allvalid) {
+             allvalid = false;
+         }
+     } else {
+         if (regXpC.test(phone.value)) {
+             phone_error.innerHTML = "";
+         } else {
+             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
          }
 
+     }
 
-         //validate email
-         var checkEmail = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-         if (email.value == "") {
-             email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else if (!emailCheck.test(email.value)) {
+
+     //validate email
+
+     if (email.value == "") {
+         email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Email Address is required!";
+         if (allvalid) {
+             allvalid = false;
+         }
+     } else {
+         if (!emailCheck.test(email.value)) {
              email_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Email Address is required!";
              if (allvalid) {
                  allvalid = false;
@@ -486,12 +502,12 @@
          } else {
              email_error.innerHTML = "";
          }
-
-         if (allvalid) {
-             document.getElementById('submit').click();
-         }
-
      }
+
+     if (allvalid) {
+         document.getElementById('submit').click();
+     }
+
      //end of save details function
 
 

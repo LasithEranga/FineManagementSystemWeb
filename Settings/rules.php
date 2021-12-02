@@ -176,8 +176,14 @@
 
          //validate rule id
          const rule_id_check = /^\d+$/;
+
          if (rule_id.value == "") {
              rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!rule_id_check.test(rule_id.value)) {
+             rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID should be Numeric";
              if (allvalid) {
                  allvalid = false;
              }
@@ -193,8 +199,15 @@
 
 
          //validate rule name
+         const nameCheck = /^[a-zA-Z\s]+$/;
+
          if (rule_name.value == "") {
              rule_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule name is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!nameCheck.test(rule_name.value)) {
+             rule_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Name should not include numbers!";
              if (allvalid) {
                  allvalid = false;
              }
@@ -204,8 +217,15 @@
 
 
          //validate description
+         const descriptionCheck = /^[a-zA-Z0-9\/\s,]+$/;
+
          if (description.value == "") {
              description_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Description is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!descriptionCheck.test(description.value)) {
+             description_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Valid description is required!";
              if (allvalid) {
                  allvalid = false;
              }
@@ -215,17 +235,17 @@
 
 
          //validate penalty amount
-         if (isNaN(penalty_amount.value)) {
-             penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount should be Numeric";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             penalty_amount_error.innerHTML = "";
-         }
+         //const penalty_amount_check = /^\d+$/;
+         const penalty_amount_check = /^[0-9]*\.[0-9][0-9]$/;
+
 
          if (penalty_amount.value == "") {
              penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!penalty_amount_check.test(penalty_amount.value)) {
+             penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount should have two decimal places!";
              if (allvalid) {
                  allvalid = false;
              }
@@ -235,8 +255,15 @@
 
 
          //validate tag
+         const tagCheck = /^[a-zA-Z\s]+$/;
+
          if (tag.value == "") {
              tag_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Tag is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!tagCheck.test(tag.value)) {
+             tag_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Tag should not include numbers!";
              if (allvalid) {
                  allvalid = false;
              }
