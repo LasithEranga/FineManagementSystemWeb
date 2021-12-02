@@ -468,10 +468,6 @@
              }
          }
 
-
-
-
-
          if (allvalid) {
              document.getElementById('submit').click();
          }

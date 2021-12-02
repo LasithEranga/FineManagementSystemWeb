@@ -12,6 +12,8 @@ if(isset($_REQUEST['drivers'])){
     $address = $_REQUEST['address'];
     $email = $_REQUEST['email'];
     $phone = $_REQUEST['phone'];
+    
+
 
     if(isset($_REQUEST['previous_nic'])){
         //having previous id denotes that the user is trying to update

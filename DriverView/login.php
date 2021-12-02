@@ -74,10 +74,11 @@ session_start();
 
       const http_req = new XMLHttpRequest();
       http_req.onload = function() {
-        alert(this.responseText);
+        //alert(this.responseText);
         if (this.responseText == "logged") {
           window.open('index.php?fine_receipts', '_self');
         } else if (this.responseText == "reset") {
+          //shows the password reset section 
           password_input.value = "";
           show_new_password.style.display = "block";
           password_label.innerHTML = "Verify Password";
@@ -90,7 +91,7 @@ session_start();
         }
 
       }
-      http_req.open('GET', "login_verify.php?nic=" + username.value + "&password=" + password_input.value);
+      http_req.open('POST', "login_verify.php?nic=" + username.value + "&password=" + password_input.value);
       http_req.send();
     }
 

@@ -1,153 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fine Payment Management System</title>
-  <link rel="icon" type="image/x-icon" href="./logo.ico" />
-
-  <!--Stylesheets-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-  <style>
-    body {
-      height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .font-merri {
-      font-family: "Merriweather", serif;
-    }
-
-    .form-select {
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
-    }
-
-    .border_date_input {
-      border: 1px solid #a4c5e1;
-    }
-
-    .bottom-green {
-      border-bottom: 4px solid #03df03;
-    }
-
-    .cursor_change {
-      cursor: pointer;
-    }
-
-    .rm_decoration {
-      text-decoration: none;
-      color: #a4a5b8;
-    }
-
-    .rm_decoration:hover {
-      color: #ccccd0;
-    }
-  </style>
-  <!-- Javascripts -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
-  <script src="xepOnline.jqPlugin.js"></script>
-  <script src="html2pdf.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</head>
-
-<body class="bg-dark">
-  <div id="print" class="m-1">
-    <div class="d-flex flex-row  col-12">
-      <div class="col-1 "></div>
-      <div class="col-1 mt-3 pt-1"> <img src="https://finemanagementsystem.000webhostapp.com/images/glogo.png" alt=""
-          height="75px"></div>
-      <div class="col-8 text-center mt-4 ">
-        <span class="fw-bold fs-2 ">  SRI LANKA POLICE </span><br> Expired Fine receipt List as at 20-20-2021<p></p>
-      </div>
-      <div class="col-1  mt-3"><img src="https://finemanagementsystem.000webhostapp.com/images/policeLogo.png"
-          alt=""></div>
-    </div>
-    
-
-    <div class="table-responsive mx-4">
-      <table id="table_contents" class="table table-dark table-hover"><tdead>
-      </tdead><tbody><tr>
-          <th scope="col">ID</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Full Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">NIC</th>
-          <th scope="col">Contact No
-          </th><th scope="col">Post
-          </th><th scope="col">Address
-          </th><th scope="col" class="btn_edit">Edit</th>
-      </tr>
-   
-  </tbody><tbody>     <tr>
-          <td>35151</td>
-          <td>Lasithl</td>
-          <td>Eranda</td>
-          <td>Lasith Eranda</td>
-          <td>lasith@gmail.com</td>
-          <td>990811130V</td>
-          <td>0770543231</td>
-          <td>Traffic Police Officer</td>
-          <td>B17,Madawalalanda,Dambulla</td>
-          <td onclick="showUpdateModal('35151','officer')" class="btn_edit"><i class="fas fa-user-edit"></i></td>
-      </tr>     <tr>
-          <td>45564</td>
-          <td>Sineru</td>
-          <td>Perera</td>
-          <td>Sineru Perera</td>
-          <td>sineru@gmail.com</td>
-          <td>990545645V</td>
-          <td>0775354546</td>
-          <td>Traffic Police Officer</td>
-          <td>B12,Udawatta,Matara</td>
-          <td onclick="showUpdateModal('45564','officer')" class="btn_edit"><i class="fas fa-user-edit"></i></td>
-      </tr>     <tr>
-          <td>56895</td>
-          <td>Abhiru</td>
-          <td>Wijesinghe</td>
-          <td>Abhiru Wijesinghe</td>
-          <td>abhiru@gmail.com</td>
-          <td>990721130V</td>
-          <td>0770325244</td>
-          <td>Traffic Police Officer</td>
-          <td>B18,Dekinda,Kataragama</td>
-          <td onclick="showUpdateModal('56895','officer')" class="btn_edit"><i class="fas fa-user-edit"></i></td>
-      </tr>     <tr>
-          <td>8399</td>
-          <td>jnfbjnsjd</td>
-          <td>jnsdjn</td>
-          <td>jnsdjn</td>
-          <td>jks@gmail.com</td>
-          <td>232323</td>
-          <td>3422343</td>
-          <td>sdjnkj</td>
-          <td>nsjdkn</td>
-          <td onclick="showUpdateModal('8399','officer')" class="btn_edit"><i class="fas fa-user-edit"></i></td>
-      </tr></tbody></table>
-    </div>
-    <button id="printBtn" >print</button>
-  </div>
-  <script>
-    document.getElementById("printBtn").addEventListener("click", () => {
-     let hide= document.getElementsByClassName('btn_edit');
-     for (var i = 0; i < hide.length; i++) {
-      hide[i].style.display = "none";
-      }
-      const element = document.getElementById("print");
-      //const element = "<h1>Hello World</h1>";
-      //html2pdf().from(element).toPdf().save("bill.pdf");
-      html2pdf(element, { margin: 1, filename: '_userCard.pdf', image: { type: 'png', quality: 0.99 }, html2canvas: { dpi: 192, letterRendering: true, useCORS: true }, jsPDF: { unit: 'pt', format: 'a3', orientation: 'portrait' } });
-    });
-  </script>
-</body>
-
-</html>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: include(../FMS/db.php): failed to open stream: No such file or directory in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>2</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: include(): Failed opening '../FMS/db.php' for inclusion (include_path='.;C:\php\pear') in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>2</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined variable: conn in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>8</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_query() expects parameter 1 to be mysqli, null given in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>8</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.1496</td><td bgcolor='#eeeeec' align='right'>411360</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-query' target='_new'>mysqli_query</a>
+(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>8</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>9</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.2058</td><td bgcolor='#eeeeec' align='right'>411472</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-num-rows' target='_new'>mysqli_num_rows</a>
+(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>9</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined variable: conn in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>16</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_query() expects parameter 1 to be mysqli, null given in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>16</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.2978</td><td bgcolor='#eeeeec' align='right'>411488</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-query' target='_new'>mysqli_query</a>
+(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>16</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in C:\wamp64\www\FMS\DriverView\login_verify.php on line <i>17</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0015</td><td bgcolor='#eeeeec' align='right'>409992</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.3193</td><td bgcolor='#eeeeec' align='right'>411488</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-num-rows' target='_new'>mysqli_num_rows</a>
+(  )</td><td title='C:\wamp64\www\FMS\DriverView\login_verify.php' bgcolor='#eeeeec'>...\login_verify.php<b>:</b>17</td></tr>
+</table></font>
