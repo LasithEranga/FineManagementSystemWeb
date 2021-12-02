@@ -500,7 +500,7 @@
          }
 
      }
-
+    //prints the user list acoriding to the selection
      document.getElementById("printBtn").addEventListener("click", () => {
         const table_body = document.getElementById('table_body');
          spaning_circle.classList.remove('visually-hidden');
