@@ -62,8 +62,7 @@ echo "<script>window.open('login.php','_self')</script>";
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
     <script src="xepOnline.jqPlugin.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <script src="html2pdf.bundle.min.js"></script>
 </head>
 
 <body class="bg-dark">

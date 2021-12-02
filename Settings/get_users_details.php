@@ -18,7 +18,7 @@ if(isset($_REQUEST['selected_section'])){
                                 <th scope='col'>Address</th>
                             </tr>
                          </thead>
-                        <tbody>";
+                        <tbody id='table_body'>";
 
         while ($data = mysqli_fetch_array($result)) {
         $html_code .= "     <tr>
@@ -60,10 +60,10 @@ if(isset($_REQUEST['selected_section'])){
                                 <th scope='col'>Email</th>
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Address</th>
-                                <th scope='col'>Edit</th>
+                                <th class='btn_edit' scope='col'>Edit</th>
                             </tr>
                          </thead>
-                        <tbody>";
+                        <tbody id='table_body'>";
 
         while ($data = mysqli_fetch_array($result)) {
         $html_code .= "     <tr>
@@ -74,7 +74,7 @@ if(isset($_REQUEST['selected_section'])){
                                 <td>" . $data['email'] . "</td>
                                 <td >" . $data['contact_no'] . "</td>
                                 <td>" . $data['address'] . "</td>
-                                <td onclick=showUpdateModal('".$data['nic']."','driver')><i class='fas fa-user-edit'></i></td>
+                                <td class='btn_edit' onclick=showUpdateModal('".$data['nic']."','driver')><i class='fas fa-user-edit'></i></td>
                             </tr>";
         }
         $html_code .= "</tbody>";
@@ -93,10 +93,10 @@ if(isset($_REQUEST['selected_section'])){
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Post</td>
                                 <th scope='col'>Address</td>
-                                <th scope='col'>Edit</th>
+                                <th class='btn_edit' scope='col'>Edit</th>
                             </tr>
                          </thead>
-                        <tbody>";
+                        <tbody id='table_body'>";
 
         while ($data = mysqli_fetch_array($result)) {
         $html_code .= "     <tr>
@@ -109,7 +109,7 @@ if(isset($_REQUEST['selected_section'])){
                                 <td>" . $data['contact_no'] . "</td>
                                 <td>" . $data['post'] . "</td>
                                 <td>" . $data['address'] . "</td>
-                                <td onclick=showUpdateModal('".$data['police_id']."','officer')><i class='fas fa-user-edit'></i></td>
+                                <td class='btn_edit' onclick=showUpdateModal('".$data['police_id']."','officer')><i class='fas fa-user-edit'></i></td>
                             </tr>";
         }
         $html_code .= "</tbody>";

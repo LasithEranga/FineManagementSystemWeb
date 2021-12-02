@@ -147,9 +147,12 @@ $data = mysqli_fetch_array($result);
         }
         );
         document.getElementById("save").addEventListener('click',()=>{
+            
             document.getElementById("submit").click();
         }
         );
+
+
     </script>
 </body>
 
