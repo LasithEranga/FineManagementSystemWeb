@@ -175,7 +175,13 @@
          const tag = document.getElementById('tag');
 
          //validate rule id
-         if (isNaN(rule_id.value)) {
+         const rule_id_check = /^\d+$/;
+         if (rule_id.value == "") {
+             rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID is required!";
+             if (allvalid) {
+                 allvalid = false;
+             }
+         } else if (!rule_id_check.test(rule_id.value)) {
              rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID should be Numeric";
              if (allvalid) {
                  allvalid = false;
@@ -184,14 +190,6 @@
              rule_id_error.innerHTML = "";
          }
 
-         if (rule_id.value == "") {
-             rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             rule_id_error.innerHTML = "";
-         }
 
 
          //validate rule name

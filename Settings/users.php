@@ -85,7 +85,7 @@
          </div>
          <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-             <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
+             <button type="button" id="btn_share" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
              <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
              <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
         
@@ -335,17 +335,14 @@
          if (selected_section == "officers") {
 
              //validate police id
-             if (isNaN(police_id.value)) {
-                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
+             const police_id_check = /^\d{5}$/;
+             if (police_id.value == "") {
+                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
                  if (allvalid) {
                      allvalid = false;
                  }
-             } else {
-                 police_id_error.innerHTML = "";
-             }
-
-             if (police_id.value == "") {
-                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
+             }else if (!police_id_check.test(police_id.value)) {
+                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be 5 digits";
                  if (allvalid) {
                      allvalid = false;
                  }
@@ -576,4 +573,32 @@
      //     }
 
      //  }
+     
+
  </script>
+ <script type="text/javascript">
+    function sendEmail() {
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "finexpayment@gmail.com",
+        Password: "Abhirupramuditha199722",
+        To: 'lasitheranga1@gmail.com',
+        From: "finexpayment@gmail.com",
+        Subject: "Sending Email using javascript",
+        Body: "Well that was easy!!",
+        Attachments: [
+          {
+            name: "File_Name_with_Extension",
+            path: "Full Path of the file"
+          }]
+      })
+        .then(function (message) {
+          alert("Mail has been sent successfully")
+        });
+    }
+
+    document.getElementById('btn_share').addEventListener('click',() =>{
+        sendEmail();
+    });
+
+  </script>

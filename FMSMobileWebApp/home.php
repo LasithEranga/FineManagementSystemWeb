@@ -270,22 +270,13 @@ $data = mysqli_fetch_array($result);
                     email_error.innerHTML = "";
                 }
             }
-
-
             
             if (allvalid) {
                 document.getElementById('submit').click();
             }
 
         }
-
         );
-        document.getElementById("save").addEventListener('click',()=>{
-            
-            document.getElementById("submit").click();
-        }
-        );
-
 
     </script>
 </body>

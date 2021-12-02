@@ -116,7 +116,7 @@
   }
 
   //exports the table as a pdf
-  document.getElementById("printBtn").addEventListener("click", () => {
+  document.getElementById("printBtn").addEventListener("click",  () => {
     spaning_circle.classList.remove('visually-hidden');
     let listName = "";
     if (list_type.value == "expired") {
