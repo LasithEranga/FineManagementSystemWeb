@@ -99,7 +99,6 @@ if (isset($_GET['order_id'])) {
 
 <div class="d-flex container flex-column  bg-dark  text-white col-lg-11 " style="width: 95%;">
   <div id="fine_receipt">
-
   </div>
 </div>
 

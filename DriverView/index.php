@@ -47,6 +47,7 @@ echo "<script>window.open('login.php','_self')</script>";
     </style>
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+    <script src="html2pdf.bundle.min.js"></script>
 
 </head>
 

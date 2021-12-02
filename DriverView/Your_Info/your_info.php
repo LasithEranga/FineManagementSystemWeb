@@ -31,7 +31,7 @@ $result_array = mysqli_fetch_array($result);
     <div class="container-fluid">
         <a class="navbar-brand">
             <h1 class="pt-2 px-3">Your Info</h1> 
-            <span class="pt-2 px-3"><span class="text-danger">Important:</span> Providing wrong details may lead to legal actions.</span>
+            <!-- <span class="pt-2 px-3"><span class="text-danger">Important:</span> Providing wrong details may lead to legal actions.</span> -->
         </a>
     
     </div>
@@ -77,7 +77,7 @@ $result_array = mysqli_fetch_array($result);
             </div>
         </div>
         <div class="col-10 text-end ms-3">
-            <button type="submit" class="btn btn-primary mt-3 mb-2" onclick="updateInfo()">Update Info</button>
+            <!-- <button type="submit" class="btn btn-primary mt-3 mb-2" onclick="updateInfo()">Update Info</button> -->
         </div>
     </div>
 </div>
