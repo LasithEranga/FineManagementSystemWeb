@@ -432,46 +432,23 @@
          }
 
          //validate phone no
-         const regXpC = /^[\+]?[(]?[0-9]{0,2}[)]?[-\s\.]?[0-9]{2,3}[-\s\.]?[0-9]{3,4}?[0-9]{3,4}$/;
-         const regXpNew = /^\d+(\.\d*)?$|^\.\d+$/;
-
-         if (phone.value == "") {
-             phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             if (regXpC.test(phone.value) || regXpNew.test(phone.value)) {
-                 phone_error.innerHTML = "";
-             } else {
-                 phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
-             }
-
-         }
-
-         //  if (isNaN(phone.value)) {
-         //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Phone Number should be Numeric";
-         //      if (allvalid) {
-         //          allvalid = false;
-         //      }
-         //  } else {
-         //      phone_error.innerHTML = "";
-         //  }
+         const regXpC = /^\d{10}$/;
 
 
-         //  if (phone.value.length < 10) {
-         //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number must have 10 digits!";
-         //      if (allvalid) {
-         //          allvalid = false;
-         //      }
-         //  } else if (phone.value.length > 10) {
-         //      phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> A valid Phone Number is required!";
-         //      if (allvalid) {
-         //          allvalid = false;
-         //      }
-         //  } else {
-         //      phone_error.innerHTML = "";
-         //  }
+            if (phone.value == "") {
+                phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is required!";
+                if (allvalid) {
+                    allvalid = false;
+                }
+            } else {
+                if (regXpC.test(phone.value)) {
+                    phone_error.innerHTML = "";
+                } else {
+                    phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
+                }
+
+            }
+
 
          //validate email
 
@@ -500,7 +477,8 @@
          }
 
      }
-    //prints the user list acoriding to the selection
+
+
      document.getElementById("printBtn").addEventListener("click", () => {
         const table_body = document.getElementById('table_body');
          spaning_circle.classList.remove('visually-hidden');

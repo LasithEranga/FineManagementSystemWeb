@@ -1,6 +1,6 @@
 
       <div class="d-flex flex-column vh-100  flex-shrink-0 p-sm-3 text-white bg-dark font-merri">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a href="?dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <!-- <img src="logo.ico" class="ms-3" width="25%" alt=""> -->
           <img class="ps-3 pt-3 ps-sm-0 pt-sm-0 " src="./sidebar/logo.png" />
           <span class="fs-4 ms-2 d-none d-sm-block">FineX</span>
@@ -35,7 +35,7 @@
         </ul>
         <hr>
         <div class="">
-          <a href="../FMS/logout.php" class="nav-link text-white my-2 p-3 p-sm-2">
+          <a href="./logout.php" class="nav-link text-white my-2 p-3 p-sm-2">
           <span class="ms-2"><i class="fas fa-sign-out-alt mx-3"></i><span class=" d-none d-sm-inline ">Logout</span>
           </a>
         </div>
