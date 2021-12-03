@@ -116,6 +116,9 @@ if (isset($_GET['order_id'])) {
     xhttp.onload = function() {
       //
       fine_receipt.innerHTML = this.responseText;
+      if(this.responseText == ""){
+        fine_receipt.innerHTML ='No Fine Receipts are available';
+      }
     }
     xhttp.open('GET', "Fine_receipts/set_fine_receipt.php");
     xhttp.send();
