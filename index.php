@@ -109,13 +109,13 @@ echo "<script>window.open('login.php','_self')</script>";
         }
         if (isset($_GET['users'])) {
 
-            include("Settings/users.php");
+            include("Users/users.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
             $view = true;
         }
         if (isset($_GET['rules'])) {
 
-            include("Settings/rules.php");
+            include("Rules/rules.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
             $view = true;
         }
