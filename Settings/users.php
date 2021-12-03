@@ -103,6 +103,7 @@
          </table>
      </div>
  </div>
+
  <script>
      const all_users = document.getElementById('all_users');
      const officers = document.getElementById('officers');
@@ -399,11 +400,6 @@
              post_error.innerHTML = "";
          }
 
-
-
-
-
-
          //validate first name
          if (fname.value == "") {
              fname_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> First name is required!";
@@ -592,31 +588,6 @@
          }, 1000);
 
      });
- </script>
- <script type="text/javascript">
-     function sendEmail() {
-         Email.send({
-                 Host: "smtp.gmail.com",
-                 Username: "finexpayment@gmail.com",
-                 Password: "cxbmyrkpzqunokzk",
-                 To: 'lasitheranga1@gmail.com',
-                 From: "finexpayment@gmail.com",
-                 Subject: "Sending Email using javascript",
-                 Body: `<th scope='col'>NIC NO</th>
-                                <th scope='col'>First Name</th>
-                                <th scope='col'>Last Name</th>
-                                <th scope='col'>Full Name</th>
-                                <th scope='col'>Email</th>
-                                <th scope='col'>Contact No</td>
-                                <th scope='col'>Address</th>` + table_body.innerHTML + `</tbody></table></div></div>`,
-                 html: "",
-             })
-             .then(function(message) {
-                 alert("mail sent successfully")
-             });
-     }
 
-     document.getElementById('btn_share').addEventListener('click', () => {
-         sendEmail();
-     });
  </script>
+ 

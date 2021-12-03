@@ -127,7 +127,7 @@ session_start();
           document.getElementById('reset_success').classList.add('d-flex');
         }
       }
-      http_req.open('GET', "password_reset.php?password=" + md5(password_input.value));
+      http_req.open('POST', "password_reset.php?password=" + md5(password_input.value));
       http_req.send();
     }
   </script>
