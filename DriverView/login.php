@@ -97,6 +97,8 @@ session_start();
         } else if (this.responseText == "reset") {
           //shows the password reset section 
           password_input.value = "";
+          document.getElementById('login_failed_alert').classList.remove('d-flex');
+          document.getElementById('login_failed_alert').classList.add('d-none');
           show_new_password.style.display = "block";
           password_label.innerHTML = "Verify Password";
           login_label.innerHTML = "Reset Password";

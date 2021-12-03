@@ -381,15 +381,6 @@
          }
 
 
-         //validate post
-         if (post.value == "") {
-             post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
-         } else {
-             post_error.innerHTML = "";
-         }
 
          //validate first name
          if (fname.value == "") {
