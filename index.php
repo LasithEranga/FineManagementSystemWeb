@@ -63,6 +63,9 @@ echo "<script>window.open('login.php','_self')</script>";
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
     <script src="xepOnline.jqPlugin.js"></script>
     <script src="html2pdf.bundle.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="md5.min.js"></script>
+
 </head>
 
 <body class="bg-dark">
@@ -106,13 +109,13 @@ echo "<script>window.open('login.php','_self')</script>";
         }
         if (isset($_GET['users'])) {
 
-            include("Settings/users.php");
+            include("Users/users.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
             $view = true;
         }
         if (isset($_GET['rules'])) {
 
-            include("Settings/rules.php");
+            include("Rules/rules.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
             $view = true;
         }

@@ -127,7 +127,7 @@ if ($allValid) {
             $message = "Driver Details Updated!";
         } else {
             //if no previous id then user is inserting data
-            $query = "INSERT INTO `driver`(`nic`, `fname`, `lname`, `full_name`, `email`, `contact_no`, `address`) VALUES ('" . $nic . "','" . $fname . "','" . $lname . "','" . $full_name . "','" . $email . "','" . $phone . "','" . $address . "')";
+            $query = "INSERT INTO `driver`(`nic`, `fname`, `lname`, `full_name`, `email`, `contact_no`, `address`,`password`) VALUES ('" . $nic . "','" . $fname . "','" . $lname . "','" . $full_name . "','" . $email . "','" . $phone . "','" . $address . "', NULL)";
             $message = "Driver Details Added!";
         }
     } else if (isset($_REQUEST['officers'])) {
@@ -143,7 +143,7 @@ if ($allValid) {
                 $message = "Police Officer Details Updated!";
             } else {
                 //if no previous id then user is inserting data
-                $query = "INSERT INTO `traffic_police_officer`(`police_id`, `fname`, `lname`, `full_name`, `email`, `nic`, `contact_no`, `post`, `address`) VALUES ('" . $police_id . "','" . $fname . "','" . $lname . "','" . $full_name . "','" . $email . "','" . $nic . "','" . $phone . "','" . $post . "','" . $address . "')";
+                $query = "INSERT INTO `traffic_police_officer`(`police_id`, `fname`, `lname`, `full_name`, `email`, `nic`, `contact_no`, `post`, `address`,`password`) VALUES ('" . $police_id . "','" . $fname . "','" . $lname . "','" . $full_name . "','" . $email . "','" . $nic . "','" . $phone . "','" . $post . "','" . $address . "', NULL)";
                 $message = "Police Officer Details Added!";
             }
         }
