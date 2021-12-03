@@ -9,7 +9,7 @@
                  <!-- <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button> -->
              </div>
              <div class="modal-body ">
-                 <form id="modal_items" action="./Settings/save_update_user.php" method="post">
+                 <form id="modal_items" action="./Users/save_update_user.php" method="post">
 
                  </form>
              </div>
@@ -66,21 +66,12 @@
              <div id="all_users" class=" flex-row ms-4 mb-2 px-4 bottom-green ">
                  All Users
              </div>
-             <!-- <label for="from" class="fs-5 ms-1">From:</label>
-            <input type="date" class=" ms-1 me-2 py-1 bg-dark text-light border_date_input" id="from" name="from">-->
-             <!-- <div class=" flex-row ms-4 mb-2">
-                <label for="from" class="fs-5">To:</label>
-                <input type="date" class=" ms-1 me-2 py-1 bg-dark text-light border_date_input" id="to" name="to">
-            </div> -->
              <div id="officers" class=" flex-row ms-1 mb-2  px-4 cursor_change">
                  Police Officers
              </div>
              <div id="drivers" class=" flex-row ms-1 mb-2  px-4 cursor_change">
                  Drivers
              </div>
-             <!-- <div class=" flex-row ms-3 ">
-                <button id="btn_go" onclick="fillTableRange()" type="button" class="btn btn-success px-4 ms-2 ">Go</button>
-            </div> -->
 
          </div>
          <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
@@ -175,7 +166,7 @@
                  showMsg("Data not found!", "Sorry! No data available");
              }
          }
-         http_req.open('GET', "Settings/get_users_details.php?selected_section=" + selected_section);
+         http_req.open('GET', "Users/get_users_details.php?selected_section=" + selected_section);
          http_req.send();
      }
      fillTable();
@@ -195,7 +186,7 @@
              add_user_modal.click();
 
          }
-         http_req.open('GET', "Settings/user_modal_details.php?user_id=" + user_id + "&user_type=" + user_type);
+         http_req.open('GET', "Users/user_modal_details.php?user_id=" + user_id + "&user_type=" + user_type);
          http_req.send();
      }
 
@@ -301,7 +292,7 @@
          }
      }
 
-     //start of save details function
+     //start of validate and save details function
      function saveDetails() {
          var allvalid = true;
          const police_id_error = document.getElementById('police_id_error');
@@ -512,6 +503,12 @@
      //export as pdf
      document.getElementById("printBtn").addEventListener("click", () => {
          const table_body = document.getElementById('table_body');
+        
+         //hides the edit button to print
+         document.querySelectorAll('.btn_edit').forEach(function(hide) {
+         hide.style.visibility = 'hidden';
+         });
+
          spaning_circle.classList.remove('visually-hidden');
          let tableHeading = ""; //need to change table heading acording because we have three types
          let listName = "";
@@ -524,7 +521,8 @@
                                 <th scope='col'>Email</th>
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Address</th>`;
-         } else if (selected_section == "officers") {
+         } 
+         else if (selected_section == "officers") {
              listName = "User Details - Police Officers";
              tableHeading = `<th scope='col'>Police ID</th>
                                 <th scope='col'>First Name</th>
@@ -535,7 +533,8 @@
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Post</td>
                                 <th scope='col'>Address</td>`;
-         } else if (selected_section == "drivers") {
+         } 
+         else if (selected_section == "drivers") {
              listName = "User Details - Drivers";
              tableHeading = `<th scope='col'>NIC NO</th>
                                 <th scope='col'>First Name</th>
@@ -563,8 +562,10 @@
                               </thead>
                               <tbody id="table_contents">`;
 
-         //const element = document.getElementById("print");
-         const element = printTemplate + table_body.innerHTML + `</tbody></table></div></div>`;
+         
+                              
+         
+        const element = printTemplate + table_body.innerHTML + `</tbody></table></div></div>`;
          html2pdf(element, {
              margin: 1,
              filename: listName + '.pdf',
@@ -582,6 +583,10 @@
                  format: 'a3',
                  orientation: 'portrait'
              }
+         });
+         //show the edit button to again
+         document.querySelectorAll('.btn_edit').forEach(function(hide) {
+         hide.style.visibility = 'visible';
          });
          setTimeout(() => {
              spaning_circle.classList.add('visually-hidden')
