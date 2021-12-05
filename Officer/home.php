@@ -267,6 +267,9 @@ $data = mysqli_fetch_array($result);
                     phone_error.innerHTML = "";
                 } else {
                     phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number shoud be 10 digits!";
+                    if (allvalid) {
+                        allvalid = false;
+                    }
                 }
 
             }
