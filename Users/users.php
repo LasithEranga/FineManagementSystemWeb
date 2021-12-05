@@ -89,8 +89,8 @@
      </div>
 
      <!--table-->
-     <div class="card text-white bg-dark m-4">
-         <table id="table_contents" class="table table-dark table-hover">
+     <div class="card text-white bg-dark m-4 table-responsive">
+         <table id="table_contents" class="table table-dark table-hover ">
          </table>
      </div>
  </div>

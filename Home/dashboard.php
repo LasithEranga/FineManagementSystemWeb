@@ -20,6 +20,7 @@
         $cases = $result_array['count'];
         return $cases;
     }
+    
     function getIncome($query , $conn){
         $result = mysqli_query($conn,$query);
         $result_array = mysqli_fetch_array($result);

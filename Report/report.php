@@ -6,9 +6,10 @@
         <h4 class="modal-title" id="messageTitle"></h4>
       </div>
       <div id="messageBody" class="modal-body">
+
       </div>
-      <div class="modal-footer" style="border: none;">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      <div class="modal-footer" id="modal_footer" style="border: none;">
+        <button type="button" id="modal_close_btn" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -37,7 +38,7 @@
           <option value="allRecords" onclick="fillTable()">All Records</option>
         </select>
         <form class="d-flex col-lg-8 mt-2 mt-lg-0">
-          <input class="form-control me-2 border_date_input bg-dark text-light" type="search" placeholder="Search" aria-label="Search">
+          <input id="keyword" onkeyup="search()" class="form-control me-2 border_date_input bg-dark text-light" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-success me-lg-3" type="submit">Search</button>
         </form>
       </div>
@@ -63,11 +64,13 @@
     </div>
     <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-      <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-4 mt-lg-0">Share</button>
-      <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF 
-        
-          <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
-        
+      <button type="button" onclick="shareEmail()" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-4 mt-lg-0">Share
+        <span id="spaning_circle_share" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
+      </button>
+      <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
+
+        <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
+
 
     </div>
 
@@ -107,6 +110,8 @@
   const printArea = document.getElementById('printArea');
   const list_type = document.getElementById('list_type');
   const spaning_circle = document.getElementById('spaning_circle');
+  const keyword = document.getElementById('keyword');
+  const spaning_circle_share = document.getElementById('spaning_circle_share');
 
   //shows the message as a modal view with passed arguments
   function showMsg(title, body) {
@@ -116,7 +121,7 @@
   }
 
   //exports the table as a pdf
-  document.getElementById("printBtn").addEventListener("click",  () => {
+  document.getElementById("printBtn").addEventListener("click", () => {
     spaning_circle.classList.remove('visually-hidden');
     let listName = "";
     if (list_type.value == "expired") {
@@ -174,8 +179,10 @@
         orientation: 'portrait'
       }
     });
-    setTimeout(()=>{spaning_circle.classList.add('visually-hidden')},1000);
-    
+    setTimeout(() => {
+      spaning_circle.classList.add('visually-hidden')
+    }, 1000);
+
   });
 
   //fills table with data available in db for selected date range
@@ -193,5 +200,69 @@
     http_req.send();
   }
 
-  
+  //fills table with data available in db for selected date range and maching keyword
+  function search() {
+    var selection = list_type.value;
+    const http_req = new XMLHttpRequest();
+    http_req.onload = function() {
+      // console.log(this.responseText);
+      table_contents.innerHTML = this.responseText;
+      if (this.responseText == "") {
+        showMsg("Data not found!", "Sorry! No data available in seleceted date range");
+      }
+    }
+    http_req.open('GET', "Report/search.php?from='" + from.value + "'&to='" + to.value + "'&list=" + selection + "&keyword=" + keyword.value);
+    http_req.send();
+  }
+
+
+  function shareEmail() {
+    spaning_circle_share.classList.remove('visually-hidden');
+    const ShareFileTemplate = `<div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                              <input type="email" class="form-control" id="Mailto" placeholder="name@example.com">
+                            </div>
+                            <div class="mb-3">
+                              <label for="formFile" class="form-label">Select File</label>
+                              <input class="form-control" id='file_to_send' type="file" id="formFile">
+                            </div>`;
+
+    document.getElementById('modal_footer').innerHTML += `<button type="button" onclick="sendMail()" class="btn btn-primary" data-bs-dismiss="modal">Send</button>`
+    showMsg("Send via Email", ShareFileTemplate);
+  }
+
+
+  //sends the mail when user click okay
+  function sendMail() {
+    document.getElementById('modal_footer').innerHTML = `<button type="button" id="modal_close_btn" class="btn btn-primary" data-bs-dismiss="modal">Close</button>`;
+    var file = document.getElementById('file_to_send').files[0];
+    var reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = function() {
+      var dataUri = "data:" + file.type + ";base64," + btoa(reader.result);
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "finexpayment@gmail.com",
+        Password: "cxbmyrkpzqunokzk",
+        To: document.getElementById('Mailto').value,
+        From: "finexpayment@gmail.com",
+        Subject: "Fine Payment Management System Report",
+        Body: "Sending file:" + file.name,
+        Attachments: [{
+          name: file.name,
+          data: dataUri
+        }]
+      }).then(
+          message => mailSent(message)
+      );
+    };
+    reader.onerror = function() {
+      console.log('there are some problems');
+    };
+  }
+
+  function mailSent(message){
+    spaning_circle_share.classList.add('visually-hidden');
+    showMsg('<i class="fas fa-info-circle text-success me-2"></i>Info','Sending mail succeed!')
+  }
 </script>

@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header" style="border: none;">
-        <h4 class="modal-title" id="messageTitle"></h4>
+        <h4 class="modal-title" id="messageTitle"> </h4>
       </div>
       <div id="messageBody" class="modal-body">
       </div>
@@ -173,7 +173,7 @@
   function generateGraph(groupBy) {
     const http_req = new XMLHttpRequest();
     http_req.onload = function() {
-     // console.log(this.responseText);
+      //console.log(this.responseText);
       response = this.responseText.split('&');
       xaxis = response[0].split(',');
       yaxis = response[1].split(',');
