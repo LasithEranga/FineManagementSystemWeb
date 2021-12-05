@@ -4,7 +4,7 @@ $rule_id = $_REQUEST['rule_id'];
 
 $html_code = "";
 
-$query = "SELECT * FROM `rule` WHERE rule_id = " .$rule_id. ";";
+$query = "SELECT `rule_id`, `rule_name`, CAST(`penalty_amount` AS DECIMAL(10,2)) AS penalty_amount,`description`, `tag` FROM `rule` WHERE rule_id = " .$rule_id. ";";
 $result_array = mysqli_query($conn, $query);
 $result = mysqli_fetch_array($result_array);
 $html_code .= "

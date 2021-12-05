@@ -55,7 +55,7 @@
                  <span class="navbar-toggler-icon"></span>
              </button>
              <div class="collapse navbar-collapse" id="navbarScroll">
-                 <input class="form-control me-2 bg-dark text-light border_date_input" type="search" placeholder="Search" aria-label="Search">
+                 <input class="form-control me-2 bg-dark text-light border_date_input" onkeyup="search(this.value)" type="search" placeholder="Search" aria-label="Search">
                  <button class="btn btn-success me-3" type="submit">Search</button>
 
              </div>
@@ -154,6 +154,7 @@
      }
 
 
+     //validate and save 
      function saveDetails() {
          //validate details 
          //submit the form 
@@ -179,19 +180,16 @@
 
          if (rule_id.value == "") {
              rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else if (!rule_id_check.test(rule_id.value)) {
              rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID should be Numeric";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else if (!rule_id_check.test(rule_id.value)) {
              rule_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule ID should be Numeric";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else {
              rule_id_error.innerHTML = "";
          }
@@ -203,14 +201,12 @@
 
          if (rule_name.value == "") {
              rule_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Rule name is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else if (!nameCheck.test(rule_name.value)) {
              rule_name_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Name should not include numbers!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else {
              rule_name_error.innerHTML = "";
          }
@@ -221,14 +217,12 @@
 
          if (description.value == "") {
              description_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Description is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else if (!descriptionCheck.test(description.value)) {
              description_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Valid description is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else {
              description_error.innerHTML = "";
          }
@@ -241,14 +235,12 @@
 
          if (penalty_amount.value == "") {
              penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else if (!penalty_amount_check.test(penalty_amount.value)) {
              penalty_amount_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Penalty amount should have two decimal places!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else {
              penalty_amount_error.innerHTML = "";
          }
@@ -259,14 +251,12 @@
 
          if (tag.value == "") {
              tag_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Tag is required!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else if (!tagCheck.test(tag.value)) {
              tag_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Tag should not include numbers!";
-             if (allvalid) {
-                 allvalid = false;
-             }
+             allvalid = false;
+
          } else {
              tag_error.innerHTML = "";
          }
@@ -278,4 +268,18 @@
          }
 
      }
+
+     //fills table with data available in db  maching with given keyword
+     function search(keyword) {
+         const http_req = new XMLHttpRequest();
+         http_req.onload = function() {
+             // console.log(this.responseText);
+             table_contents.innerHTML = this.responseText;
+             if (this.responseText == "") {
+                 showMsg("Data not found!", "Sorry! No data available in seleceted date range");
+             }
+         }
+         http_req.open('GET', "Rules/search.php?keyword="+ keyword);
+         http_req.send();
+     } 
  </script>
