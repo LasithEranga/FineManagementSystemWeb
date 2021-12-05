@@ -1,30 +1,17 @@
 <?php
-include('./db.php');
+include ('./db.php');
 session_start();
-$nic = $_REQUEST['nic'];
+$police_id = $_REQUEST['police_id'];
 $password = $_REQUEST['password'];
 
-function validateNIC($value)
+function validatePoliceID($value)
 {
   if (empty($value)) { // test the field to see if it blank (empty)
     return false;
+  } else if(!preg_match("/^\d{5}$/", $value)) {
+    return false;
   } else {
-    if (strlen($value) == 10) {
-      //pattern1
-      if (!preg_match("/^\d{9}[vxVX]{1}+$/", $value)) {
-        return false;
-      } else {
-        return true;
-      }
-    } else if (strlen($value) == 12) {
-      //pattern 2
-      if (!preg_match("/^\d{12}$/", $value)) {
-        return false;
-      } else {
-
-        return true;
-      }
-    }
+    return true;
   }
 }
 function validatePassword($value)
@@ -38,22 +25,23 @@ function validatePassword($value)
   }
 }
 
-if (validateNIC($nic) && validatePassword($password)) {
+if (validatePoliceID($police_id) && validatePassword($password)) {
 
-
-  $query = "SELECT * FROM `driver` WHERE nic = '" . $nic . "' AND password ='" . $password . "'";
+  $query = "SELECT * FROM `traffic_police_officer` WHERE police_id = '". $police_id ."' AND password ='". $password ."'";
   $result = mysqli_query($conn, $query);
   $count = mysqli_num_rows($result);
-
+  //echo $query;
   if ($count == 1) {
-    $_SESSION['driver_nic'] = $nic;
+    $result_array = mysqli_fetch_array($result);
+    $_SESSION['police_id']=$police_id;
+    $_SESSION['name']=$result_array['fname'];
     echo "logged";
   } else {
-    $query = "SELECT * FROM driver WHERE nic = '" . $nic . "' AND ISNULL(password) AND email ='" . $password . "'";
+    $query = "SELECT * FROM traffic_police_officer WHERE police_id = '" . $police_id . "' AND ISNULL(password) AND email ='" . $password . "'";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
     if ($count == 1) {
-      $_SESSION['driver_nic'] = $nic;
+      $_SESSION['police_id'] = $police_id;
       echo "reset";
     } else {
       echo "failed";

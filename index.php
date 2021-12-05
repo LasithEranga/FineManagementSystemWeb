@@ -62,7 +62,9 @@ echo "<script>window.open('login.php','_self')</script>";
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
     <script src="xepOnline.jqPlugin.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="html2pdf.bundle.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="md5.min.js"></script>
 
 </head>
 
@@ -73,41 +75,54 @@ echo "<script>window.open('login.php','_self')</script>";
     <?php include("sidebar/sidebar.php");?>
     </div>
     <div class="d-flex flex-column  col-2 "></div>
-    <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
+    <div class="d-flex flex-column  bg-dark pe-2 pe-md-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
+
+        $view = false;
 
         if (isset($_GET['dashboard'])) {
 
             include("Home/dashboard.php");
             echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['statistics'])) {
 
             include("Statistics/statistics.php");
             echo "<script> document.getElementById('statistics').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['report'])) {
 
             include("Report/report.php");
             echo "<script> document.getElementById('report').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['settings'])) {
 
             include("Settings/settings.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
         }
         if (isset($_GET['users'])) {
 
-            include("Settings/users.php");
+            include("Users/users.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
         }
         if (isset($_GET['rules'])) {
 
-            include("Settings/rules.php");
+            include("Rules/rules.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
+        }
+
+        if(!$view){
+            include("Home/dashboard.php");
+            echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
         }
         ?>
 

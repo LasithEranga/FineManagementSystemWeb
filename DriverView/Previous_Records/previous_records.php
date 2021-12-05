@@ -40,12 +40,12 @@
         <div class=" bg-dark  d-flex flex-column flex-md-row">
             <div class=" flex-row ms-4 mb-2 ">
                 <label for="from" class="fs-5">From:</label>
-                <input type="date" class=" ms-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
+                <input type="date" class=" ms-lg-1 me-2 border_date_input bg-dark text-light py-1" id="from" name="from">
             </div>
 
             <div class=" flex-row ms-4 mb-2 ">
                 <label for="from" class="fs-5">To:</label>
-                <input type="date" class=" ms-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
+                <input type="date" class=" ms-lg-4 me-2 border_date_input bg-dark text-light py-1" id="to" name="to">
             </div>
 
             <div class=" flex-row ms-3 ">
@@ -55,8 +55,10 @@
         </div>
         <div class="d-flex flex-column  ms-auto me-3 flex-md-row">
 
-            <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2">Share</button>
-            <button type="button" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF</button>
+            <button type="button" class="btn  btn-block btn-success px-4 mb-2 mb-md-0 me-md-2 mt-4 mt-lg-0">Share</button>
+            <button type="button" id="printBtn" class="btn  btn-block btn-success px-4 me-md-2">Save as PDF
+                <span id="spaning_circle" class=" spinner-border text-info text-light visually-hidden spinner-border-sm"></span>
+            </button>
 
         </div>
 
@@ -65,7 +67,7 @@
 
     <!--table-->
     <div class="card text-white bg-dark m-4">
-        <table class="table table-dark table-hover">
+        <table class="table table-responsive table-dark table-hover">
             <tdead>
                 <tr>
                     <th scope="col">Reference No</th>
@@ -121,4 +123,57 @@
         http_req.open('GET', "Previous_Records/get_data.php?&from=" + from.value + "&to=" + to.value);
         http_req.send();
     }
+
+    //exports the table as a pdf
+    document.getElementById("printBtn").addEventListener("click", () => {
+        spaning_circle.classList.remove('visually-hidden');
+        let printTemplate = `<div id='print' class='m-1'>
+                          <div class='d-flex flex-row  col-12'>
+                            <div class='col-1 '></div>
+                            <div class='col-1 mt-3 pt-1'> <img src='https://finemanagementsystem.000webhostapp.com/images/glogo.png' alt=''height='75px'></div>
+                            <div class='col-8 text-center mt-4 '>
+                              <span class='fw-bold fs-2 '>  SRI LANKA POLICE </span><br>  User Report- Previous Fine Receipts from `+from.value +` to `+to.value +`<p></p>
+                            </div>
+                            <div class='col-1  mt-3'><img src='https://finemanagementsystem.000webhostapp.com/images/policeLogo.png' alt=''></div>
+                          </div>
+                          <div class="table-responsive mx-4">
+                            <table class="table table-striped table-light table-hover">
+                              <thead>
+                                <tr>
+                                    <th scope="col">Reference No</th>
+                                    <th scope="col">Officer ID</th>
+                                    <th scope="col">Issue Date</th>
+                                    <th scope="col">Issue Time</th>
+                                    <th scope="col">Penalty</th>
+                                    <th scope="col">Offence(s)</th>
+                                    <th scope="col">Due Date:</td>
+                                </tr>
+                              </thead>
+                              <tbody id="table_contents">`;
+
+        //const element = document.getElementById("print");
+        const element = printTemplate + table_contents.innerHTML + `</tbody></table></div></div>`;
+        html2pdf(element, {
+            margin: 1,
+            filename: 'UserReport.pdf',
+            image: {
+                type: 'png',
+                quality: 0.99
+            },
+            html2canvas: {
+                dpi: 192,
+                letterRendering: true,
+                useCORS: true
+            },
+            jsPDF: {
+                unit: 'pt',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        });
+        setTimeout(() => {
+            spaning_circle.classList.add('visually-hidden')
+        }, 1000);
+
+    });
 </script>

@@ -99,7 +99,6 @@ if (isset($_GET['order_id'])) {
 
 <div class="d-flex container flex-column  bg-dark  text-white col-lg-11 " style="width: 95%;">
   <div id="fine_receipt">
-
   </div>
 </div>
 
@@ -117,6 +116,9 @@ if (isset($_GET['order_id'])) {
     xhttp.onload = function() {
       //
       fine_receipt.innerHTML = this.responseText;
+      if(this.responseText == ""){
+        fine_receipt.innerHTML ='No Fine Receipts are available';
+      }
     }
     xhttp.open('GET', "Fine_receipts/set_fine_receipt.php");
     xhttp.send();

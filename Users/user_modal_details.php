@@ -14,30 +14,38 @@ if($user_type == "driver"){
                     <div class='mb-3'>
                         <label for='nic' class='form-label'> NIC Number</label>
                         <input type='text' class='form-control bg-dark bg-dark text-light' id='nic' name='nic' value ='".$result['nic']."'>
+                        <span id='nic_error' class='text-danger'></span>
+                        
                     </div>
                     <div class='mb-3'>
                         <label for='fname' class='form-label'>First Name</label>
                         <input type='text' class='form-control bg-dark text-light' id='fname' name='fname' value ='".$result['fname']."'>
+                        <span id='fname_error' class='text-danger'></span>
                    </div>
                     <div class='mb-3'>
                         <label for='lname' class='form-label'>Last Name</label>
                         <input type='text' class='form-control bg-dark text-light' id='lname' name='lname' value ='".$result['lname']."'>
+                        <span id='lname_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='full_name' class='form-label'>Full Name</label>
                         <input type='text' class='form-control bg-dark text-light' id='full_name' name='full_name' value ='".$result['full_name']."'>
+                        <span id='full_name_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='address' class='form-label'>Address</label>
                         <input type='text' class='form-control bg-dark text-light' id='address' name='address' value ='".$result['address']."'>
+                        <span id='address_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='text' class='form-label'>Email Address</label>
                         <input type='text' class='form-control bg-dark text-light' id='email' name='email' value ='".$result['email']."' >
+                        <span id='email_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='phone' class='form-label'>Contact No</label>
                         <input type='text' class='form-control bg-dark text-light' id='phone' name='phone' value ='".$result['contact_no']."'>
+                        <span id='phone_error' class='text-danger'></span>
                     </div>
                     <input id='submit' type='submit' hidden='true'>";
 
@@ -53,38 +61,47 @@ if($user_type == "officer"){
                     <div class='mb-3'>
                         <label for='police_id' class='form-label'> Police ID </label>
                         <input type='text' class='form-control bg-dark text-light' id='police_id' name='police_id' value ='".$result['police_id']."'>
+                        <span id='police_id_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='fname' class='form-label'>First Name</label>
                         <input type='text' class='form-control bg-dark text-light' id='fname' name='fname' value ='".$result['fname']."'>
+                        <span id='fname_error' class='text-danger'></span>
                    </div>
                     <div class='mb-3'>
                         <label for='lname' class='form-label'>Last Name</label>
                         <input type='text' class='form-control bg-dark text-light' id='lname' name='lname' value ='".$result['lname']."'>
+                        <span id='lname_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='full_name' class='form-label'>Full Name</label>
                         <input type='text' class='form-control bg-dark text-light' id='full_name' name='full_name' value ='".$result['full_name']."'>
+                        <span id='full_name_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='address' class='form-label'>Address</label>
                         <input type='text' class='form-control bg-dark text-light' id='address' name='address' value ='".$result['address']."'>
+                        <span id='address_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='text' class='form-label'>Email Address</label>
                         <input type='text' class='form-control bg-dark text-light' id='email' name='email' value ='".$result['email']."' >
+                        <span id='email_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='nic' class='form-label'> NIC Number</label>
                         <input type='text' class='form-control bg-dark text-light' id='nic' name='nic' value ='".$result['nic']."'>
+                        <span id='nic_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='post' class='form-label'> Post</label>
                         <input type='text' class='form-control bg-dark text-light' id='post' name='post' value ='".$result['post']."'>
+                        <span id='post_error' class='text-danger'></span>
                     </div>
                     <div class='mb-3'>
                         <label for='phone' class='form-label'>Contact No</label>
                         <input type='text' class='form-control bg-dark text-light' id='phone' name='phone' value ='".$result['contact_no']."'>
+                        <span id='phone_error' class='text-danger'></span>
                     </div>
                     <input id='submit' type='submit' hidden='true'>";
 }

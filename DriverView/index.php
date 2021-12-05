@@ -8,6 +8,7 @@ echo "<script>window.open('login.php','_self')</script>";
 
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +47,8 @@ echo "<script>window.open('login.php','_self')</script>";
     </style>
     <!-- Javascripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+    <script src="html2pdf.bundle.min.js"></script>
+    <script src="md5.min.js"></script>
 
 </head>
 
@@ -56,31 +59,42 @@ echo "<script>window.open('login.php','_self')</script>";
     <?php include("sidebar/sidebar.php");?>
     </div>
     <div class="d-flex flex-column  col-2 "></div>
-    <div class="d-flex flex-column  bg-dark pe-5" style="overflow-y: scroll; min-width: 88%; ">
+    <div class="d-flex flex-column  bg-dark pe-md-5" style="overflow-y: scroll; min-width: 88%; ">
         <?php
+        $view = false;
+
 
         if (isset($_GET['your_info'])) {
 
             include("Your_Info/your_info.php");
             echo "<script> document.getElementById('dashboard').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['fine_receipts'])) {
 
             include("Fine_receipts/fine_receipts.php");
             echo "<script> document.getElementById('statistics').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['expired'])) {
 
             include("Expired/expired.php");
             echo "<script> document.getElementById('report').classList.add('active')</script>";
+            $view = true;
         }
 
         if (isset($_GET['previous_records'])) {
 
             include("Previous_Records/previous_records.php");
             echo "<script> document.getElementById('settings').classList.add('active')</script>";
+            $view = true;
+        }
+
+        if(!$view){
+            include("Fine_receipts/fine_receipts.php");
+            echo "<script> document.getElementById('statistics').classList.add('active')</script>";
         }
         ?>
 
