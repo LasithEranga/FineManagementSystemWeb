@@ -55,7 +55,7 @@
                  <span class="navbar-toggler-icon"></span>
              </button>
              <div class="collapse navbar-collapse" id="navbarScroll">
-                 <input class="form-control me-2 bg-dark text-light border_date_input" type="search" placeholder="Search" aria-label="Search">
+                 <input class="form-control me-2 bg-dark text-light border_date_input" onkeyup="search(this.value)" type="search" placeholder="Search" aria-label="Search">
                  <button class="btn btn-success me-3 " type="submit">Search</button>
              </div>
          </div>
@@ -332,26 +332,23 @@
              const police_id_check = /^\d{5}$/;
              if (police_id.value == "") {
                  police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID is required!";
-                 if (allvalid) {
                      allvalid = false;
-                 }
+
              } else if (!police_id_check.test(police_id.value)) {
                  police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be 5 digits";
-                 if (allvalid) {
                      allvalid = false;
-                 }
-             } else if (!police_id_check.test(police_id.value)) {
-                 police_id_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Police ID should be Numeric";
-                 if (allvalid) {
-                     allvalid = false;
-                 }
-             } else if (!nameCheck.test(post.value)) {
+                 
+             } else {
+                 police_id_error.innerHTML = "";
+             }
+
+             if (!nameCheck.test(post.value)) {
                  post_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Post is invalid!";
                  if (allvalid) {
                      allvalid = false;
                  }
              } else {
-                 police_id_error.innerHTML = "";
+                 post_error.innerHTML = "";
              }
 
          }
@@ -585,4 +582,18 @@
          }, 1000);
 
      });
+
+     //search data for given keyword
+     function search(keyword) {
+         const http_req = new XMLHttpRequest();
+         http_req.onload = function() {
+             // console.log(this.responseText);
+             table_contents.innerHTML = this.responseText;
+             if (this.responseText == "") {
+                 showMsg("Data not found!", "Sorry! No data available");
+             }
+         }
+         http_req.open('GET', "Users/search.php?selected_section=" + selected_section + "&keyword=" + keyword);
+         http_req.send();
+     }
  </script>

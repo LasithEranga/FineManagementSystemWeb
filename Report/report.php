@@ -10,6 +10,7 @@
       </div>
       <div class="modal-footer" id="modal_footer" style="border: none;">
         <button type="button" id="modal_close_btn" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        <div id="send_btn"></div>
       </div>
     </div>
   </div>
@@ -217,7 +218,7 @@
 
 
   function shareEmail() {
-    spaning_circle_share.classList.remove('visually-hidden');
+    
     const ShareFileTemplate = `<div class="mb-3">
                               <label for="exampleFormControlInput1" class="form-label">Email address</label>
                               <input type="email" class="form-control" id="Mailto" placeholder="name@example.com">
@@ -227,14 +228,15 @@
                               <input class="form-control" id='file_to_send' type="file" id="formFile">
                             </div>`;
 
-    document.getElementById('modal_footer').innerHTML += `<button type="button" onclick="sendMail()" class="btn btn-primary" data-bs-dismiss="modal">Send</button>`
+    document.getElementById('send_btn').innerHTML = `<button type="button" onclick="sendMail()" class="btn btn-primary" data-bs-dismiss="modal">Send</button>`
     showMsg("Send via Email", ShareFileTemplate);
   }
 
 
   //sends the mail when user click okay
   function sendMail() {
-    document.getElementById('modal_footer').innerHTML = `<button type="button" id="modal_close_btn" class="btn btn-primary" data-bs-dismiss="modal">Close</button>`;
+    spaning_circle_share.classList.remove('visually-hidden');
+    document.getElementById('send_btn').innerHTML = '';
     var file = document.getElementById('file_to_send').files[0];
     var reader = new FileReader();
     reader.readAsBinaryString(file);
