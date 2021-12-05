@@ -461,6 +461,9 @@
                  phone_error.innerHTML = "";
              } else {
                  phone_error.innerHTML = "<i class = 'fas fa-exclamation-circle'></i> Contact Number is Invalid!";
+                 if (allvalid) {
+                     allvalid = false;
+                 }
              }
 
          }
@@ -494,10 +497,10 @@
      //export as pdf
      document.getElementById("printBtn").addEventListener("click", () => {
          const table_body = document.getElementById('table_body');
-        
+
          //hides the edit button to print
          document.querySelectorAll('.btn_edit').forEach(function(hide) {
-         hide.style.visibility = 'hidden';
+             hide.style.visibility = 'hidden';
          });
 
          spaning_circle.classList.remove('visually-hidden');
@@ -512,8 +515,7 @@
                                 <th scope='col'>Email</th>
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Address</th>`;
-         } 
-         else if (selected_section == "officers") {
+         } else if (selected_section == "officers") {
              listName = "User Details - Police Officers";
              tableHeading = `<th scope='col'>Police ID</th>
                                 <th scope='col'>First Name</th>
@@ -524,8 +526,7 @@
                                 <th scope='col'>Contact No</td>
                                 <th scope='col'>Post</td>
                                 <th scope='col'>Address</td>`;
-         } 
-         else if (selected_section == "drivers") {
+         } else if (selected_section == "drivers") {
              listName = "User Details - Drivers";
              tableHeading = `<th scope='col'>NIC NO</th>
                                 <th scope='col'>First Name</th>
@@ -553,10 +554,10 @@
                               </thead>
                               <tbody id="table_contents">`;
 
-         
-                              
-         
-        const element = printTemplate + table_body.innerHTML + `</tbody></table></div></div>`;
+
+
+
+         const element = printTemplate + table_body.innerHTML + `</tbody></table></div></div>`;
          html2pdf(element, {
              margin: 1,
              filename: listName + '.pdf',
@@ -577,13 +578,11 @@
          });
          //show the edit button to again
          document.querySelectorAll('.btn_edit').forEach(function(hide) {
-         hide.style.visibility = 'visible';
+             hide.style.visibility = 'visible';
          });
          setTimeout(() => {
              spaning_circle.classList.add('visually-hidden')
          }, 1000);
 
      });
-
  </script>
- 
